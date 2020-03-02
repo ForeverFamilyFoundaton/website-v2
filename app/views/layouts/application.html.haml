@@ -1,0 +1,44 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
+    %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
+    / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    %meta{content: '', name: 'description'}
+    %meta{content: '', name: 'author'}
+
+    = render 'layouts/icons'
+
+    %title Forever Family Foundation
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+    = javascript_include_tag 'https://kit.fontawesome.com/51413862f8.js', crossorigin: :anonymous
+    = csrf_meta_tags
+
+  %body
+    .container
+      .row.header
+        .col
+          = render 'layouts/navigation'
+      .row.content
+        .col-sm-3
+          = render 'shared/nav/site_nav'
+          = render 'shared/partners'
+
+        .col-sm-9.main
+          - if flash
+            = render 'layouts/messages'
+
+          - if !@cms_page.title.blank?
+            %h1= @cms_page.title
+          - if !@cms_page.sub_title.blank?
+            %h2= @cms_page.sub_title
+          = yield if @cms_page.is_site_index?
+          = blog @cms_page.body
+          = yield if !@cms_page.is_site_index?
+
+      .row.footer
+
+  = render 'layouts/footer'

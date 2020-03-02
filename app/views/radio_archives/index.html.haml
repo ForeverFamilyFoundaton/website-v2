@@ -1,0 +1,25 @@
+%h3 Radio Archives
+
+= search_form_for @q do |f| 
+  = f.search_field :title_or_guest_cont
+
+  = f.submit
+
+%p
+  = paginate @archives
+
+%ul.radio_archives
+  - @archives.each do |archive|
+    %li
+      %h4=archive.title
+      %p= archive.guest
+      %p= archive.date
+      %p= link_to 'Download', archive.attached_file.attachment.url if archive.attached_file
+      - if !archive.embeded_links.empty?
+        %fieldset.links
+          %legend Books &amp; Links
+          %ul
+            - archive.embeded_links.each do |embeded_link|
+              %li= raw(embeded_link.body)
+
+= paginate @archives

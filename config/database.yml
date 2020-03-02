@@ -1,0 +1,12 @@
+development:
+  encoding: utf8
+  adapter: postgresql
+  database: rais6_data
+  username: <%= `whoami` %>
+
+test:
+  encoding: utf8
+  pool: 10
+  adapter: postgresql
+  database: rais6_test
+  username: <%= `whoami` %>
