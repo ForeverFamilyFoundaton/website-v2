@@ -1,0 +1,31 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
+    %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
+    / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    %meta{ content: '', name: 'description' }
+    %meta{ content: '', name: 'author' }
+    %meta{ content: Rails.application.credentials.stripe_public_key, name: 'stripe-public-key' }
+
+    = render 'layouts/icons'
+
+    %title Forever Family Foundation
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+    = javascript_include_tag 'https://kit.fontawesome.com/51413862f8.js', crossorigin: :anonymous
+    = javascript_include_tag 'https://js.stripe.com/v3/'
+    = csrf_meta_tags
+
+  %body
+    .container
+      = render 'layouts/navigation'
+      - if flash
+        .row
+          .col-12
+            = render 'layouts/messages'
+      .row
+        .col-12.main
+          = yield

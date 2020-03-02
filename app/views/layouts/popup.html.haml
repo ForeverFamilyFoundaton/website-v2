@@ -1,0 +1,18 @@
+= render 'layouts/header'
+
+%body
+  #layout
+    #logo
+      %a{href: root_url}
+    #container
+      #popup-content
+        #content_main
+          %h1= @cms_page.title
+          = blog @cms_page.body
+          = yield
+
+        %p
+          %a.close{ href: '#' } Close
+
+    #footer_spacer
+  = render 'layouts/footer'
