@@ -4,6 +4,12 @@
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
+  config.after_initialize do
+    # Do not change -synced with browser stub in test.js
+    t = Time.local(2018, 10, 2, 11, 5, 0)
+    Timecop.travel(t)
+  end
+
   config.action_mailer.default_url_options = { host: 'localhost:3001' }
 
   # Settings specified here will take precedence over those in config/application.rb.

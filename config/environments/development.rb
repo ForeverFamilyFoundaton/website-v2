@@ -1,5 +1,22 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.perform_deliveries = false
+
+  config.action_mailer.default_url_options = {
+    host: Rails.application.credentials[:base_domain]
+  }
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    preserve_files: true,
+    s3_credentials: {
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+      s3_region: ENV.fetch('AWS_REGION')
+    }
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
