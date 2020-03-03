@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   helper :all
-  protect_from_forgery
+
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   before_action :get_cms_page, :set_controller_and_action_names

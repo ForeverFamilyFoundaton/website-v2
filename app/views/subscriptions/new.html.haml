@@ -1,4 +1,5 @@
-= simple_form_for @subscription do |f|
+= javascript_pack_tag 'stripe'
+= simple_form_for :subscription, html: { id: :new_subscription } do |f|
   .row
     .col-6
       .form-group
@@ -6,3 +7,6 @@
         #card-element.w-100
         #card-errors{role: "alert"}
       = f.submit 'Subscribe', class: 'btn btn-primary'
+
+#subscription-success.d-none
+  %h2 Subscription Success!

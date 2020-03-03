@@ -24,6 +24,7 @@ gem 'bootstrap'
 gem 'redcarpet'
 gem 'rollbar'
 gem 'acts_as_tree'
+gem 'stripe'
 # Use Puma as `he app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -60,11 +61,21 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
+  gem 'capybara-email'
+  gem 'database_cleaner'
+  gem 'email_spec'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'fuubar'
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter', '0.2.3'
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'shoulda-matchers'
+  gem 'timecop'
+  gem 'vcr'
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

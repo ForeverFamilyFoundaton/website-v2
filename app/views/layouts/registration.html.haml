@@ -5,9 +5,11 @@
     %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
     %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
     / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
-    %meta{ content: '', name: 'description' }
+    %meta{ content: 'Forever Family Foundation Website', name: 'description' }
     %meta{ content: '', name: 'author' }
     %meta{ content: Rails.application.credentials.stripe_public_key, name: 'stripe-public-key' }
+    - if @force_turbolinks_reload
+      %meta{ content: 'reload', name: 'turbolinks-visit-control' }
 
     = render 'layouts/icons'
 

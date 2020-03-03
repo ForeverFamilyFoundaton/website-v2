@@ -3,20 +3,10 @@ $(function() {
   const stripe = Stripe(stripe_public_key);
   let elements = stripe.elements();
 
-   const style = {
+  const style = {
     base: {
-      color: '#32325d',
       lineHeight: '18px',
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-      fontSmoothing: 'antialiased',
       fontSize: '16px',
-      '::placeholder': {
-        color: '#aab7c4'
-      }
-    },
-    invalid: {
-      color: '#fa755a',
-      iconColor: '#fa755a'
     }
   };
   const cardElement = elements.create('card', { style: style });
@@ -25,11 +15,11 @@ $(function() {
 
   // show errors
   cardElement.addEventListener('change', ({error}) => {
-    const displayError = document.getElementById('card-errors');
+    const displayError = $('#card-errors');
     if (error) {
-      displayError.textContent = error.message;
+      displayError.text(error.message);
     } else {
-      displayError.textContent = '';
+      displayError.text('');
     }
   });
 
@@ -52,13 +42,18 @@ $(function() {
 
   const stripePaymentMethodHandler = async (result) => {
     if (result.error) {
-      console.log(result.error);
-      // Show error in payment form
+      const displayError = $('#card-errors');
+      displayError.text(error.message);
     } else {
       // Otherwise send paymentMethod.id to your server
+      const token = $('meta[name="csrf-token"]').attr('content');
       const res = await fetch('/subscriptions', {
         method: 'post',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': token
+        },
         body: JSON.stringify({
           email: 'jenny.rosen@example.com',
           payment_method: result.paymentMethod.id
@@ -66,7 +61,37 @@ $(function() {
       });
 
       // The customer has been created
-      const customer = await res.json();
+      const subscription = await res.json();
+      confirmSubscription(subscription)
+    }
+  }
+
+  const confirmSubscription = (subscription) => {
+    const { latest_invoice } = subscription;
+    const { payment_intent } = latest_invoice;
+
+    if (payment_intent) {
+      const { client_secret, status } = payment_intent;
+
+      if (status === 'requires_action') {
+        stripe.confirmCardPayment(client_secret).then(function(result) {
+          if (result.error) {
+            const displayError = $('#card-errors');
+            displayError.text(result.error.message);
+            // Display error message in your UI.
+            // The card was declined (i.e. insufficient funds, card has expired, etc)
+          } else {
+            // Show a success message to your customer
+            $('#new_subscription').hide()
+            $('#subscription-success').removeClass('d-none')
+          }
+        });
+      } else {
+        // No additional information was needed
+        // Show a success message to your customer
+        $('#new_subscription').hide()
+        $('#subscription-success').removeClass('d-none')
+      }
     }
   }
 });
