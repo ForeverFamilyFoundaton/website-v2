@@ -25,9 +25,7 @@ class SubscriptionsController < ApplicationController
     )
     current_user.update! stripe_subscription_id: subscription.id
     render json: subscription, status: :created
-    Rails.logger.error ">>> #{'Success...'}"
   rescue => e
-    Rails.logger.error ">>> #{e.message}"
     render json: { error: e.message, status: 422 }
   end
 
