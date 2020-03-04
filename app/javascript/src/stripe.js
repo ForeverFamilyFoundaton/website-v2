@@ -66,11 +66,8 @@ $(function() {
   }
 
   const confirmSubscription = (subscription) => {
-    console.log(subscription)
     const { latest_invoice } = subscription;
-    console.log(latest_invoice)
     const { payment_intent } = latest_invoice;
-    console.log(payment_intent)
 
     if (payment_intent) {
       const { client_secret, status } = payment_intent;
