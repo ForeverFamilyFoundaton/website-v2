@@ -10,3 +10,10 @@ test:
   adapter: postgresql
   database: rais6_test
   username: <%= `whoami` %>
+
+production:
+  encoding: utf8
+  adapter: postgresql
+  database: rais6_data
+  username: <%= `whoami` %>
+
