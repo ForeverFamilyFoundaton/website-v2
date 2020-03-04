@@ -15,11 +15,10 @@ $(function() {
 
   // show errors
   cardElement.addEventListener('change', ({error}) => {
-    const displayError = $('#card-errors');
     if (error) {
-      displayError.text(error.message);
+      showCardError(error.message);
     } else {
-      displayError.text('');
+      showCardError('');
     }
   });
 
@@ -27,6 +26,7 @@ $(function() {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    changeLoadingState(true);
 
     const result = await stripe.createPaymentMethod({
       type: 'card',
@@ -42,8 +42,7 @@ $(function() {
 
   const stripePaymentMethodHandler = async (result) => {
     if (result.error) {
-      const displayError = $('#card-errors');
-      displayError.text(error.message);
+      showCardError(result.error.message);
     } else {
       // Otherwise send paymentMethod.id to your server
       const token = $('meta[name="csrf-token"]').attr('content');
@@ -67,31 +66,55 @@ $(function() {
   }
 
   const confirmSubscription = (subscription) => {
+    console.log(subscription)
     const { latest_invoice } = subscription;
+    console.log(latest_invoice)
     const { payment_intent } = latest_invoice;
+    console.log(payment_intent)
 
     if (payment_intent) {
       const { client_secret, status } = payment_intent;
 
-      if (status === 'requires_action') {
+      if (status === 'requires_action' || status === 'requires_payment_method') {
         stripe.confirmCardPayment(client_secret).then(function(result) {
           if (result.error) {
-            const displayError = $('#card-errors');
-            displayError.text(result.error.message);
             // Display error message in your UI.
             // The card was declined (i.e. insufficient funds, card has expired, etc)
+            changeLoadingState(false);
+            showCardError(result.error.message);
           } else {
             // Show a success message to your customer
-            $('#new_subscription').hide()
-            $('#subscription-success').removeClass('d-none')
+            orderComplete(subscription);
           }
         });
       } else {
         // No additional information was needed
         // Show a success message to your customer
-        $('#new_subscription').hide()
-        $('#subscription-success').removeClass('d-none')
+        orderComplete(subscription);
       }
+    } else {
+      orderComplete(subscription);
     }
   }
+
+  const orderComplete = () => {
+    $('#new_subscription').hide()
+    $('#subscription-success').removeClass('d-none')
+  }
 });
+
+function showCardError(error) {
+  changeLoadingState(false);
+  const displayError = $('#card-errors');
+  displayError.text(error);
+}
+// Show a spinner on subscription submission
+var changeLoadingState = function(isLoading) {
+  if (isLoading) {
+    $('button.loading').removeClass('d-none');
+    $('input.submit').prop('disabled', true);
+  } else {
+    $('button.loading').addClass('d-none');
+    $('input.submit').prop('disabled', false);
+  }
+};

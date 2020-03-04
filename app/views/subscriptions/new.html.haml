@@ -6,7 +6,8 @@
         %label{ for: 'card-element'} Credit card details
         #card-element.w-100
         #card-errors{role: "alert"}
-      = f.submit 'Subscribe', class: 'btn btn-primary'
+      = f.submit 'Subscribe', class: 'submit btn btn-primary', data: { disable_with: false }
+      %button.loading.btn.btn-primary.d-none{ disabled: true }= fa_icon 'spinner', class: 'fa-spin'
 
 #subscription-success.d-none
   %h2 Subscription Success!
