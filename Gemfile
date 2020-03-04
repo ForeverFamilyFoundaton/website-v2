@@ -25,6 +25,7 @@ gem 'redcarpet'
 gem 'rollbar'
 gem 'acts_as_tree'
 gem 'stripe'
+gem 'stripe_event'
 # Use Puma as `he app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

@@ -23,6 +23,8 @@ $(function() {
   });
 
   const form = document.getElementById('new_subscription');
+  const customerEmail = $('#customer-email').val();
+
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -32,7 +34,7 @@ $(function() {
       type: 'card',
       card: cardElement,
       billing_details: {
-        email: 'jenny.rosen@example.com',
+        email: customerEmail,
       },
     })
 
@@ -54,7 +56,7 @@ $(function() {
           'X-CSRF-Token': token
         },
         body: JSON.stringify({
-          email: 'jenny.rosen@example.com',
+          email: customerEmail,
           payment_method: result.paymentMethod.id
         }),
       });

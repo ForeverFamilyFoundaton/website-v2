@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 ForeverFamilyFoundation::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
+  mount StripeEvent::Engine, at: '/stripe'
 
   root to: 'site#index'
 

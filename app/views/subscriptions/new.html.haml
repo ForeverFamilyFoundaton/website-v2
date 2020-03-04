@@ -1,5 +1,6 @@
 = javascript_pack_tag 'stripe'
 = simple_form_for :subscription, html: { id: :new_subscription } do |f|
+  %input#customer-email{ type: :hidden, value: current_user.email }
   .row
     .col-6
       .form-group
