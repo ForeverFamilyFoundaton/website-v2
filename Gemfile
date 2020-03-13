@@ -24,6 +24,7 @@ gem 'bootstrap'
 gem 'redcarpet'
 gem 'rollbar'
 gem 'acts_as_tree'
+gem 'pay', '~> 2.0'
 gem 'stripe'
 gem 'stripe_event'
 # Use Puma as `he app server

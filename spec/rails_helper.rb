@@ -16,6 +16,7 @@ require 'support/factory_bot'
 require 'support/helpers'
 require 'support/shoulda_matchers'
 require 'support/webmock'
+require 'support/stripe_helpers'
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
