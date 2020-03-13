@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_190755) do
+ActiveRecord::Schema.define(version: 2020_03_11_172832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,11 @@ ActiveRecord::Schema.define(version: 2020_03_03_190755) do
     t.integer "linkable_id"
   end
 
+  create_table "families", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "family_members", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "first_name"
@@ -332,6 +337,34 @@ ActiveRecord::Schema.define(version: 2020_03_03_190755) do
     t.text "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pay_charges", id: :serial, force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "processor", null: false
+    t.string "processor_id", null: false
+    t.integer "amount", null: false
+    t.integer "amount_refunded"
+    t.string "card_type"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pay_subscriptions", id: :serial, force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "name", null: false
+    t.string "processor", null: false
+    t.string "processor_id", null: false
+    t.string "processor_plan", null: false
+    t.integer "quantity", default: 1, null: false
+    t.datetime "trial_ends_at"
+    t.datetime "ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "status"
   end
 
   create_table "preferences", id: :serial, force: :cascade do |t|
@@ -475,6 +508,14 @@ ActiveRecord::Schema.define(version: 2020_03_03_190755) do
     t.boolean "medium_registration", default: false
     t.datetime "discarded_at"
     t.string "stripe_subscription_id"
+    t.string "processor"
+    t.string "processor_id"
+    t.datetime "trial_ends_at"
+    t.string "card_type"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.text "extra_billing_info"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
