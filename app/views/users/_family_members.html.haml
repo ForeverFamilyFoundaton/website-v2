@@ -1,0 +1,15 @@
+.card.family-members
+  .card-header
+    Family Members
+  .card-body
+    %ul.list-group.list-group-flush
+      - current_user.family_members.each do |relation|
+        %p
+          = relation.full_name
+          = relation.email
+          = relation.family_membership.role
+      %ul.list-group.list-group-flush
+        %li.list-group-item
+          = t('users.show.add_family_members', link: link_to('Click here', new_family_member_invitation_path)).html_safe
+
+

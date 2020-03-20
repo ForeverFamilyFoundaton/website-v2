@@ -1,6 +1,17 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def create
+    super do |resource|
+      Family.create!(
+        family_memberships_attributes: [{
+          user: resource,
+          role: 'Owner'
+        }]
+      )
+    end
+  end
+
   def edit
     resource.build_address if !resource.address
     super

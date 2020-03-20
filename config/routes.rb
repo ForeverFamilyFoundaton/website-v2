@@ -6,25 +6,31 @@ ForeverFamilyFoundation::Application.routes.draw do
 
   root to: 'site#index'
 
-  match '/404', to: 'exceptions#not_found', via: :all
-  match '/500', to: 'exceptions#internal_error', via: :all
-  match '/422', to: 'exceptions#unacceptable', via: :all
-
   devise_for :users, controllers: {
-    registrations: 'registrations'
+    registrations: 'registrations',
+    invitations: 'invitations'
   }
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
 
-  namespace :user do
-    root 'users#show' # creates user_root_path
+  devise_scope :user do
+    authenticated :user do
+      root to: 'users#show', as: :user_profile
+    end
   end
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  ActiveAdmin.routes(self)
 
   resources :users, only: :show
   resources :businesses
   resources :subscriptions
+  resources :family_member_invitations
 
-  # begin old routes
+  match '/404', to: 'exceptions#not_found', via: :all
+  match '/500', to: 'exceptions#internal_error', via: :all
+  match '/422', to: 'exceptions#unacceptable', via: :all
+
+  # begin old routes -------------------------------------------
   resources :belief_types
   resources :tests
   resources :known_deads

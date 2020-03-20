@@ -1,24 +1,20 @@
 # README
+Forever Family Foundation Website.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# memberships
+User registers
+User adds family members
+User subscribes
 
-Things you may want to cover:
+User
+  belongs_to :family
+  has_many :family_members, through: :family
 
-* Ruby version
+Family
 
-* System dependencies
 
-* Configuration
+FamilyMemeber
+  belongs_to :family
+  has_one :user
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  role :child/:spouse

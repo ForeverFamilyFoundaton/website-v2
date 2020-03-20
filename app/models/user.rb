@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Discard::Model
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # # attr_accessible :category_ids, :categories
@@ -9,10 +9,11 @@ class User < ApplicationRecord
   # has_many :user_categories
   # has_many :categories, through: :user_categories
 
-  has_one :address, :as => :addressable
+  has_one :address, as: :addressable
   accepts_nested_attributes_for :address
   has_one :business
-
+  has_one :family_membership, inverse_of: :user
+  has_one :family, through: :family_membership
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
   phony_normalize :work_phone, default_country_code: 'US'
@@ -20,6 +21,11 @@ class User < ApplicationRecord
   validates :cell_phone, phony_plausible: true
   validates :home_phone, phony_plausible: true
   validates :work_phone, phony_plausible: true
+
+  attr_accessor :role
+  def family_members
+    family.family_memberships.where.not(user_id: id).map(&:user)
+  end
   # has_one :sitterform
   # has_one :mediumform
   # has_many :family_members

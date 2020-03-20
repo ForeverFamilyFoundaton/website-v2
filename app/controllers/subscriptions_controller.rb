@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
       customer: customer.id,
       items: [
         {
-          plan: Rails.application.credentials.stripe_subscription_id,
+          plan: Rails.application.credentials.stripe[:subscription_id],
         },
       ],
       expand: ['latest_invoice.payment_intent'],

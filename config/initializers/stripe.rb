@@ -1,5 +1,5 @@
-Stripe.api_key = Rails.application.credentials.stripe_secret_key
-StripeEvent.signing_secret = Rails.application.credentials.stripe_secret_key
+Stripe.api_key = Rails.application.credentials.stripe[:private_key]
+StripeEvent.signing_secret = Rails.application.credentials.stripe[:signing_secret]
 
 ActiveSupport.on_load(:active_record) do
   StripeEvent.configure do |events|

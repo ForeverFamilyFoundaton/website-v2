@@ -2,4 +2,16 @@ en:
   users:
     show:
       title: Profile information
-
+      upgrade: Upgrade to a paid membership
+      subscribed:
+        true: Yearly Membership
+        false: Free Membership
+      add_family_members: "%{link} to add family members."
+  subscriptions:
+    new:
+      title: New Subscription
+      description: Individual yearly subscription is $25.00 for an individual and $15.00 for any family members.
+      instructions: Enter your card details below.
+  family_member_invitations:
+    create:
+      success: Family member was succesfully invited!

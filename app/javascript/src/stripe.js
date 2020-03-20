@@ -25,7 +25,6 @@ $(function() {
   const form = document.getElementById('new_subscription');
   const customerEmail = $('#customer-email').val();
 
-
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     changeLoadingState(true);
@@ -68,6 +67,7 @@ $(function() {
   }
 
   const confirmSubscription = (subscription) => {
+    console.log(subscription)
     const { latest_invoice } = subscription;
     const { payment_intent } = latest_invoice;
 
@@ -107,6 +107,7 @@ function showCardError(error) {
   const displayError = $('#card-errors');
   displayError.text(error);
 }
+
 // Show a spinner on subscription submission
 var changeLoadingState = function(isLoading) {
   if (isLoading) {
