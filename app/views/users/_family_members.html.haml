@@ -1,15 +1,29 @@
 .card.family-members
   .card-header
     Family Members
+    = link_to fa_icon('plus'), new_family_member_invitation_path, class: 'edit'
+
   .card-body
-    %ul.list-group.list-group-flush
-      - current_user.family_members.each do |relation|
-        %p
-          = relation.full_name
-          = relation.email
-          = relation.family_membership.role
+    - if current_user.family_members.empty?
       %ul.list-group.list-group-flush
         %li.list-group-item
           = t('users.show.add_family_members', link: link_to('Click here', new_family_member_invitation_path)).html_safe
+    - else
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Relationship
+            %th Email
+            %th Status
+        %tbody
+          - current_user.family_members.each do |relation|
+            %tr
+              %td= relation.full_name
+              %td= relation.family_membership.role
+              %td= link_to relation.email, "mailto:#{relation.email}"
+              %td
+                - unless relation.family_membership.role == 'Owner'
+                  = relation.invitation_accepted_at.nil? ? 'Invited' : 'Confirmed'
 
 

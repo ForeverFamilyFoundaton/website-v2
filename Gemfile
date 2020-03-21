@@ -27,6 +27,7 @@ gem 'rollbar'
 gem 'acts_as_tree'
 gem 'stripe'
 gem 'stripe_event'
+gem 'country_select'
 # Use Puma as `he app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

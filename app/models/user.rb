@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
   has_one :business
-  has_one :family_membership, inverse_of: :user
+  has_one :family_membership, inverse_of: :user, dependent: :destroy
   has_one :family, through: :family_membership
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
@@ -23,8 +23,9 @@ class User < ApplicationRecord
   validates :work_phone, phony_plausible: true
 
   attr_accessor :role
+
   def family_members
-    family.family_memberships.where.not(user_id: id).map(&:user)
+    family.members.where.not(id: id)
   end
   # has_one :sitterform
   # has_one :mediumform

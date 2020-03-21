@@ -101,6 +101,13 @@ GEM
     climate_control (0.2.0)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
+    countries (3.0.0)
+      i18n_data (~> 0.8.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (4.0.0)
+      countries (~> 3.0)
+      sort_alphabetical (~> 1.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -161,6 +168,7 @@ GEM
     htmlentities (4.3.4)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.8.0)
     inherited_resources (1.11.0)
       actionpack (>= 5.0, < 6.1)
       has_scope (~> 0.6)
@@ -332,6 +340,9 @@ GEM
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    sixarm_ruby_unaccent (1.2.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -359,6 +370,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
+    unicode_utils (1.4.0)
     vcr (5.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -398,6 +410,7 @@ DEPENDENCIES
   cancancan
   capybara
   capybara-email
+  country_select
   database_cleaner
   devise
   devise_invitable

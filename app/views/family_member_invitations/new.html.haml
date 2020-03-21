@@ -1,8 +1,8 @@
 .row
   .col-sm-6
     = simple_form_for @family_member_invitation do |f|
-      = f.input :role, collection: FamilyMemberInvitation::ROLE_OPTIONS
-      = f.input :email
       = f.input :first_name
       = f.input :last_name
+      = f.input :email
+      = f.input :role, collection: FamilyMemberInvitation::ROLE_OPTIONS
       = f.submit 'Create Family Member', class: 'btn btn-primary'
