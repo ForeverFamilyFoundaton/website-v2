@@ -16,19 +16,19 @@
             %th Name
             %th Relationship
             %th Email
-            %th Status
-            %th
+            - if current_user.family_owner?
+              %th Status
+              %th= fa_icon('trash-alt')
         %tbody
           - current_user.family_members.each do |relation|
             %tr.family-member{ id: "family-member-#{relation.id}"}
               %td= relation.full_name
               %td= relation.family_membership.role
               %td= link_to relation.email, "mailto:#{relation.email}"
-              %td
-                - unless relation.family_membership.role == 'Owner'
-                  = relation.invitation_accepted_at.nil? ? 'Invited' : 'Confirmed'
-              %td
-                - if current_user.family_owner? && relation.invitation_accepted_at.nil?
-                  = link_to fa_icon('trash-alt'), family_member_path(relation), class: 'delete', method: :delete, data: { confirm: 'Are you sure?' }
+              - if current_user.family_owner?
+                %td= relation.invitation_accepted_at.nil? ? 'Invited' : 'Confirmed'
+                %td
+                  - if relation.invitation_accepted_at.nil?
+                    = link_to fa_icon('trash-alt'), family_member_path(relation), class: 'delete', method: :delete, data: { confirm: 'Are you sure?' }
 
 
