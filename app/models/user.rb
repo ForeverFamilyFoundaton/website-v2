@@ -27,6 +27,10 @@ class User < ApplicationRecord
   def family_members
     family.members.where.not(id: id)
   end
+
+  def family_owner?
+    family_membership.role == 'Owner'
+  end
   # has_one :sitterform
   # has_one :mediumform
   # has_many :family_members

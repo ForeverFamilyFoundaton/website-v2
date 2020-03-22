@@ -102,9 +102,10 @@ RSpec.feature 'As a registered User' do
       visit user_path(user)
     end
 
-    scenario 'I CANNOT add family members' do
+    scenario 'I CANNOT add or delete family members' do
       within '.family-members' do
         expect(page).not_to have_selector 'a.add'
+        expect(page).not_to have_selector 'a.delete'
       end
     end
   end

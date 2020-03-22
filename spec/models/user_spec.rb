@@ -26,42 +26,33 @@ RSpec.describe User do
   it { should_not allow_mass_assignment_of :current_login_ip }
   it { should_not allow_mass_assignment_of :last_login_ip }
 
-  it 'increments a sequential id' do
 
-  end
+  describe '#family_members' do
+    let(:user) { users(:homer) }
+    let(:family) { user.family }
+    let(:family_members) { family.members }
 
-  context '#save' do
-    let(:user) { User.new valid_params }
-
-    before(:each) do
-      user.build_address(address: '2342 hello st', city: 'sf', state: 'ca', zip: '94231')
-    end
-
-    it 'calls welcome_email' do
-      expect(user).to receive(:welcome_message)
-      user.save
-    end
-
-    it 'does not deliver mail if no template' do
-      expect(UserMailer).not_to receive(:welcome_email)
-      user.save
-    end
-
-    it 'attempts delivers mail if template available' do
-      template = CmsPage.create!({
-        title: '@first_name', body: 'z @last_name x @email', reference_string: 'Email::Welcome'
-      })
-      mail = UserMailer.welcome_email(user, template)
-      allow(mail).to receive(:deliver)
-      expect(UserMailer).to receive(:welcome_email).with(user, template).and_return mail
-      user.save
+    it 'returns all family members except self' do
+      expect(user.family_members).to match_array (family_members - [user])
     end
   end
-  describe '#membership_number' do
-    let!(:user) { create :user }
-    let!(:user_2) { create :user }
-    it 'auto increments' do
-      expect(user_2.membership_number).to eq user.membership_number + 1
+
+  describe '#family_owner' do
+    context 'when owner' do
+      let(:user) { users(:marge) }
+
+      it 'returns true' do
+        expect(user.family_owner?).to be true
+      end
+    end
+
+    context 'when NOT owner' do
+      let(:user) { users(:homer) }
+
+      it 'returns false' do
+        expect(user.family_owner?).to be false
+      end
     end
   end
+
 end

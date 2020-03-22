@@ -28,7 +28,7 @@
                 - unless relation.family_membership.role == 'Owner'
                   = relation.invitation_accepted_at.nil? ? 'Invited' : 'Confirmed'
               %td
-                - if relation.invitation_accepted_at.nil?
+                - if current_user.family_owner? && relation.invitation_accepted_at.nil?
                   = link_to fa_icon('trash-alt'), family_member_path(relation), class: 'delete', method: :delete, data: { confirm: 'Are you sure?' }
 
 
