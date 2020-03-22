@@ -1,4 +1,6 @@
 class FamilyMemberInvitationsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @family_member_invitation = FamilyMemberInvitation.new family_member_invitation_params
     render :new and return unless @family_member_invitation.valid?

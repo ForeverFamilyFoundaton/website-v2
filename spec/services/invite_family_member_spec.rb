@@ -14,14 +14,40 @@ RSpec.describe InviteFamilyMember do
   end
 
   describe '#call' do
-    it 'creates a invited user' do
-      expect { invite_family_member.call }.to change(User, :count).by 1
+    context 'with valid params' do
+      it 'creates a invited user' do
+        expect { invite_family_member.call }.to change(User, :count).by 1
+      end
+
+      it "associates the invited user with the invitor's family" do
+        invite_family_member.call
+        invitee = User.find_by email: email
+        expect(invitee.family).to eq user.family
+      end
     end
 
-    it "associates the invited user with the invitor's family" do
-      invite_family_member.call
-      invitee = User.find_by email: email
-      expect(invitee.family).to eq user.family
+    context 'without a role' do
+      let(:result) { invite_family_member.call }
+
+      before do
+        params[:role] = nil
+      end
+
+      it 'returns a status of failed' do
+        expect(result[:status]).to eq :failed
+      end
+    end
+
+    context 'with an invalid email address' do
+      let(:result) { invite_family_member.call }
+
+      before do
+        params[:email] = Faker::Lorem.word
+      end
+
+      it 'returns a status of failed' do
+        expect(result[:status]).to eq :failed
+      end
     end
   end
 end

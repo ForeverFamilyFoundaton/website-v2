@@ -11,13 +11,13 @@ class InviteFamilyMember
   private
 
   attr_reader :params, :invitor, :invited_user
-  attr_accessor :status
 
   def create_family_membership
-    invitor.family.family_memberships.create(
+    family_membership = invitor.family.family_memberships.create(
       user: invited_user,
       role: params[:role]
     )
+    family_membership.persisted?
   end
 
   def invite_user
@@ -28,5 +28,6 @@ class InviteFamilyMember
         last_name: params[:last_name],
       }, invitor
     )
+    invited_user.persisted?
   end
 end

@@ -24,7 +24,8 @@ ForeverFamilyFoundation::Application.routes.draw do
   resources :users, only: :show
   resources :businesses
   resources :subscriptions
-  resources :family_member_invitations
+  resources :family_member_invitations, only: [:create, :new]
+  resources :family_members, only: [:destroy]
 
   match '/404', to: 'exceptions#not_found', via: :all
   match '/500', to: 'exceptions#internal_error', via: :all

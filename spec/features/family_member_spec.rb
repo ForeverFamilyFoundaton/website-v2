@@ -1,5 +1,7 @@
 RSpec.feature 'As a registered User' do
   let(:user) { users(:marge) }
+  let(:homer) { users(:homer) }
+  let(:bart) { users(:bart) }
   let(:family_member_attributes) do
     {
       first_name: Faker::Name.first_name,
@@ -8,17 +10,25 @@ RSpec.feature 'As a registered User' do
       password: Faker::Internet.password
     }
   end
+  let(:invite_user) do
+    InviteFamilyMember.new(
+      params: {
+        email: family_member_attributes[:email],
+        role: FamilyMemberInvitation::ROLE_OPTIONS.sample
+      },
+      invitor: user
+    ).call
+  end
 
   before do
     clear_emails
-    user.family_members.destroy_all
     login_as user
   end
 
   scenario 'I can invite a family member' do
     visit user_path(user)
     within '.family-members' do
-      click_on 'Click here'
+      find('a.add').click
     end
     fill_in 'First name', with: family_member_attributes[:first_name]
     fill_in 'Last name', with: family_member_attributes[:last_name]
@@ -43,25 +53,59 @@ RSpec.feature 'As a registered User' do
     expect(page).to have_content I18n.t('devise.invitations.updated')
   end
 
-  scenario 'I can edit my family members', :chrome do
-    within '.family-member:first' do
-      find('a.edit').click
-    end
-    fill_in 'First name', with: new_name
-    click_on 'Submit'
-    expect(page).to have_content new_name
+  context 'with a family member who is NOT confirmed' do
+    let(:invited_user) { User.order(:created_at).last }
 
-    within '.family-member:first' do
-      find('a.delete').click
+    before do
+      invite_user
+      visit user_path(user)
     end
-    expect(page).to have_content 'Family Member successfully deleted.'
-    expect(page).not_to have_content new_name
+
+    scenario 'I can delete family members who are not confirmed' do
+      within "#family-member-#{invited_user.id}" do
+        expect(page).to have_content 'Invited'
+        expect(page).not_to have_content 'Confirmed'
+        find('a.delete').click
+      end
+      expect(page).to have_content I18n.t('family_members.destroy.success')
+      expect(page).not_to have_content family_member_attributes[:first_name]
+    end
   end
 
-  scenario 'I cannot edit confirmed Family Members' do
-    within "#family-member-#{family_member.id}" do
-      expect(page).not_to have_selector 'a.edit'
-      expect(page).not_to have_selector 'a.delete'
+  context 'with a confirmed family member' do
+    let(:invited_user) { User.order(:created_at).last }
+
+    before do
+      logout :user
+      invite_user
+      accept_invitation(
+        family_member_attributes[:email],
+        family_member_attributes[:password]
+      )
+      logout :user
+      login_as user
+      visit user_path(user)
+    end
+
+    scenario 'there is no delete button' do
+      within "#family-member-#{invited_user.id}" do
+        expect(page).to have_content 'Confirmed'
+        expect(page).not_to have_selector 'a.delete'
+      end
+    end
+  end
+
+  context 'as a family member who is NOT the Owner' do
+    let(:user) { family_memberships(:spouse).user }
+
+    before do
+      visit user_path(user)
+    end
+
+    scenario 'I CANNOT add family members' do
+      within '.family-members' do
+        expect(page).not_to have_selector 'a.add'
+      end
     end
   end
 end
