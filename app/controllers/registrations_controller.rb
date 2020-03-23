@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, only: [:edit, :update]
+  before_action :get_cms_page, only: :new
 
   def create
     super do |resource|
@@ -43,6 +44,10 @@ class RegistrationsController < Devise::RegistrationsController
         ]
       ]
     )
+  end
+
+  def get_cms_page
+    @cms_page = CmsPage.get('Registrations: New')
   end
 
   def update_resource(object, attributes)

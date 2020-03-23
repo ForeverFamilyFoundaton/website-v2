@@ -1,5 +1,8 @@
 ActiveAdmin.register CmsPage do
   menu false
+
+  permit_params :reference_string, :title, :sub_title, :body
+
   index do
     column :reference_string
     column 'Title' do |q|
