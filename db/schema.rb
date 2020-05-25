@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_214651) do
+ActiveRecord::Schema.define(version: 2020_05_25_154820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,20 @@ ActiveRecord::Schema.define(version: 2020_03_19_214651) do
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "stripe_id"
+    t.integer "amount"
+    t.integer "amount_refunded"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_charges_on_user_id"
   end
 
   create_table "cms_images", id: :serial, force: :cascade do |t|
@@ -351,31 +365,13 @@ ActiveRecord::Schema.define(version: 2020_03_19_214651) do
     t.datetime "updated_at"
   end
 
-  create_table "pay_charges", id: :serial, force: :cascade do |t|
-    t.integer "owner_id"
-    t.string "processor", null: false
-    t.string "processor_id", null: false
-    t.integer "amount", null: false
-    t.integer "amount_refunded"
-    t.string "card_type"
-    t.string "card_last4"
-    t.string "card_exp_month"
-    t.string "card_exp_year"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pay_subscriptions", id: :serial, force: :cascade do |t|
-    t.integer "owner_id"
-    t.string "name", null: false
-    t.string "processor", null: false
-    t.string "processor_id", null: false
-    t.string "processor_plan", null: false
-    t.integer "quantity", default: 1, null: false
-    t.datetime "trial_ends_at"
-    t.datetime "ends_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.string "interval"
+    t.string "stripe_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "preferences", id: :serial, force: :cascade do |t|
@@ -460,9 +456,15 @@ ActiveRecord::Schema.define(version: 2020_03_19_214651) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.string "stripe_plan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "stripe_id"
+    t.string "stripe_plan"
+    t.string "status"
+    t.datetime "trial_ends_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "user_categories", id: false, force: :cascade do |t|
@@ -519,15 +521,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_214651) do
     t.boolean "medium_registration", default: false
     t.datetime "discarded_at"
     t.string "stripe_subscription_id"
-    t.string "processor"
-    t.string "processor_id"
-    t.datetime "trial_ends_at"
-    t.string "card_type"
-    t.string "card_last4"
-    t.string "card_exp_month"
-    t.string "card_exp_year"
-    t.text "extra_billing_info"
-    t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
@@ -535,13 +528,19 @@ ActiveRecord::Schema.define(version: 2020_03_19_214651) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.string "stripe_id"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "charges", "users"
+  add_foreign_key "subscriptions", "users"
 end

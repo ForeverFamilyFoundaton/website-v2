@@ -1,120 +1,137 @@
-$(function() {
-  const stripe_public_key = $('meta[name=stripe-public-key]').attr("content");
-  const stripe = Stripe(stripe_public_key);
-  let elements = stripe.elements();
-
-  const style = {
-    base: {
-      lineHeight: '18px',
-      fontSize: '16px',
-    }
-  };
-  const cardElement = elements.create('card', { style: style });
-  // Add an instance of the card Element into the `card-element` <div>.
-  cardElement.mount('#card-element');
-
-  // show errors
-  cardElement.addEventListener('change', ({error}) => {
-    if (error) {
-      showCardError(error.message);
-    } else {
-      showCardError('');
-    }
-  });
-
-  const form = document.getElementById('new_subscription');
-  const customerEmail = $('#customer-email').val();
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    changeLoadingState(true);
-
-    const result = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-      billing_details: {
-        email: customerEmail,
-      },
-    })
-
-    stripePaymentMethodHandler(result);
-  });
-
-
-  const stripePaymentMethodHandler = async (result) => {
-    if (result.error) {
-      showCardError(result.error.message);
-    } else {
-      // Otherwise send paymentMethod.id to your server
-      const token = $('meta[name="csrf-token"]').attr('content');
-      const res = await fetch('/subscriptions', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': token
-        },
-        body: JSON.stringify({
-          email: customerEmail,
-          payment_method: result.paymentMethod.id
-        }),
-      });
-
-      // The customer has been created
-      const subscription = await res.json();
-      confirmSubscription(subscription)
-    }
+$(document).ready(() => {
+  if ($("#card-element").length) {
+    setupStripe();
   }
-
-  const confirmSubscription = (subscription) => {
-    console.log(subscription)
-    const { latest_invoice } = subscription;
-    const { payment_intent } = latest_invoice;
-
-    if (payment_intent) {
-      const { client_secret, status } = payment_intent;
-
-      if (status === 'requires_action' || status === 'requires_payment_method') {
-        stripe.confirmCardPayment(client_secret).then(function(result) {
-          if (result.error) {
-            // Display error message in your UI.
-            // The card was declined (i.e. insufficient funds, card has expired, etc)
-            changeLoadingState(false);
-            showCardError(result.error.message);
-          } else {
-            // Show a success message to your customer
-            orderComplete(subscription);
-          }
-        });
-      } else {
-        // No additional information was needed
-        // Show a success message to your customer
-        orderComplete(subscription);
-      }
-    } else {
-      orderComplete(subscription);
-    }
-  }
-
-  const orderComplete = () => {
-    $('#new_subscription').hide()
-    $('#subscription-success').removeClass('d-none')
+  let newCard = $("#use-new-card");
+  if (newCard.length) {
+    newCard.click((e) => {
+      e.preventDefault();
+      $("#payment-form").removeClass("d-none");
+      $("#existing-card-form").addClass("d-none");
+    });
   }
 });
 
-function showCardError(error) {
-  changeLoadingState(false);
-  const displayError = $('#card-errors');
-  displayError.text(error);
+function setupStripe() {
+  console.log("setup stripe");
+  const stripe_key = $("meta[name=stripe-public-key]").attr("content");
+  const stripe = Stripe(stripe_key);
+  const elements = stripe.elements();
+  const card = elements.create("card");
+  card.mount("#card-element");
+
+  var displayError = $("#card-errors");
+
+  card.on("change", (event) => {
+    if (event.error) {
+      displayError.text(event.error.message);
+    } else {
+      displayError.text("");
+    }
+  });
+
+  const form = $("#payment-form");
+  let paymentIntentId = form.data("payment-intent");
+  let setupIntentId = form.data("setup-intent");
+
+  if (paymentIntentId) {
+    console.log("first paymentIntentId : 37");
+    if (form.data("status") == "requires_action") {
+      stripe
+        .confirmCardPayment(paymentIntentId, {
+          setup_future_usage: "off_session",
+        })
+        .then((result) => {
+          if (result.error) {
+            displayError.text(result.error.message);
+            form.find("#card-details").removeClass("d-none");
+          } else {
+            form.get(0).submit();
+          }
+        });
+    }
+  }
+
+  form.submit((event) => {
+    console.log("form submit : 55");
+    event.preventDefault();
+    let name = form.find("#name-on-card").val();
+    let payment_data = {
+      payment_method_data: {
+        card: card,
+        billing_details: {
+          name: name,
+        },
+      },
+    };
+
+    // Complete a payment intent
+    if (paymentIntentId) {
+      console.log("paymentIntentId : 69");
+      stripe
+        .confirmCardPayment(paymentIntentId, {
+          payment_method: payment_data.payment_method_data,
+          setup_future_usage: "off_session",
+          save_payment_method: true,
+        })
+        .then((result) => {
+          console.log("result");
+          console.log(result);
+
+          if (result.error) {
+            displayError.text(result.error.message);
+            form.find("#card-details").removeClass("d-none");
+          } else {
+            console.log(result.payment_method);
+            // Need to store this on the server....
+            addHiddenField(form, "payment_method_id", result.payment_method);
+            form.get(0).submit();
+          }
+        });
+    } else if (setupIntentId) {
+      console.log("else if setupIntentId : 90");
+
+      stripe
+        .confirmCardSetup(setupIntentId, {
+          payment_method: payment_data.payment_method_data,
+        })
+        .then((result) => {
+          if (result.error) {
+            displayError.text(result.error.message);
+          } else {
+            addHiddenField(
+              form,
+              "payment_method_id",
+              result.setupIntent.payment_method
+            );
+            form.get(0).submit();
+          }
+        });
+    } else {
+      console.log("else : 109");
+
+      payment_data.payment_method_data.type = "card";
+      stripe
+        .createPaymentMethod(payment_data.payment_method_data)
+        .then((result) => {
+          if (result.error) {
+            displayError.text(result.error.message);
+          } else {
+            addHiddenField(form, "payment_method_id", result.paymentMethod.id);
+            form.get(0).submit();
+          }
+        });
+    }
+    // Subscribing with no trial
+  });
 }
 
-// Show a spinner on subscription submission
-var changeLoadingState = function(isLoading) {
-  if (isLoading) {
-    $('button.loading').removeClass('d-none');
-    $('input.submit').prop('disabled', true);
-  } else {
-    $('button.loading').addClass('d-none');
-    $('input.submit').prop('disabled', false);
-  }
-};
+function addHiddenField(form, name, value) {
+  $("<input />")
+    .attr({
+      type: "hidden",
+      name: name,
+      value: value,
+    })
+    .appendTo(form);
+}

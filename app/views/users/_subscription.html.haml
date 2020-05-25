@@ -2,5 +2,8 @@
   .card-header
     Subscription
   .card-body
-    %p= t "users.show.subscribed.#{true}"
-    = link_to t('users.show.upgrade'), new_subscription_path, class: 'btn btn-warning'
+    - if current_user.subscribed?
+      %p= t "users.show.subscribed.#{true}"
+      %p= link_to 'Subscription details', subscription_path
+    - else
+      = link_to t('users.show.upgrade'), new_subscription_path(plan_id: @plan.id), class: 'btn btn-warning'

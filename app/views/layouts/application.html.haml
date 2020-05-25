@@ -7,6 +7,7 @@
     / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
     %meta{content: '', name: 'description'}
     %meta{content: '', name: 'author'}
+    %meta{ content: Rails.application.credentials.stripe[:public_key], name: 'stripe-public-key' }
 
     = render 'layouts/icons'
 
@@ -15,6 +16,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
     = javascript_include_tag 'https://kit.fontawesome.com/51413862f8.js', crossorigin: :anonymous
+    = javascript_include_tag 'https://js.stripe.com/v3/'
     = csrf_meta_tags
 
   %body

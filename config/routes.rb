@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 ForeverFamilyFoundation::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
-  mount StripeEvent::Engine, at: '/stripe'
+  mount StripeEvent::Engine, at: '/webhooks/stripe'
 
   root to: 'site#index'
 
@@ -23,9 +23,15 @@ ForeverFamilyFoundation::Application.routes.draw do
 
   resources :users, only: :show
   resources :businesses
-  resources :subscriptions
   resources :family_member_invitations, only: [:create, :new]
   resources :family_members, only: [:destroy]
+  resource :pricing, controller: :pricing
+  resource :subscription do
+    patch :resume
+  end
+  resources :payments
+  resources :charges
+  resource :card
 
   match '/404', to: 'exceptions#not_found', via: :all
   match '/500', to: 'exceptions#internal_error', via: :all
