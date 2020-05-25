@@ -10,31 +10,28 @@ def fill_stripe_elements(card: , expiry: '1234', cvc: '123', postal: '12345', se
   end
 end
 
-# Completes SCA authentication successfully
 def complete_stripe_sca
   find_frame('body > div > iframe') do
-    # This helps find the inner iframe in the SCA modal's challenge frame which doesn't load immediately
     sleep 1
-
     find_frame('#challengeFrame') do
-      click_on "Complete authentication"
+      find_frame('.FullscreenFrame') do
+        click_on "Complete authentication"
+      end
     end
   end
 end
 
-# Fails SCA authentication
 def fail_stripe_sca
   find_frame('body > div > iframe') do
-    # This helps find the inner iframe in the SCA modal's challenge frame which doesn't load immediately
     sleep 1
-
     find_frame('#challengeFrame') do
-      click_on "Fail authentication"
+      find_frame('.FullscreenFrame') do
+        click_on "Fail authentication"
+      end
     end
   end
 end
 
-# Generic helper for finding an iframe
 def find_frame(selector, &block)
   using_wait_time(15) do
     frame = find(selector)

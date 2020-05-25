@@ -1,16 +1,32 @@
-= javascript_pack_tag 'stripe'
-%h2= t '.title'
-%p= t '.description'
-= simple_form_for :subscription, html: { id: :new_subscription } do |f|
-  %input#customer-email{ type: :hidden, value: current_user.email }
-  .row
-    .col-6
+%h1 Subscribe
+.row
+  .col-sm-4
+    - if current_user.card_last4?
+      = form_with url: subscription_path, local: true, id: "existing-card" do |form|
+        .form-group
+          %div
+            = current_user.card_brand
+            ending in #{current_user.card_last4}
+          %div
+            Expires #{current_user.card_exp_month} / #{current_user.card_exp_year}
+          = link_to "Use a new card", "#", id: "use-new-card"
+        .form-group
+          = form.hidden_field :plan_id, value: @plan.id
+          = form.submit "Subscribe", class: "btn btn-primary"
+    = form_with url: subscription_path, local: true, id: "payment-form", class: ("d-none" if current_user.card_last4?) do |form|
       .form-group
-        %label{ for: 'card-element'}= t '.instructions'
-        #card-element.w-100
-        #card-errors{role: "alert"}
-      = f.submit 'Subscribe', class: 'submit btn btn-primary', data: { disable_with: false }
-      %button.loading.btn.btn-primary.d-none{ disabled: true }= fa_icon 'spinner', class: 'fa-spin'
-
-#subscription-success.d-none
-  %h2 Subscription Success!
+        %label{:for => "card-element"} Credit or debit card
+        #card-element.form-control
+        #card-errors{:role => "alert"}
+      .form-group
+        %label Name on Card
+        = form.text_field :name_on_card, id: "name_on_card", placeholder: "Full name", class: "form-control"
+      .form-group
+        = form.hidden_field :plan_id, value: @plan.id
+        = form.submit "Subscribe", class: "btn btn-primary"
+  .col-sm-3.offset-sm-1
+    %h5= @plan.name
+    %h2= formatted_amount @plan.amount
+    .mb-3
+      %small.text-muted
+        per #{@plan.interval}

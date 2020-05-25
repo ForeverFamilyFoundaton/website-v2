@@ -7,8 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
     super do |resource|
       Family.create!(
         family_memberships_attributes: [{
-          user: resource,
-          role: 'Owner'
+                                          user: resource,
+                                          role: 'Owner'
         }]
       )
     end
@@ -60,12 +60,13 @@ class RegistrationsController < Devise::RegistrationsController
     object.send(update_method, attributes)
   end
 end
+
 def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(
-      :sign_up, keys: [
-        :name, :phone, memberships_attributes: [
-          :role, account_attributes: [:name, :terms_accepted]
-        ]
+  devise_parameter_sanitizer.permit(
+    :sign_up, keys: [
+      :name, :phone, memberships_attributes: [
+        :role, account_attributes: [:name, :terms_accepted]
       ]
-    )
-  end
+    ]
+  )
+end

@@ -1,0 +1,10 @@
+%h1.text-center.mb-4 Pricing
+.d-flex.justify-content-center
+  - @plans.each do |plan|
+    .col-sm-3
+      %h5= plan.name
+      %h2= formatted_amount plan.amount
+      .mb-3
+        %small.text-muted
+          per #{plan.interval}
+      = link_to "Subscribe", new_subscription_path(plan_id: plan.id), class: "btn btn-primary"

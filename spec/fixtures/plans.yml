@@ -1,0 +1,5 @@
+yearly_membership:
+  name: "Yearly Membership"
+  amount: 2500
+  interval: "Year"
+  stripe_id: "price_0GuKW042ZWZdLcOsMl1qsPNY"

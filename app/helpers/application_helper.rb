@@ -54,4 +54,8 @@ def setup_business(business)
     when /contributions/ then :contributions
     end
   end
+
+  def formatted_amount(amount)
+    number_to_currency amount.to_i / 100.0
+  end
 end

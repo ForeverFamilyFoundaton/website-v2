@@ -2,7 +2,8 @@ homer:
   email: homer@the_simpsons.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   confirmed_at: <%= Date.yesterday %>
-
+  first_name: Homer
+  last_name: Simpson
 marge:
   email: marge@the_simpsons.com
   encrypted_password: <%= User.new.send(:password_digest, 'passwrord') %>

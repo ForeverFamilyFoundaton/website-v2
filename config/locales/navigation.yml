@@ -9,7 +9,7 @@ en:
       volunteers: Volunteers
       contributions: Contributions
     user:
-      login: Login
+      sign_in: Sign in
       register: Register
       become_a_member: Sign Up
     site:

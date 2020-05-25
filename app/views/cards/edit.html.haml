@@ -1,0 +1,18 @@
+%h1 Update Card
+- if current_user.card_last4?
+  %div
+    = current_user.card_brand
+    ending in #{current_user.card_last4}
+  %div
+    Expires #{current_user.card_exp_month} / #{current_user.card_exp_year}
+  %br/
+= form_with url: card_path, method: :patch, local: true, id: "payment-form", data: { setup_intent: @setup_intent.client_secret } do |form|
+  .form-group
+    %label{:for => "card-element"} Credit or debit card
+    #card-element.form-control
+    #card-errors{:role => "alert"}
+  .form-group
+    %label Name on Card
+    = form.text_field :name_on_card, id: "name_on_card", placeholder: "Full name", class: "form-control"
+  .form-group
+    = form.submit "Update Card", class: "btn btn-primary"

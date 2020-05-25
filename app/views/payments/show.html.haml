@@ -1,0 +1,22 @@
+- if @payment_intent.status == "succeeded"
+  %h1 Payment Successful
+  %p This payment was already successfully confirmed.
+- elsif @payment_intent.status == "canceled"
+  %h1 Payment Canceled
+  %p This payment was canceled.
+- else
+  %h1
+    Confirm your #{formatted_amount @payment_intent.amount} payment
+  %p Extra confirmation is needed to process your payment.
+  = form_with url: payment_path(@payment_intent.id), method: :patch, local: true, id: "payment-form", data: { payment_intent: @payment_intent.client_secret, status: @payment_intent.status } do |form|
+    = tag.div id: "card-details", class: ("d-none" if @payment_intent.status == "requires_action") do
+      .form-group
+        %label Credit or debit card
+        #card-element.form-control
+      .form-group
+        %label Name on Card
+        = form.text_field :name_on_card, id: "name_on_card", placeholder: "Full name", class: "form-control"
+    #card-errors
+    .form-group
+      = form.submit "Pay #{formatted_amount(@payment_intent.amount)}", class: "btn btn-primary"
+= link_to "Go back", root_path, class: "btn btn-secondary"

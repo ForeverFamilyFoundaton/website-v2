@@ -3,5 +3,7 @@ class UsersController < ApplicationController
 
   layout 'registration'
 
-  def show; end
+  def show
+    @plan = Plan.first
+  end
 end

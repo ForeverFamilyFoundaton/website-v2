@@ -15,7 +15,7 @@ require 'support/sidekiq'
 require 'support/factory_bot'
 require 'support/helpers'
 require 'support/shoulda_matchers'
-require 'support/webmock'
+require 'support/webmock-vcr'
 require 'support/stripe_helpers'
 
 # Checks for pending migrations before tests are run.
