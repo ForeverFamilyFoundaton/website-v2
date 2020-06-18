@@ -545,7 +545,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_154820) do
     t.string "card_last4"
     t.string "card_exp_month"
     t.string "card_exp_year"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
