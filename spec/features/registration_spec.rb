@@ -7,10 +7,7 @@ RSpec.feature 'As a guest' do
     visit new_user_registration_path
   end
 
-  scenario 'I can register as a user' do
-    expect(page).to have_content I18n.t 'devise.registrations.new.confirmation_instructions_1'
-    expect(page).to have_content I18n.t 'devise.registrations.new.confirmation_instructions_2'
-
+  scenario 'I can register as a user', :chrome do
     # Errors
     click_on 'Sign up'
     expect(page).to have_content "Email can't be blank"

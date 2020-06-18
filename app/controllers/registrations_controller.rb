@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, only: [:edit, :update]
-  before_action :get_cms_page, only: :new
+  before_action :get_cms_page, only: [:new, :create]
 
   def create
     super do |resource|
@@ -26,7 +26,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit :sign_up, keys: [:terms_of_use, :volunteer_policy, :refund_policy, :email_policy]
+    devise_parameter_sanitizer.permit :sign_up, keys: [
+      :terms_of_use, :volunteer_policy, :refund_policy, :email_policy
+    ]
     devise_parameter_sanitizer.permit(
       :account_update, keys: [
         :first_name,

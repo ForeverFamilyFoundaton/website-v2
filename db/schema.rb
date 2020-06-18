@@ -491,6 +491,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_154820) do
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.string "encrypted_password", limit: 128, default: "", null: false
+    t.string "confirmation_token", limit: 255
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.string "reset_password_token", limit: 255
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0
@@ -518,6 +521,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_154820) do
     t.string "unlock_token", limit: 255
     t.datetime "locked_at"
     t.string "authentication_token", limit: 255
+    t.string "invitation_token", limit: 255
     t.string "email", limit: 255
     t.boolean "do_not_mail"
     t.integer "membership_number"
@@ -527,8 +531,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_154820) do
     t.boolean "sitter_registration", default: false
     t.boolean "medium_registration", default: false
     t.datetime "discarded_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
+    t.string "unconfirmed_email"
     t.string "stripe_subscription_id"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
