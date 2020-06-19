@@ -100,7 +100,6 @@ function setupStripe() {
             displayError.textContent = result.error.message;
             form.querySelector("#card-details").classList.remove("d-none");
           } else {
-            console.log(result.paymentIntent.payment_method);
             addHiddenField(
               form,
               "payment_method_id",
