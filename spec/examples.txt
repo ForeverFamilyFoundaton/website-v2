@@ -227,9 +227,10 @@ example_id                                                       | status  | run
 ./spec/models/user_spec.rb[1:1:1]                                | passed  | 0.06573 seconds |
 ./spec/models/user_spec.rb[1:2:1:1]                              | passed  | 0.06124 seconds |
 ./spec/models/user_spec.rb[1:2:2:1]                              | passed  | 0.05115 seconds |
-./spec/network/payment_spec.rb[1:1]                              | passed  | 20.99 seconds   |
-./spec/network/payment_spec.rb[1:2:1]                            | passed  | 17.39 seconds   |
-./spec/network/payment_spec.rb[1:2:2]                            | passed  | 16.84 seconds   |
+./spec/network/payment_spec.rb[1:1]                              | passed  | 10.6 seconds    |
+./spec/network/payment_spec.rb[1:2:1]                            | passed  | 12.68 seconds   |
+./spec/network/payment_spec.rb[1:2:2]                            | passed  | 11.47 seconds   |
+./spec/network/payment_spec.rb[1:2:3]                            | passed  | 21.04 seconds   |
 ./spec/network/subscription_spec.rb[1:1:1]                       | passed  | 0.07963 seconds |
 ./spec/network/subscription_spec.rb[1:1:2]                       | passed  | 0.11115 seconds |
 ./spec/network/subscription_spec.rb[1:2:1]                       | passed  | 0.07728 seconds |

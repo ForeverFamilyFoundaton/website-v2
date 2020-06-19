@@ -9,7 +9,6 @@ class CreateUsers < ActiveRecord::Migration[4.2]
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Recoverable
       t.string   :reset_password_token

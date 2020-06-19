@@ -9,7 +9,7 @@ RSpec.feature 'As a registered User', type: :feature do
     visit user_path(user)
   end
 
-  scenario 'I can upgrade to a paid membership', :chrome, :network do
+  scenario 'I can upgrade to a paid membership', :js, :network do
     click_on 'Upgrade to a paid membership'
     using_wait_time 10 do
       fill_stripe_elements card: succeeding_cc
@@ -28,7 +28,7 @@ RSpec.feature 'As a registered User', type: :feature do
   end
 
   context 'with a card requiring authentication' do
-    scenario 'I can successfully authenticate', :chrome, :network do
+    scenario 'I can successfully authenticate', :js, :network do
       click_on 'Upgrade to a paid membership'
       using_wait_time 10 do
         fill_stripe_elements card: authentication_required_cc
@@ -40,7 +40,7 @@ RSpec.feature 'As a registered User', type: :feature do
       end
     end
 
-    scenario 'I can fail authentication', :chrome, :network do
+    scenario 'I can fail authentication', :js, :network do
       click_on 'Upgrade to a paid membership'
       using_wait_time 10 do
         fill_stripe_elements card: authentication_required_cc
@@ -49,6 +49,23 @@ RSpec.feature 'As a registered User', type: :feature do
         expect(page).to have_text 'Confirm your $25.00 payment'
         fail_stripe_sca
         expect(page).to have_text 'We are unable to authenticate your payment method. Please choose a different payment method and try again.'
+      end
+    end
+
+    scenario 'I can fail and then confirm authentication', :js, :network do
+      click_on 'Upgrade to a paid membership'
+      using_wait_time 10 do
+        fill_stripe_elements card: authentication_required_cc
+        fill_in 'Full name', with: user.full_name
+        click_on 'Subscribe'
+        expect(page).to have_text 'Confirm your $25.00 payment'
+        fail_stripe_sca
+        expect(page).to have_text 'We are unable to authenticate your payment method. Please choose a different payment method and try again.'
+        fill_stripe_elements card: authentication_required_cc
+        fill_in 'Full name', with: user.full_name
+        click_on 'Pay $25.00'
+        complete_stripe_sca
+        expect(page).to have_text 'Thanks for your payment'
       end
     end
   end
