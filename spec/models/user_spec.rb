@@ -27,4 +27,25 @@ RSpec.describe User do
       end
     end
   end
+
+  describe '#has_preference?' do
+    let(:result) { user.has_preference?(preference) }
+    let(:preference) { preferences(:one) }
+
+    context 'with a selected preference' do
+      before do
+        user.user_preference_selections.create! preference: preference
+      end
+
+      it 'returns true' do
+        expect(result).to be true
+      end
+    end
+
+    context 'with an unselected preference' do
+      it 'returns false' do
+        expect(result).to be false
+      end
+    end
+  end
 end

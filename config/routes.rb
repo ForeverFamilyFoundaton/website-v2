@@ -22,6 +22,7 @@ ForeverFamilyFoundation::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :users, only: :show
+  resources :user_preference_selections, only: [:edit, :update]
   resources :businesses
   resources :family_member_invitations, only: [:create, :new]
   resources :family_members, only: [:destroy]

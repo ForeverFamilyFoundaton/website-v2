@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_one :family, through: :family_membership
   has_many :subscriptions
   has_many :charges
+  has_many :user_preference_selections
+  has_many :preferences, through: :user_preference_selections
+
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
   phony_normalize :work_phone, default_country_code: 'US'
@@ -32,6 +35,10 @@ class User < ApplicationRecord
 
   def family_owner?
     family_membership.role == 'Owner'
+  end
+
+  def has_preference?(preference)
+    preferences.include?(preference)
   end
 
   def subscribed?
@@ -107,8 +114,6 @@ class User < ApplicationRecord
   # accepts_nested_attributes_for :known_deads, reject_if: proc { |a| a[:name].blank? }, allow_destroy: true
   # has_many :adg_answers
   # has_many :notes
-  # has_many :user_preference_selections
-  # has_many :preferences, through: :user_preference_selections
   # has_many :profile_preferences, -> {where("preferences.preference_type = 'Profile'")},
   #   through: :user_preference_selections,
   #   source: :preference

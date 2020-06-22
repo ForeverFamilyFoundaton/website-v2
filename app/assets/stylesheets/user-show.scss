@@ -9,7 +9,10 @@
         margin: auto;
         position: absolute;
         height: 1em;
-        top: 0; left: $margin; bottom: 0; right: 0;
+        top: 0;
+        left: $margin;
+        bottom: 0;
+        right: 0;
       }
 
       &.email i {
@@ -41,6 +44,16 @@
         &:before {
           content: fa-content($fa-var-map-marker-alt);
         }
+      }
+    }
+  }
+
+  .profile-preferences {
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
       }
     }
   }
