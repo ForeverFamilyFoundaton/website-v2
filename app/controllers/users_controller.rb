@@ -5,6 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @plan = Plan.first
-    @profile_preferences = Preference.profile_preferences
+    @user_preference_options = Preference.profile_preferences
   end
 end

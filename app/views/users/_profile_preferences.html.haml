@@ -2,8 +2,8 @@
   .card-header
     Profile Preferences
   .card-body
-    %ul
-      - current_user.user_preference_selections.each do |preference_selection|
-        %li
-          = preference_selection.preference.name
-    = link_to 'Edit', edit_user_preference_selection_path
+    = form_with url: user_preference_selection_path, method: :patch, id: 'user-preference-selection-form' do
+      - @user_preference_options.each do |user_preference_option|
+        .form-check
+          %input.form-check-input{ name: 'preference_ids[]', type: :checkbox, value: user_preference_option.id, id: "user-preference-option-id-#{user_preference_option.id}", checked: current_user.has_preference?(user_preference_option) }
+          %label.form-check-label{ for: "user-preference-option-id-#{user_preference_option.id}" }= user_preference_option.name

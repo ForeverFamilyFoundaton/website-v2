@@ -10,6 +10,7 @@ require("channels");
 
 import "bootstrap";
 import "src/password-toggle";
+import "src/user-preference-selection-form";
 
 $(document).on("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip();

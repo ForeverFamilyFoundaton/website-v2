@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :charges
   has_many :user_preference_selections
+  accepts_nested_attributes_for :user_preference_selections
   has_many :preferences, through: :user_preference_selections
 
   phony_normalize :cell_phone, default_country_code: 'US'

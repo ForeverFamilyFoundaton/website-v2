@@ -1,5 +1,0 @@
-%h2 Profile Preferences
-%ul.profile-preferences
-  = simple_form_for current_user, url: user_preference_selection_path, method: :patch do |f|
-    = f.association :preferences, as: :check_boxes, collection: @user_preference_options, legend_tag: false
-    = f.submit 'Update User Preferences', class: 'btn btn-primary'

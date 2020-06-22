@@ -9,17 +9,18 @@ RSpec.feature 'As a registered user' do
     visit user_path(user)
   end
 
-  scenario 'I can fill out my ProfilePreferences' do
-    within '.profile-preferences' do
-      click_on 'Edit'
+  scenario 'I can fill out my Profile Preferences', :js do
+    expect(page).to have_checked_field selected_preference.name
+    expect(page).not_to have_checked_field unselected_preference.name
+    accept_confirm do
+      check unselected_preference.name
     end
-    expect(page).to have_content selected_preference.name
-    expect(page).not_to have_content unselected_preference.name
-    check unselected_preference.name
-    click_on 'Save'
-    expect(page).to have_content I18n.t('profile_preferences.update.success')
-    within '.profile-preferences' do
-      expect(page).to have_content unselected_preference.name
+    expect(page).to have_content I18n.t('user_preference_selections.update.success')
+    expect(page).to have_checked_field unselected_preference.name
+    accept_confirm do
+      uncheck unselected_preference.name
     end
+    expect(page).to have_content I18n.t('user_preference_selections.update.success')
+    expect(page).not_to have_checked_field unselected_preference.name
   end
 end

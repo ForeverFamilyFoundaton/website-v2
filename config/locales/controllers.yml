@@ -21,6 +21,6 @@ en:
         true: Yearly Membership
         false: Free Membership
       add_family_members: "%{link} to add family members."
-  user_preferene_selections:
+  user_preference_selections:
     update:
       success: Preferences succesfully updated.
