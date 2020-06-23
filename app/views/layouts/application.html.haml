@@ -14,6 +14,7 @@
     %title Forever Family Foundation
 
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap', media: 'all'
     = javascript_pack_tag 'application'
     = javascript_include_tag 'https://kit.fontawesome.com/51413862f8.js', crossorigin: :anonymous
     = javascript_include_tag 'https://js.stripe.com/v3/'
@@ -25,18 +26,21 @@
         .inner
           %h3.masthead-brand FFF
           %nav.nav.nav-masthead.justify-content-center
-            %button.btn.btn-outline-warning.mr-3
-              Subscribe Now
-            %button.btn.btn-danger.mr-3
-              Donate
+            = link_to 'Become a member', new_user_registration_path, class: 'btn btn-outline-warning mr-3'
+            = link_to 'Donate', '#', class: 'btn btn-danger'
             %a.nav-link{href: new_user_session_path}
               = fa_icon('sign-in-alt', class: :fas)
               Sign in
       %main.inner.cover{role: "main"}
-        %h1.cover-heading The Forever Family Foundation
-        %p.lead= t('cover.mission')
-        %p.lead
-          %a.btn.btn-lg.btn-secondary{href: "#"} Learn more
+        %h1.cover-heading Forever Family Foundation
+        %p.mission= t('cover.mission')
+        .d-flex.flex-row
+          .goal
+            %h3 Goal
+            %p= t('cover.goal')
+          .afterlife-science
+            %h3 Afterlife Science:
+            %p= t('cover.afterlife_science')
       = render 'layouts/footer'
 
   /     .row.header
