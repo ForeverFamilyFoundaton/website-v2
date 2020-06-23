@@ -13,7 +13,7 @@ en:
       register: Register
       become_a_member: Sign Up
     site:
-      after_life_discussion_group: Afterlife Discussion Groups
+      afterlife_discussion_groups: Afterlife Discussion Groups
       certified_mediums: Certified Mediums
       signs_of_life_newsletter: Signs Of Life Newsletter
       signs_of_life_radio: Signs of Life Radio

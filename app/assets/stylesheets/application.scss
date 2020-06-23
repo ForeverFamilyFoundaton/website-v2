@@ -1,12 +1,14 @@
-@import "bootstrap";
-@import "vars";
 @import "fontawesome/fontawesome";
 @import "fontawesome/light";
 @import "fontawesome/duotone";
-@import 'layout';
-@import 'cards';
-@import 'nav';
-@import 'common';
-@import 'user-show';
-@import 'user-edit';
-@import 'stripe-elements';
+
+@import "bootstrap";
+@import "vars";
+@import "cover";
+@import "layout";
+@import "cards";
+@import "nav";
+@import "common";
+@import "user-show";
+@import "user-edit";
+@import "stripe-elements";
