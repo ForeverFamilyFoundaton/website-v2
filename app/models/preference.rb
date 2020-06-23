@@ -4,8 +4,8 @@ class Preference < ApplicationRecord
   has_many :user_preference_selections
   has_many :users, through: :user_preference_selection
 
-  scope :profile_preferences, -> { where(preference_type: 'Profile') }
-  scope :subscription_preferences, -> { where(preference_type: 'Subscription') }
+  scope :profile, -> { where(preference_type: 'Profile') }
+  scope :subscription, -> { where(preference_type: 'Subscription') }
   #scope :medium_preferences, -> { where(preference_type: 'Medium') }
-  scope :adg_preferences, -> { where(preference_type: 'ADG') }
+  scope :adg, -> { where(preference_type: 'ADG') }
 end
