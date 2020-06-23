@@ -1,1 +1,50 @@
-= render partial: 'upcoming_events'
+.splash-page
+  .top-content
+    %h1 Forever Family Foundation
+    %p.mission= t('cover.mission')
+    .d-flex
+      .goal
+        %h3 Goal
+        %p= t('cover.goal')
+      .afterlife-science
+        %h3 afterlife science (af'ter·lïf' sï'ens) n.
+        %p
+          = t('cover.afterlife_science')
+          %small
+            %a{ href: '/pages/afterlife-science' } Read more...
+
+    .splash-nav.d-flex.flex-row
+      .splash-nav-item.upcoming-events
+        .header
+          %h4
+            %a{ href: '#'}
+              = fa_icon 'calendar-alt'
+              Upcoming Events
+        .body
+          %p Listings of upcoming events sorted by date.
+      .splash-nav-item.signs-of-life-radio
+        .header
+          %h4
+            %a{ href: '#'}
+              = fa_icon 'radio'
+              Signs of Life Radio
+        .body
+          %p A one-of-a-kind radio show dedicated to the exploration of life after death
+
+  .splash-nav.d-flex.flex-row
+    .splash-nav-item.signs-of-life-magazine
+      .header
+        %h4
+          %a{ href: '#'}
+            = fa_icon 'book-open'
+            Signs of Life Magazine
+      .body
+        %p Published since 2004, this informational magazine is mailed via the United States Postal Service free of charge to all members of Forever Family Foundation who reside in the United States.
+    .splash-nav-item.certified-mediums
+      .header
+        %h4
+          %a{ href: '#'}
+            = fa_icon 'users'
+            Afterlife Discussion Groups
+      .body
+        %p Free Groups For Sharing, Learning and Exploring

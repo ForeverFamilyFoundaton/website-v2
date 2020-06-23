@@ -1,12 +1,10 @@
-nav.navbar.branding {
-  padding: 0;
-  a.navbar-brand {
-    margin: 0;
-    padding: 0;
-    height: 100px;
-    overflow: hidden;
-    img {
-      width: 100%;
+.top-nav {
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        padding: 5px 0;
+        margin: auto;
+      }
     }
   }
 }

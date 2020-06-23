@@ -14,69 +14,14 @@
     %title Forever Family Foundation
 
     = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap', media: 'all'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&display=swap', media: 'all'
     = javascript_pack_tag 'application'
     = javascript_include_tag 'https://kit.fontawesome.com/51413862f8.js', crossorigin: :anonymous
     = javascript_include_tag 'https://js.stripe.com/v3/'
     = csrf_meta_tags
 
   %body.text-center
-    .cover-container.d-flex.h-100.p-3.mx-auto.flex-column
-      %header.masthead.mb-auto
-        .inner
-          %h3.masthead-brand FFF
-          %nav.nav.nav-masthead.justify-content-center
-            = link_to 'Become a member', new_user_registration_path, class: 'btn btn-outline-warning mr-3'
-            = link_to 'Donate', '#', class: 'btn btn-danger'
-            %a.nav-link{href: new_user_session_path}
-              = fa_icon('sign-in-alt', class: :fas)
-              Sign in
-      %main.inner.cover{role: "main"}
-        %h1.cover-heading Forever Family Foundation
-        %p.mission= t('cover.mission')
-        .d-flex.flex-row
-          .goal
-            %h3 Goal
-            %p= t('cover.goal')
-          .afterlife-science
-            %h3 Afterlife Science:
-            %p= t('cover.afterlife_science')
-
-        %ul.content-nav.list-group.list-group-horizontal
-          %li.list-group-item
-            = fa_icon('calendar')
-            Upcoming Events
-          %li.list-group-item
-            = fa_icon('radio')
-            Signs of Life Radio
-          %li.list-group-item
-            = fa_icon('users')
-            Afterlife Discussion Groups
-          %li.list-group-item
-            = fa_icon('book-open')
-            Signs of Life Magazine
+    = render 'layouts/nav'
+    .container
+      = yield
       = render 'layouts/footer'
-
-  /     .row.header
-  /       .col
-  /         = render 'layouts/navigation'
-  /     .row.content
-  /       .col-sm-3
-  /         = render 'shared/nav/site_nav'
-  /         = render 'shared/partners'
-
-  /       .col-sm-9.main
-  /         - if flash
-  /           = render 'layouts/messages'
-
-  /         - if !@cms_page.title.blank?
-  /           %h1= @cms_page.title
-  /         - if !@cms_page.sub_title.blank?
-  /           %h2= @cms_page.sub_title
-  /         = yield if @cms_page.is_site_index?
-  /         = blog @cms_page.body
-  /         = yield if !@cms_page.is_site_index?
-
-  /     .row.footer
-
-  /

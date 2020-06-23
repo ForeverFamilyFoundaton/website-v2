@@ -1,0 +1,54 @@
+.splash-page {
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  p.mission {
+    font-size: 1.1rem;
+    margin-bottom: $margin * 4;
+  }
+
+  p {
+    font-weight: 400;
+  }
+
+  .goal,
+  .afterlife-science {
+    padding: $margin;
+    margin-bottom: $margin * 3;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+.splash-nav-item {
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 0 auto $margin auto;
+  flex-basis: 47%;
+  font-weight: 200;
+
+  .header {
+    background: rgba(255, 255, 255, 0.2);
+    padding: $margin;
+
+    h4 {
+      margin: 0;
+      a {
+        font-weight: 200;
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+
+  .body {
+    padding: $margin;
+    p {
+      font-weight: 200;
+    }
+  }
+}
