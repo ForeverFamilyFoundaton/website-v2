@@ -6,31 +6,9 @@ body {
 
 body {
   color: #fff;
-  background: asset-url("stars-and-tree.jpg") top left no-repeat;
   font-family: "Josefin Sans", sans-serif;
-
-  .container {
-    margin-top: $margin * 10;
-  }
 }
 
 .row {
   margin-bottom: $margin;
-}
-
-footer {
-  font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.5);
-
-  ul#footer-nav {
-    li {
-      display: inline-block;
-      padding: 0;
-      margin: 0;
-      a {
-        margin: 0;
-        padding: 0 5px;
-      }
-    }
-  }
 }

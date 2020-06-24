@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-  before_action :get_events
+  layout 'splash', only: :index
 
   def page; end
   def after_life_discussion_group; end

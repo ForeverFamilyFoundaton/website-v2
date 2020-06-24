@@ -1,54 +1,66 @@
+body.splash {
+}
+
 .splash-page {
-  h1 {
-    font-size: 4rem;
-    font-weight: 700;
-  }
+  .masthead {
+    padding: $margin * 10 0;
+    margin-bottom: $margin * 2;
+    background-image: asset-url("stars-and-tree.jpg");
+    background-position: 0% 60%;
+    background-repeat: no-repeat;
 
-  p.mission {
-    font-size: 1.1rem;
-    margin-bottom: $margin * 4;
-  }
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+    }
 
-  p {
-    font-weight: 400;
-  }
-
-  .goal,
-  .afterlife-science {
-    padding: $margin;
-    margin-bottom: $margin * 3;
+    p.mission {
+      font-size: 1.1rem;
+      margin-bottom: $margin * 5;
+    }
 
     p {
-      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .goal,
+    .afterlife-science {
+      width: 45%;
+      p {
+        font-size: 1rem;
+      }
     }
   }
 }
 
-.splash-nav-item {
-  border: 1px solid white;
-  border-radius: 5px;
-  margin: 0 auto $margin auto;
-  flex-basis: 47%;
-  font-weight: 200;
+.splash-nav {
+  margin-bottom: $margin * 3;
+  .splash-nav-item {
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0 auto $margin auto;
+    flex-basis: 30%;
+    font-weight: 200;
 
-  .header {
-    background: rgba(255, 255, 255, 0.2);
-    padding: $margin;
+    .header {
+      background: rgba(255, 255, 255, 0.2);
+      padding: $margin;
 
-    h4 {
-      margin: 0;
-      a {
-        font-weight: 200;
-        text-decoration: none;
-        color: white;
+      h4 {
+        margin: 0;
+        a {
+          font-weight: 200;
+          text-decoration: none;
+          color: white;
+        }
       }
     }
-  }
 
-  .body {
-    padding: $margin;
-    p {
-      font-weight: 200;
+    .body {
+      padding: $margin;
+      p {
+        font-weight: 200;
+      }
     }
   }
 }
