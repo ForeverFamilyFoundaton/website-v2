@@ -9,6 +9,11 @@
       %li.nav-item
         %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
       %li.nav-item
-        %a.nav-link{href: new_user_session_path}
-          = fa_icon('sign-in-alt', class: :fas)
-          Sign in
+        - unless user_signed_in?
+          %a.nav-link{href: new_user_session_path}
+            = fa_icon('sign-in-alt', class: :fas)
+            Sign in
+        - else
+          = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+            = fa_icon('sign-out-alt', class: :fas)
+            Sign out
