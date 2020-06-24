@@ -26,5 +26,7 @@
         .row
           .col-12
             = render 'layouts/messages'
+      = render 'layouts/cms_page' if @cms_page
+
       = yield
     = render 'layouts/footer'

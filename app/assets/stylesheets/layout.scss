@@ -1,12 +1,14 @@
 html,
 body {
   height: 100%;
-  background-color: #000;
 }
 
 body {
-  color: #fff;
   font-family: "Josefin Sans", sans-serif;
+
+  .container {
+    margin-top: $margin;
+  }
 }
 
 .row {
