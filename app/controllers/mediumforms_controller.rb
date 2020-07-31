@@ -52,7 +52,7 @@ class MediumformsController < ApplicationController
 
     respond_to do |format|
       #if @mediumform.update(mediumform_params)
-      if @mediumform.update_attributes params[:mediumform]
+      if @mediumform.update_attributes mediumform_params
         if @mediumform.signature_checkbox
           @user = current_user
           @user.medium_registration = false
