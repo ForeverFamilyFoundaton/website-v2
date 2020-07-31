@@ -1,12 +1,12 @@
 = simple_form_for @mediumform do |f|
   %h2 Forever Family Foundation Information
-  .card.personal-details
+  .card.profile-details
     .card-header
       = f.input :personalprofessional, as: :radio_buttons, collection: [['Personal Information', :alternate_is_professional], ['Professional Information', :fff_is_professional]], label: 'This information is', wrapper: :horizontal_collection_inline
     .card-body
       .row
         .col
-          %ul.profile-details
+          %ul.personal-info
             %li
               %label First name
               = current_user.first_name
@@ -30,7 +30,7 @@
               = current_user.email
         .col
           - if current_user.address
-            %ul.profile-details.address
+            %ul.address
               %li
                 %label Street address
                 = current_user.address.address
@@ -50,27 +50,27 @@
   %p We need both your personal and business contact information.
   %p Please indicate which your profile is and then complete the other in the Alternative Information fields.
 
-  .card.alt-details
+  .card.alternate-profile-details
     .card-header
       %h2 Alternate Contact Information
 
     .card-body
       .row
         .col
-          = f.input :alt_first_name, label: false, placeholder: 'First name...'
-          = f.input :alt_middle_name, label: false, placeholder: 'Middle name...'
-          = f.input :alt_last_name, label: false, placeholder: 'Last name...'
-          = f.input :alt_mobile_phone, label: false, placeholder: 'Cell phone...'
-          = f.input :alt_home_phone, label: false, placeholder: 'Home phone...'
-          = f.input :alt_work_phone, label: false, placeholder: 'Work phone...'
-          = f.input :alt_home_email, label: false, placeholder: 'Home email...'
-          = f.input :alt_work_email, label: false, placeholder: 'Work email...'
+          = f.input :alt_first_name, label: false, placeholder: 'First name'
+          = f.input :alt_middle_name, label: false, placeholder: 'Middle name'
+          = f.input :alt_last_name, label: false, placeholder: 'Last name'
+          = f.input :alt_mobile_phone, label: false, placeholder: 'Cell phone'
+          = f.input :alt_home_phone, label: false, placeholder: 'Home phone'
+          = f.input :alt_work_phone, label: false, placeholder: 'Work phone'
+          = f.input :alt_home_email, label: false, placeholder: 'Home email'
+          = f.input :alt_work_email, label: false, placeholder: 'Work email'
         .col
-          = f.input :alt_address_line1, label: false, placeholder: 'Street address...'
-          = f.input :alt_address_line2, label: false, placeholder: 'Street address (line 2)...'
-          = f.input :alt_city, label: false, placeholder: 'City...'
-          = f.input :alt_state, label: false, placeholder: 'State...'
-          = f.input :alt_zipcode, label: false, placeholder: 'Zip...'
+          = f.input :alt_address_line1, label: false, placeholder: 'Street address'
+          = f.input :alt_address_line2, label: false, placeholder: 'Street address (line 2)'
+          = f.input :alt_city, label: false, placeholder: 'City'
+          = f.input :alt_state, label: false, placeholder: 'State'
+          = f.input :alt_zipcode, label: false, placeholder: 'Zipcode'
 
   .card.social-media
     .card-header
