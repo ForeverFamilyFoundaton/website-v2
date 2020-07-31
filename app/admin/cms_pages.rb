@@ -1,5 +1,8 @@
 ActiveAdmin.register CmsPage do
-  menu false
+  filter :title
+  filter :reference_string
+  filter :parent
+  filter :children
 
   permit_params :reference_string, :title, :sub_title, :body
 
@@ -22,7 +25,12 @@ ActiveAdmin.register CmsPage do
       f.input :reference_string
       f.input :title
       f.input :sub_title
-      f.input :body
+      f.input :body, label: false, input_html: { class: [:code, :markdown] }
+      div do
+        a href: 'https://www.markdownguide.org/basic-syntax/', target: :_blank do
+          'Markdown Syntax Guide'
+        end
+      end
     end
     f.actions
   end

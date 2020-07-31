@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :user_preference_selections
   accepts_nested_attributes_for :user_preference_selections
   has_many :preferences, through: :user_preference_selections
+  has_one :mediumform
 
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
@@ -108,7 +109,6 @@ class User < ApplicationRecord
     end
   end
   # has_one :sitterform
-  # has_one :mediumform
   # has_many :family_members
   # has_many :known_deads
   # has_many :relationships, through: :known_deads

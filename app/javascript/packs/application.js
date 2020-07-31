@@ -4,7 +4,6 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start();
-require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 
@@ -12,12 +11,12 @@ import "bootstrap";
 import "src/password-toggle";
 import "src/user-preference-selection-form";
 
-$(document).on("turbolinks:load", () => {
+document.addEventListener("DOMContentLoaded", function () {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
 });
 
-document.addEventListener("turbolinks:load", () => {
+document.addEventListener("DOMContentLoaded", function () {
   let cardElement = document.querySelector("#card-element");
 
   if (cardElement !== null) {
