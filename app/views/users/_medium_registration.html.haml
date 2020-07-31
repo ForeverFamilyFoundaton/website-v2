@@ -2,4 +2,7 @@
   .card-header
     Medium Registration
   .card-body
-    %a{ href: new_mediumform_path } Begin Registration
+    - if current_user.mediumform
+      %a{ href: edit_mediumform_path(current_user.mediumform) } Continue Registration
+    - else
+      %a{ href: new_mediumform_path } Begin Registration

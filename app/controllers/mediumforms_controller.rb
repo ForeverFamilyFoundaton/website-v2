@@ -59,9 +59,9 @@ class MediumformsController < ApplicationController
           @user.save
         end
         if @mediumform.signature_checkbox
-          format.html { redirect_to root_path, notice: 'Mediumform was successfully completed.' }
+          format.html { redirect_to current_user, notice: 'Mediumform was successfully completed.' }
         else
-          format.html { redirect_to root_path, notice: 'Mediumform was successfully updated.' }
+          format.html { redirect_to current_user, notice: 'Mediumform was successfully updated.' }
         end
       else
         format.html { render :edit }
