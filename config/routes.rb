@@ -38,6 +38,9 @@ ForeverFamilyFoundation::Application.routes.draw do
   match '/500', to: 'exceptions#internal_error', via: :all
   match '/422', to: 'exceptions#unacceptable', via: :all
 
+  resources :sitterforms
+  resources :mediumforms
+
   # begin old routes -------------------------------------------
   resources :belief_types
   resources :tests
@@ -49,8 +52,6 @@ ForeverFamilyFoundation::Application.routes.draw do
   resources :recommended_book
   resource :adg_registration
   resource :redirects
-  resources :sitterforms
-  resources :mediumforms
   resources :known_deads
 
   get '/businesses/welcome/:id' => 'businesses#welcome', as: 'businesses_welcome'
