@@ -14,14 +14,13 @@ RSpec.feature 'As a user' do
   let(:state) { Faker::Address.state }
   let(:zip) { Faker::Address.zip }
   let(:country) { Faker::Address.country }
-  let(:website) { Faker::Internet.website }
-  let(:website) { Faker::Internet.website }
-  let(:facebooks) { Faker::Internet.facebooks }
-  let(:pinterest) { Faker::Internet.pinterest }
-  let(:instagram) { Faker::Internet.instagram }
-  let(:twitter) { Faker::Internet.twitter }
-  let(:youtube) { Faker::Internet.youtube }
-  let(:blog) { Faker::Internet.blog }
+  let(:website) { Faker::Internet.url }
+  let(:facebook) { Faker::Internet.url }
+  let(:pinterest) { Faker::Internet.url }
+  let(:instagram) { Faker::Internet.url }
+  let(:twitter) { Faker::Internet.url }
+  let(:youtube) { Faker::Internet.url }
+  let(:blog) { Faker::Internet.url }
   let(:other_activities_1) { Faker::Lorem.paragraph }
   let(:other_activities_2) { Faker::Lorem.paragraph }
   let(:other_activities_3) { Faker::Lorem.paragraph }
@@ -84,6 +83,16 @@ RSpec.feature 'As a user' do
         fill_in 'City', with:  city
         fill_in 'State', with:  state
         fill_in 'Zipcode', with:  zip
+      end
+
+      within '.social-media' do
+        fill_in 'Website', with: website
+        fill_in 'Facebook', with: facebook
+        fill_in 'Pinterest', with: pinterest
+        fill_in 'Instagram', with: instagram
+        fill_in 'Twitter', with: twitter
+        fill_in 'Youtube', with: youtube
+        fill_in 'Blog', with: blog
       end
     end
   end
