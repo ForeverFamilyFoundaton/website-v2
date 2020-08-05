@@ -11,12 +11,6 @@ RSpec.describe Event do
   it { is_expected.to validate_presence_of :end_time }
   it { is_expected.to validate_presence_of :title }
 
-  it { is_expected.to allow_mass_assignment_of :start_time }
-  it { is_expected.to allow_mass_assignment_of :end_time }
-  it { is_expected.to allow_mass_assignment_of :title }
-  it { is_expected.to allow_mass_assignment_of :description }
-  it { is_expected.to allow_mass_assignment_of :url }
-
   describe "Upcoming events" do
     let(:upcoming) { Event.upcoming.map(&:start_time) }
     let(:first_time) { upcoming.first.to_i }

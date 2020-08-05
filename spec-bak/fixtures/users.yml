@@ -1,0 +1,30 @@
+homer:
+  email: homer@the_simpsons.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Date.yesterday %>
+  first_name: Homer
+  middle_name: Jay
+  last_name: Simpson
+  home_phone: (123) 123-1234
+  cell_phone: (423) 123-1234
+  work_phone: (321) 123-1234
+
+marge:
+  email: marge@the_simpsons.com
+  encrypted_password: <%= User.new.send(:password_digest, 'passwrord') %>
+  confirmed_at: <%= Date.yesterday %>
+
+moe:
+  email: moe@moes.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Date.yesterday %>
+
+apu:
+  email: apu@kwiki_mart.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Date.yesterday %>
+
+bart:
+  email: bart@the_simpsons.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= Date.yesterday %>

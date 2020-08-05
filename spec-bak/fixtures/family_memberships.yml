@@ -1,0 +1,14 @@
+owner:
+  family: the_simpsons
+  user: marge
+  role: 'Owner'
+
+spouse:
+  family: the_simpsons
+  user: homer
+  role: 'Spouse / Significant other'
+
+child:
+  family: the_simpsons
+  user: bart
+  role: 'Child'
