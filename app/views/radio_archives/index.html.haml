@@ -1,16 +1,19 @@
 %h3 Radio Archives
 
-= search_form_for @q do |f| 
-  = f.search_field :title_or_guest_cont
-
-  = f.submit
+.row
+  .col-sm-5
+    = search_form_for @q do |f|
+      .input-group
+        = f.text_field :title_or_guest_cont, class: 'form-control'
+        .input-group-append
+          %button.btn.btn-primary Search
 
 %p
   = paginate @archives
 
 %ul.radio_archives
   - @archives.each do |archive|
-    %li
+    %li.radio-archive
       %h4=archive.title
       %p= archive.guest
       %p= archive.date

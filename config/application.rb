@@ -1,5 +1,5 @@
 require_relative 'boot'
-
+ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
