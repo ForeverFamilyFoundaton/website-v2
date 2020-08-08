@@ -17,8 +17,6 @@ ForeverFamilyFoundation::Application.routes.draw do
     end
   end
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
   ActiveAdmin.routes(self)
 
   resources :users, only: :show

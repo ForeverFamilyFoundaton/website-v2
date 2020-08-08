@@ -1,4 +1,5 @@
 ActiveAdmin.setup do |config|
+  config.use_webpacker = true
   meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
   config.meta_tags = meta_tags_options
   config.meta_tags_for_logged_out_pages = meta_tags_options
@@ -7,12 +8,12 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = 'Forever Family Foundation'
+  config.site_title = "FFF Admin"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  config.site_title_link = '/'
+  config.site_title_link = "/"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
@@ -65,12 +66,17 @@ ActiveAdmin.setup do |config|
   # method in a before filter of all controller actions to
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
-  # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.authorization_adapter = ActiveAdmin::PunditAdapter
 
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
   # case when Pundit is unable to find suitable policy.
   # config.pundit_default_policy = "MyDefaultPunditPolicy"
+
+  # If you wish to maintain a separate set of Pundit policies for admin
+  # resources, you may set a namespace here that Pundit will search
+  # within when looking for a resource's policy.
+  # config.pundit_policy_namespace = :admin
 
   # You can customize your CanCan Ability class name here.
   # config.cancan_ability_class = "Ability"
@@ -115,14 +121,14 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  config.root_to = 'songs#index'
+  # config.root_to = 'dashboard#index'
 
   # == Admin Comments
   #
   # This allows your users to comment on any resource registered with Active Admin.
   #
   # You can completely disable comments:
-  config.comments = false
+  # config.comments = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -150,11 +156,21 @@ ActiveAdmin.setup do |config|
   #
   # config.before_action :do_something_awesome
 
+  # == Attribute Filters
+  #
+  # You can exclude possibly sensitive model attributes from being displayed,
+  # added to forms, or exported by default by ActiveAdmin
+  #
+  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+
   # == Localize Date/Time Format
   #
   # Set the localize format to display dates and times.
   # To understand how to localize your app with I18n, read more at
-  # https://github.com/svenfuchs/i18n/blob/master/lib%2Fi18n%2Fbackend%2Fbase.rb#L52
+  # https://guides.rubyonrails.org/i18n.html
+  #
+  # You can run `bin/rails runner 'puts I18n.t("date.formats")'` to see the
+  # available formats in your application.
   #
   config.localize_format = :long
 
@@ -274,11 +290,31 @@ ActiveAdmin.setup do |config|
   # config.filters = true
   #
   # By default the filters include associations in a select, which means
-  # that every record will be loaded for each association.
+  # that every record will be loaded for each association (up
+  # to the value of config.maximum_association_filter_arity).
   # You can enabled or disable the inclusion
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+
+  # config.maximum_association_filter_arity = 256 # default value of :unlimited will change to 256 in a future version
+  # config.filter_columns_for_large_association, [
+  #    :display_name,
+  #    :full_name,
+  #    :name,
+  #    :username,
+  #    :login,
+  #    :title,
+  #    :email,
+  #  ]
+  # config.filter_method_for_large_association, '_starts_with'
+
+  # == Head
+  #
+  # You can add your own content to the site head like analytics. Make sure
+  # you only pass content you trust.
+  #
+  # config.head = ''.html_safe
 
   # == Footer
   #

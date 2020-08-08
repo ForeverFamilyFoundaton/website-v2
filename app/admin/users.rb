@@ -1,6 +1,4 @@
 ActiveAdmin.register User do
-  menu false
-
   scope :active, :kept, default: true
   scope :soft_deleted, :discarded
   scope :all
@@ -44,17 +42,15 @@ ActiveAdmin.register User do
   filter :address_state_contains
   filter :address_country_contains
   filter :preferences, as: :check_boxes
-  filter :profile_preferences, as: :check_boxes
-  filter :subscription_preferences, as: :check_boxes
 
   index download_links: [:csv] do
-    column 'Membership Number', :membership_number
+    # column 'Membership Number', :membership_number
     column :first_name
     column :last_name
     column :email, sortable: :email
-    column :business_name, sortable: 'businesses.name' do |user|
-      user.business && user.business.name
-    end
+    # column :business_name, sortable: 'businesses.name' do |user|
+    #   user.business && user.business.name
+    # end
     actions
   end
 
@@ -155,13 +151,13 @@ ActiveAdmin.register User do
       end
     end
 
-    table_for user.profile_preferences do
+    table_for user.preferences.profile do
       column "Profile Preferences" do |question|
         question.name
       end
     end
 
-    table_for user.subscription_preferences do
+    table_for user.preferences.subscription do
       column "Subscription Preferences" do |question|
         question.name
       end
@@ -202,8 +198,8 @@ ActiveAdmin.register User do
       f.input :updated_at, start_year: 2004
       f.input :problems
       f.input :categories, as: :check_boxes
-      f.input :profile_preferences, as: :check_boxes, collection: Preference.profile_preferences
-      f.input :subscription_preferences, as: :check_boxes, collection: Preference.subscription_preferences
+      # f.input :profile_preferences, as: :check_boxes, collection: Preference.profile_preferences
+      # f.input :subscription_preferences, as: :check_boxes, collection: Preference.subscription_preferences
       f.inputs "Address", for: [:address, f.object.address || Address.new] do |address|
         address.input :address
         address.input :city
@@ -211,11 +207,11 @@ ActiveAdmin.register User do
         address.input :zip
         address.input :country
       end
-      f.has_many :family_members do |family_member|
-        family_member.input :first_name
-        family_member.input :last_name
-        family_member.input :relationship
-      end
+      # f.has_many :family_members do |family_member|
+      #   family_member.input :first_name
+      #   family_member.input :last_name
+      #   family_member.input :relationship
+      # end
 
     end
     f.actions

@@ -2,7 +2,6 @@ example_id                                            | status  | run_time      
 ----------------------------------------------------- | ------- | --------------- |
 ./spec/features/adg_registration_spec.rb[1:1:1]       | failed  | 3.77 seconds    |
 ./spec/features/adg_registration_spec.rb[1:2:1]       | passed  | 0.1386 seconds  |
-./spec/features/admin/admin_user_spec.rb[1:1]         | failed  | 1.3 seconds     |
 ./spec/features/admin/announcements_spec.rb[1:1]      | failed  | 0.05713 seconds |
 ./spec/features/admin/announcements_spec.rb[1:2]      | failed  | 0.05108 seconds |
 ./spec/features/admin/external_link_spec.rb[1:1]      | failed  | 0.09173 seconds |
@@ -13,13 +12,13 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/preferences_spec.rb[1:3]        | failed  | 0.04725 seconds |
 ./spec/features/admin/sidkiq_ui_spec.rb[1:1]          | failed  | 0.0453 seconds  |
 ./spec/features/admin/soft_delete_user_spec.rb[1:1]   | failed  | 0.22008 seconds |
-./spec/features/admin/users_spec.rb[1:1]              | failed  | 0.04779 seconds |
-./spec/features/admin/users_spec.rb[1:2]              | failed  | 0.04925 seconds |
-./spec/features/admin/users_spec.rb[1:3]              | failed  | 0.09683 seconds |
-./spec/features/admin/users_spec.rb[1:4:1]            | failed  | 0.05097 seconds |
-./spec/features/admin/users_spec.rb[1:5]              | failed  | 0.05768 seconds |
-./spec/features/admin/users_spec.rb[1:6]              | failed  | 0.04799 seconds |
-./spec/features/admin/users_spec.rb[1:7]              | failed  | 0.04825 seconds |
+./spec/features/admin/users_spec.rb[1:1]              | failed  | 1.14 seconds    |
+./spec/features/admin/users_spec.rb[1:2]              | failed  | 5.34 seconds    |
+./spec/features/admin/users_spec.rb[1:3]              | failed  | 0.35814 seconds |
+./spec/features/admin/users_spec.rb[1:4:1]            | failed  | 0.35096 seconds |
+./spec/features/admin/users_spec.rb[1:5]              | passed  | 1.63 seconds    |
+./spec/features/admin/users_spec.rb[1:6]              | failed  | 1.64 seconds    |
+./spec/features/admin/users_spec.rb[1:7]              | failed  | 1.07 seconds    |
 ./spec/features/cms_pages_spec.rb[1:1]                | passed  | 0.10557 seconds |
 ./spec/features/family_member_spec.rb[1:1]            | failed  | 0.31624 seconds |
 ./spec/features/family_member_spec.rb[1:2:1]          | failed  | 0.09966 seconds |

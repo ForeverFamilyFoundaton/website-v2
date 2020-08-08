@@ -1,4 +1,0 @@
-mr_burns:
-  email: mrburns@springfield.com
-  encrypted_password: <%= BCrypt::Password.create('password') %>
-  confirmed_at: <%= Date.yesterday %>

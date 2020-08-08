@@ -1,19 +1,12 @@
 RSpec.feature 'As an admin user' do
-  let!(:business) { create(:business_complete ) }
-  let!(:user) do
-    create(
-      :user,
-      business: business,
-      preferences: [Preference.create(name: "hello world")]
-    )
-  end
+  let!(:user) { users(:admin) }
 
   before do
-    sign_in_as_admin
-    click_on 'Users'
+    login_as user
+    visit admin_users_path
   end
 
-  scenario 'I can create a user' do
+  scenario 'I can manage users' do
     click_on 'New User'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Doe'
@@ -29,7 +22,9 @@ RSpec.feature 'As an admin user' do
   end
 
   scenario 'I can edit a user without needing the password' do
-    click_on 'View'
+    within first('#index_table_users tbody tr') do
+      click_on 'View'
+    end
     click_on 'Edit User'
     click_on 'Update User'
     expect(page).to have_content('User was successfully updated.')

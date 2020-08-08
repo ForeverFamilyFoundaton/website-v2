@@ -4,10 +4,9 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  # # attr_accessible :category_ids, :categories
-  # has_and_belongs_to_many :roles
-  # has_many :user_categories
-  # has_many :categories, through: :user_categories
+  has_and_belongs_to_many :roles
+  has_many :user_categories
+  has_many :categories, through: :user_categories
 
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
@@ -31,7 +30,9 @@ class User < ApplicationRecord
   validates :home_phone, phony_plausible: true
   validates :work_phone, phony_plausible: true
 
-  attr_accessor :role
+  def admin?
+    roles.map(&:name).include? 'Admin'
+  end
 
   def family_members
     family.members.where.not(id: id)
@@ -110,7 +111,7 @@ class User < ApplicationRecord
       customer
     end
   end
-  # has_one :sitterform
+  has_one :sitterform
   # has_many :family_members
   # has_many :known_deads
   # has_many :relationships, through: :known_deads
@@ -154,7 +155,7 @@ class User < ApplicationRecord
   # before_create :build_address
   # after_create :welcome_message
 
-  # scope :registered_for_adg, -> { includes(:adg_answers).where.not(adg_answers: { id: nil }) }
+  scope :registered_for_adg, -> { includes(:adg_answers).where.not(adg_answers: { id: nil }) }
 
   # comma do
   #   id
