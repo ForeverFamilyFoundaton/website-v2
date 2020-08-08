@@ -17,7 +17,7 @@
           = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
             = fa_icon 'sign-out-alt', class: :fas
             Sign out
-      - if current_admin_user
+      - if current_user.admin?
         %li.nav-item
           %a.nav-link{ href: admin_dashboard_path }
             = fa_icon 'unlock-alt', class: :fas

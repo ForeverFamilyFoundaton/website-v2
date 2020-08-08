@@ -1,4 +1,35 @@
 ActiveAdmin.register User do
+  permit_params(
+    :id,
+    :do_not_mail,
+    :snail_mail,
+    :first_name,
+    :middle_name,
+    :last_name,
+    :email,
+    :cell_phone,
+    :home_phone,
+    :work_phone,
+    :fax,
+    :medium_registration,
+    :sitter_registration,
+    :is_business,
+    :membership_number,
+    :enrolled_from,
+    :enrolled_at,
+    :problems,
+    category_ids: [],
+    preferences: [],
+    address_attributes: [
+      :id,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :country
+    ]
+  )
+
   scope :active, :kept, default: true
   scope :soft_deleted, :discarded
   scope :all
@@ -193,13 +224,10 @@ ActiveAdmin.register User do
       f.input :enrolled_at, start_year: 2004
       f.input :do_not_mail
       f.input :snail_mail
-      f.input :last_sign_in_at
-      f.input :created_at, start_year: 2004
-      f.input :updated_at, start_year: 2004
       f.input :problems
       f.input :categories, as: :check_boxes
-      # f.input :profile_preferences, as: :check_boxes, collection: Preference.profile_preferences
-      # f.input :subscription_preferences, as: :check_boxes, collection: Preference.subscription_preferences
+      f.input :preferences, as: :check_boxes, collection: Preference.profile, label: 'Profile Preferences'
+      f.input :preferences, as: :check_boxes, collection: Preference.subscription, label: 'Subscription Preferences'
       f.inputs "Address", for: [:address, f.object.address || Address.new] do |address|
         address.input :address
         address.input :city

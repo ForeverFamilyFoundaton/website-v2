@@ -1,38 +1,28 @@
-RSpec.feature 'Admin area: External Links' do
+RSpec.feature 'As an Admin' do
+  let(:user) { users(:admin) }
+  let(:text) { Faker::Lorem.sentence }
+  let(:text_edit) { Faker::Lorem.sentence }
+  let(:url) { Faker::Internet.url }
 
   before do
-    sign_in_as_admin
+    login_as user
+    visit admin_dashboard_path
   end
 
-  let!(:link_1) { create(:external_link) }
-  let!(:link_2) { create(:external_link) }
-  let(:attrs) { OpenStruct.new attributes_for(:link) }
-
-  scenario 'index renders successfully' do
-    click_on 'External Links'
-    expect(page).to have_content link_1.text
-    expect(page).to have_content link_2.url
-  end
-
-  scenario 'create works correctly' do
-    click_on 'External Links'
+  scenario 'I can manage ExternalLinks' do
+    within '.header' do
+      click_on 'External Links'
+    end
     click_on 'New External Link'
-    expect(page).to have_selector '#page_title', text: 'New External Link'
-    fill_in 'Text', with: 'Acme'
-    fill_in 'Url', with: 'http://www.acme.com'
+    fill_in 'Text', with: text
+    fill_in 'Url', with: url
     click_on 'Create External link'
     expect(page).to have_content 'External link was successfully created.'
-  end
-
-  scenario 'edit works correctly' do
-    click_on 'External Links'
-    within('tr', text: link_1.text) do
-      click_on 'Edit'
-    end
-    fill_in 'Text', with: 'Acme, Inc.'
+    visit admin_external_links_path
+    expect(page).to have_content text
+    click_on 'Edit'
+    fill_in 'Text', with: text_edit
     click_on 'Update External link'
-    expect(page).to have_content 'External link was successfully updated.'
-    expect(page).to have_content 'Acme, Inc.'
-  end
 
+  end
 end

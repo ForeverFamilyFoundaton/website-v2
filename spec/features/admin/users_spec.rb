@@ -1,5 +1,5 @@
 RSpec.feature 'As an admin user' do
-  let!(:user) { users(:admin) }
+  let(:user) { users(:admin) }
 
   before do
     login_as user

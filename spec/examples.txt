@@ -2,18 +2,14 @@ example_id                                            | status  | run_time      
 ----------------------------------------------------- | ------- | --------------- |
 ./spec/features/adg_registration_spec.rb[1:1:1]       | failed  | 3.77 seconds    |
 ./spec/features/adg_registration_spec.rb[1:2:1]       | passed  | 0.1386 seconds  |
-./spec/features/admin/announcements_spec.rb[1:1]      | failed  | 0.05713 seconds |
-./spec/features/admin/announcements_spec.rb[1:2]      | failed  | 0.05108 seconds |
-./spec/features/admin/external_link_spec.rb[1:1]      | failed  | 0.09173 seconds |
-./spec/features/admin/external_link_spec.rb[1:2]      | failed  | 0.04615 seconds |
-./spec/features/admin/external_link_spec.rb[1:3]      | failed  | 0.04916 seconds |
-./spec/features/admin/preferences_spec.rb[1:1]        | failed  | 0.05214 seconds |
-./spec/features/admin/preferences_spec.rb[1:2]        | failed  | 0.04537 seconds |
-./spec/features/admin/preferences_spec.rb[1:3]        | failed  | 0.04725 seconds |
+./spec/features/admin/announcements_spec.rb[1:1]      | passed  | 0.93989 seconds |
+./spec/features/admin/announcements_spec.rb[1:2]      | passed  | 1.35 seconds    |
+./spec/features/admin/external_link_spec.rb[1:1]      | passed  | 1.06 seconds    |
+./spec/features/admin/preferences_spec.rb[1:1]        | passed  | 0.82904 seconds |
 ./spec/features/admin/sidkiq_ui_spec.rb[1:1]          | failed  | 0.0453 seconds  |
 ./spec/features/admin/soft_delete_user_spec.rb[1:1]   | failed  | 0.22008 seconds |
 ./spec/features/admin/users_spec.rb[1:1]              | failed  | 1.14 seconds    |
-./spec/features/admin/users_spec.rb[1:2]              | failed  | 5.34 seconds    |
+./spec/features/admin/users_spec.rb[1:2]              | passed  | 1.16 seconds    |
 ./spec/features/admin/users_spec.rb[1:3]              | failed  | 0.35814 seconds |
 ./spec/features/admin/users_spec.rb[1:4:1]            | failed  | 0.35096 seconds |
 ./spec/features/admin/users_spec.rb[1:5]              | passed  | 1.63 seconds    |
