@@ -1,0 +1,8 @@
+= simple_form_for current_user, url: adg_registration_path do |f|
+  = f.simple_fields_for :adg_answers do |adg|
+    = adg.input :adg_question_id, as: :hidden
+    - if adg.object.adg_question.show_radio
+      = adg.input :answer, as: :radio_buttons, label: adg.object.adg_question.question
+    - else
+      = adg.input :answer, as: :text, label: adg.object.adg_question.question
+  = f.submit 'Save Registration', class: 'btn btn-primary'

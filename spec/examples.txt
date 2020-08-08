@@ -1,14 +1,12 @@
 example_id                                                       | status  | run_time        |
 ---------------------------------------------------------------- | ------- | --------------- |
-./spec/controllers/adg_registrations_controller_spec.rb[1:1:1]   | passed  | 0.02529 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:1:2]   | passed  | 0.03336 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:1:1] | passed  | 0.03785 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:1:2] | passed  | 0.02602 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:2:1] | passed  | 0.03408 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:2:2] | passed  | 0.03235 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:3:1] | passed  | 0.0584 seconds  |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:3:2] | passed  | 0.06582 seconds |
-./spec/controllers/adg_registrations_controller_spec.rb[1:2:3:3] | passed  | 0.0869 seconds  |
+./spec/controllers/adg_registrations_controller_spec.rb[1:1:1]   | failed  | 0.18161 seconds |
+./spec/controllers/adg_registrations_controller_spec.rb[1:1:2]   | failed  | 0.0992 seconds  |
+./spec/controllers/adg_registrations_controller_spec.rb[1:2:1:1] | failed  | 0.0864 seconds  |
+./spec/controllers/adg_registrations_controller_spec.rb[1:2:1:2] | failed  | 0.07253 seconds |
+./spec/controllers/adg_registrations_controller_spec.rb[1:2:2:1] | failed  | 0.07458 seconds |
+./spec/controllers/adg_registrations_controller_spec.rb[1:2:2:2] | failed  | 0.07479 seconds |
+./spec/controllers/adg_registrations_controller_spec.rb[1:2:2:3] | failed  | 0.09313 seconds |
 ./spec/controllers/businesses_controller_spec.rb[1:1:1]          | passed  | 0.02248 seconds |
 ./spec/controllers/businesses_controller_spec.rb[1:1:2]          | passed  | 0.02195 seconds |
 ./spec/controllers/businesses_controller_spec.rb[1:2:1]          | passed  | 0.03013 seconds |
@@ -39,8 +37,8 @@ example_id                                                       | status  | run
 ./spec/controllers/redirects_controller_spec.rb[1:1]             | passed  | 0.00212 seconds |
 ./spec/controllers/redirects_controller_spec.rb[1:2]             | passed  | 0.00166 seconds |
 ./spec/controllers/site_controller_spec.rb[1:1]                  | passed  | 0.0091 seconds  |
-./spec/features/adg_registration_spec.rb[1:1]                    | pending | 3.65 seconds    |
-./spec/features/adg_registration_spec.rb[1:2]                    | pending | 0.36609 seconds |
+./spec/features/adg_registration_spec.rb[1:1:1]                  | passed  | 5.68 seconds    |
+./spec/features/adg_registration_spec.rb[1:2:1]                  | passed  | 2.69 seconds    |
 ./spec/features/admin/admin_user_spec.rb[1:1]                    | passed  | 0.98096 seconds |
 ./spec/features/admin/announcements_spec.rb[1:1]                 | passed  | 0.67055 seconds |
 ./spec/features/admin/announcements_spec.rb[1:2]                 | passed  | 0.80778 seconds |

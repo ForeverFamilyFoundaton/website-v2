@@ -6,6 +6,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'webmock'
 require "paperclip/matchers"
+require "support/devise"
 require 'support/fixtures'
 require 'support/js_drivers'
 require 'support/faker'

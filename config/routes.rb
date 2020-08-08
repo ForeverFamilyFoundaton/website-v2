@@ -40,6 +40,7 @@ ForeverFamilyFoundation::Application.routes.draw do
 
   resources :sitterforms
   resources :mediumforms
+  resource :adg_registration
 
   # begin old routes -------------------------------------------
   resources :belief_types
@@ -50,7 +51,6 @@ ForeverFamilyFoundation::Application.routes.draw do
   resources :events
   resources :radio_archives
   resources :recommended_book
-  resource :adg_registration
   resource :redirects
   resources :known_deads
 

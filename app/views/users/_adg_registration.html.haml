@@ -1,0 +1,9 @@
+.card.adg-registration
+  .card-header
+    Afterlife Discussion Group Registration
+  .card-body
+    - if current_user.adg_answers.count > 0
+      %a{ href: edit_adg_registration_path } Edit Registration
+    - else
+      %a{ href: new_adg_registration_path } Begin Registration
+

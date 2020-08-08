@@ -24,3 +24,9 @@ en:
   user_preference_selections:
     update:
       success: Preferences succesfully updated.
+  adg_registrations:
+    create:
+      success: Your Afterlife Discussion Group registration was succesfully saved.
+    update:
+      success: Your Afterlife Discussion Group registration was succesfully saved.
+    redirect: Afterlife Discussion Group registariton is only open to memebers.

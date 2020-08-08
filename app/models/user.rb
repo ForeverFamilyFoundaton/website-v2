@@ -20,6 +20,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_preference_selections
   has_many :preferences, through: :user_preference_selections
   has_one :mediumform
+  has_many :adg_answers, -> { order(:adg_question_id) }
+  accepts_nested_attributes_for :adg_answers, reject_if: :all_blank
 
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
@@ -113,7 +115,6 @@ class User < ApplicationRecord
   # has_many :known_deads
   # has_many :relationships, through: :known_deads
   # accepts_nested_attributes_for :known_deads, reject_if: proc { |a| a[:name].blank? }, allow_destroy: true
-  # has_many :adg_answers
   # has_many :notes
   # has_many :profile_preferences, -> {where("preferences.preference_type = 'Profile'")},
   #   through: :user_preference_selections,
