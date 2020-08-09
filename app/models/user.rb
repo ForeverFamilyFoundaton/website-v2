@@ -35,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def family_members
-    family.members.where.not(id: id)
+    family && family.members.where.not(id: id)
   end
 
   def family_owner?

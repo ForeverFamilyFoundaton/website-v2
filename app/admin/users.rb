@@ -1,6 +1,8 @@
 ActiveAdmin.register User do
   permit_params(
     :id,
+    :password,
+    :password_confirmation,
     :do_not_mail,
     :snail_mail,
     :first_name,
