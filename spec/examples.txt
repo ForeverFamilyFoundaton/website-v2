@@ -124,10 +124,10 @@ example_id                                            | status  | run_time      
 ./spec/models/user_spec.rb[1:2:2:1]                   | passed  | 0.05079 seconds |
 ./spec/models/user_spec.rb[1:3:1:1]                   | passed  | 0.06541 seconds |
 ./spec/models/user_spec.rb[1:3:2:1]                   | passed  | 0.05341 seconds |
-./spec/network/payment_spec.rb[1:1]                   | failed  | 27.3 seconds    |
-./spec/network/payment_spec.rb[1:2:1]                 | failed  | 16.4 seconds    |
-./spec/network/payment_spec.rb[1:2:2]                 | failed  | 16.45 seconds   |
-./spec/network/payment_spec.rb[1:2:3]                 | failed  | 25.83 seconds   |
+./spec/network/payment_spec.rb[1:1]                   | passed  | 13.31 seconds   |
+./spec/network/payment_spec.rb[1:2:1]                 | passed  | 12.17 seconds   |
+./spec/network/payment_spec.rb[1:2:2]                 | passed  | 11.77 seconds   |
+./spec/network/payment_spec.rb[1:2:3]                 | passed  | 19.63 seconds   |
 ./spec/network/subscription_spec.rb[1:1:1]            | passed  | 0.08719 seconds |
 ./spec/network/subscription_spec.rb[1:1:2]            | passed  | 0.08841 seconds |
 ./spec/network/subscription_spec.rb[1:2:1]            | passed  | 0.07758 seconds |
