@@ -16,3 +16,5 @@ document.addEventListener("DOMContentLoaded", function () {
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
 });
+
+import "@fortawesome/fontawesome-pro/css/all.css";

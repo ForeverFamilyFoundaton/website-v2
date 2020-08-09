@@ -4,3 +4,17 @@ homer:
   state: KS
   zip: 12345
   addressable: homer (User)
+
+bart:
+  address: 742 Evergreen Terrace
+  city: Springfield
+  state: KS
+  zip: 12345
+  addressable: bart (User)
+
+marge:
+  address: 742 Evergreen Terrace
+  city: Springfield
+  state: KS
+  zip: 12345
+  addressable: marge (User)

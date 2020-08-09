@@ -1,21 +1,13 @@
 class DeviseInvitableAddToUsers < ActiveRecord::Migration[6.0]
-  def up
-    change_table :users do |t|
-      t.datetime   :invitation_created_at
-      t.datetime   :invitation_sent_at
-      t.datetime   :invitation_accepted_at
-      t.integer    :invitation_limit
-      t.references :invited_by, polymorphic: true
-      t.integer    :invitations_count, default: 0
-      t.index      :invitations_count
-      t.index      :invited_by_id
-    end
-  end
-
-  def down
-    change_table :users do |t|
-      t.remove_references :invited_by, polymorphic: true
-      t.remove :invitations_count, :invitation_limit, :invitation_sent_at, :invitation_accepted_at, :invitation_created_at
-    end
+  def change
+    add_column :users, :invitation_created_at, :datetime
+    add_column :users, :invitation_sent_at, :datetime
+    add_column :users, :invitation_accepted_at, :datetime
+    add_column :users, :invitation_limit, :integer
+    add_column :users, :invited_by_id, :integer
+    add_column :users, :invited_by_type, :string
+    add_column :users, :invitations_count, :integer, default: 0
+    add_index :users, :invitations_count
+    add_index :users, :invited_by_id
   end
 end

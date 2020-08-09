@@ -35,11 +35,15 @@ class User < ApplicationRecord
   end
 
   def family_members
-    family && family.members.where.not(id: id)
+    family.members.where.not(id: id)
+  rescue
+    []
   end
 
   def family_owner?
     family_membership.role == 'Owner'
+  rescue
+    false
   end
 
   def has_preference?(preference)

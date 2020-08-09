@@ -119,7 +119,6 @@ ActiveAdmin.register User do
           status_tag("No Sitterform Available")
         end
       end
-      row :is_business
       row :address do
         user.address
       end
@@ -131,47 +130,6 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
       row :problems
-    end
-    panel("Business details") do
-      attributes_table_for user.business do
-        row :name
-        row :contact_name
-        row :contact_email
-        row :contact_phone
-        row :fax
-        row :promotional_additional_notes
-        row :use_business_card_for_web_banner
-        row :promotional_media_text
-        row :promotional_media_additional_notes
-        row :do_not_mail
-        row :snail_mail
-        row :completed_step
-        row :business_card do |biz|
-          if biz && biz.business_card
-            link_to image_tag(biz.business_card.attachment.url(:thumb)), biz.business_card.attachment.url
-          end
-        end
-        row :business_logo do |biz|
-          if biz && biz.business_logo
-            link_to image_tag(biz.business_logo.attachment.url(:thumb)), biz.business_logo.attachment.url
-          end
-        end
-        row :web_banner do |biz|
-          if biz && biz.web_banner
-            link_to image_tag(biz.web_banner.attachment.url(:thumb)), biz.web_banner.attachment.url
-          end
-        end
-        row :promotional_media_mp3 do |biz|
-          if biz && biz.promotional_media_mp3
-            link_to biz.promotional_media_mp3.attachment_file_name, biz.promotional_media_mp3.attachment.url
-          end
-        end
-        row :promotional_media_upload do |biz|
-          if biz && biz.promotional_media_upload
-            link_to biz.promotional_media_upload.attachment_file_name, biz.promotional_media_upload.attachment.url
-          end
-        end
-      end
     end
 
     table_for user.adg_answers do
@@ -219,9 +177,6 @@ ActiveAdmin.register User do
       f.input :fax
       f.input :medium_registration, as: :boolean
       f.input :sitter_registration, as: :boolean
-      f.input :is_business do |user|
-        user.business.present?
-      end
       f.input :enrolled_from
       f.input :enrolled_at, start_year: 2004
       f.input :do_not_mail
@@ -237,12 +192,6 @@ ActiveAdmin.register User do
         address.input :zip
         address.input :country
       end
-      # f.has_many :family_members do |family_member|
-      #   family_member.input :first_name
-      #   family_member.input :last_name
-      #   family_member.input :relationship
-      # end
-
     end
     f.actions
   end

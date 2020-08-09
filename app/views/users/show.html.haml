@@ -3,13 +3,13 @@
     .col
       %h2= t('.title')
   .row
-    .col-sm-6
+    .col-sm
       = render 'profile'
-    .col-sm-6
+    .col-sm
       = render 'subscription'
   .row
     .col-sm
-      = render 'family_members' if current_user.family
+      = render 'family_members'
     .col-sm
       = render 'preferences'
   .row

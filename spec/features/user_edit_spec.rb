@@ -20,7 +20,7 @@ RSpec.feature 'As a authenticated User' do
     visit user_path(user)
   end
 
-  scenario 'I can edit my profile information', :chrome do
+  scenario 'I can edit my profile information' do
     within '.personal-information' do
       find('a.edit').click
     end

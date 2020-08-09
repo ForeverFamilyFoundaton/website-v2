@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setupStripe() {
   const stripe_key = document
-    .querySelector("meta[name='stripe-key']")
+    .querySelector("meta[name='stripe-public-key']")
     .getAttribute("content");
   const stripe = Stripe(stripe_key);
 

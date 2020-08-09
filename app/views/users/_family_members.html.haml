@@ -1,11 +1,11 @@
 .card.family-members
   .card-header
     Family Members
-    - if current_user.family_membership.role == 'Owner'
+    - if current_user.family && current_user.family_membership.role == 'Owner'
       = link_to fa_icon('plus'), new_family_member_invitation_path, class: 'add'
 
   .card-body
-    - if current_user.family_members.empty?
+    - if current_user.family && current_user.family_members.empty?
       %ul.list-group.list-group-flush
         %li.list-group-item
           = t('users.show.add_family_members', link: link_to('Click here', new_family_member_invitation_path)).html_safe

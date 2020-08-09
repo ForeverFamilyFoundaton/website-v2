@@ -14,3 +14,17 @@ admin:
   encrypted_password: <%= User.new.send(:password_digest, 'passwrord') %>
   confirmed_at: <%= Date.yesterday %>
   roles: admin
+
+bart:
+  email: bart@the_simpsons.com
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+  confirmed_at: <%= Date.yesterday %>
+  first_name: Bart
+  last_name: Simpson
+
+marge:
+  email: marge@the_simpsons.com
+  encrypted_password: <%= BCrypt::Password.create('password') %>
+  confirmed_at: <%= Date.yesterday %>
+  first_name: Marge
+  last_name: Simpson
