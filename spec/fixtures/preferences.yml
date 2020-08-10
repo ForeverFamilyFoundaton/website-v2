@@ -1,6 +1,9 @@
-one:
-  name: Preference one
+profile_1:
+  name: Profile Preference one
   preference_type: Profile
-two:
-  name: Prefenece two
+profile_2:
+  name: Profile Prefenece two
   preference_type: Profile
+subscription_1:
+  name: Subscription Prefenece
+  preference_type: Subscription

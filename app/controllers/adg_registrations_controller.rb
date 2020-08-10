@@ -1,36 +1,35 @@
 class AdgRegistrationsController < ApplicationController
-  before_action :require_registration, :only => [:new]
+  before_action :require_registration
 
   def new
-    session[:adg_registration] = nil
-    @adg_questions = AdgQuestion.all
-  end
-
-  def create
-    adg_answers = params[:adg_registration][:answer]
-    adg_radio_val_hash = params[:adg_registration][:radio_val] || {}
-    adg_answers.each_pair do |question_id, answer|
-      adg_question = AdgQuestion.find(question_id)
-      adg_answer = current_user.adg_answers.find_or_create_by(adg_question_id: adg_question.id)
-      adg_answer.answer = answer
-      adg_answer.radio_val = adg_radio_val_hash[question_id]
-      adg_answer.question = adg_question.question
-      adg_answer.save!
+    AdgQuestion.all.each do |adg_question|
+      current_user.adg_answers.build adg_question_id: adg_question.id
     end
-    current_user.update_attribute(:adg_preference_ids, params[:adg_registration][:adg_preference_ids])
-    UserNotifier.send_adg_email(current_user)
-
-    flash[:notice] = I18n.t('flash.adg.answers_updated')
-    redirect_to current_user
   end
+
+  def edit; end
+
+  def update
+    current_user.adg_answers_attributes = adg_registration_params['adg_answers_attributes'].values
+    if current_user.valid?
+      current_user.save
+      redirect_to current_user, notice: t('.success')
+    else
+      flash[:error] = current_user.errors.full_messages.join(' ')
+      render 'edit'
+    end
+  end
+
 
   private
 
+  def adg_registration_params
+    params.require(:user).permit adg_answers_attributes: [:adg_question_id, :answer, :id]
+  end
+
   def require_registration
-    if current_user.blank?
-      session[:adg_registration] = true
-      flash[:notice] = I18n.t('flash.adg.user_required')
-      redirect_to new_user_registration_path
+    unless current_user
+      redirect_to new_user_registration_path, notice: I18n.t('adg_registrations.redirect')
     end
   end
 end

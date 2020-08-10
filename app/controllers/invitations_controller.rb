@@ -17,4 +17,10 @@ class InvitationsController < Devise::InvitationsController
       ]
     )
   end
+
+  private
+
+  def after_accept_path_for(resource)
+    user_path resource
+  end
 end

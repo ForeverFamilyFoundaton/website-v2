@@ -1,5 +1,36 @@
 ActiveAdmin.register User do
-  menu false
+  permit_params(
+    :id,
+    :password,
+    :password_confirmation,
+    :do_not_mail,
+    :snail_mail,
+    :first_name,
+    :middle_name,
+    :last_name,
+    :email,
+    :cell_phone,
+    :home_phone,
+    :work_phone,
+    :fax,
+    :medium_registration,
+    :sitter_registration,
+    :is_business,
+    :membership_number,
+    :enrolled_from,
+    :enrolled_at,
+    :problems,
+    category_ids: [],
+    preferences: [],
+    address_attributes: [
+      :id,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :country
+    ]
+  )
 
   scope :active, :kept, default: true
   scope :soft_deleted, :discarded
@@ -44,17 +75,15 @@ ActiveAdmin.register User do
   filter :address_state_contains
   filter :address_country_contains
   filter :preferences, as: :check_boxes
-  filter :profile_preferences, as: :check_boxes
-  filter :subscription_preferences, as: :check_boxes
 
   index download_links: [:csv] do
-    column 'Membership Number', :membership_number
+    # column 'Membership Number', :membership_number
     column :first_name
     column :last_name
     column :email, sortable: :email
-    column :business_name, sortable: 'businesses.name' do |user|
-      user.business && user.business.name
-    end
+    # column :business_name, sortable: 'businesses.name' do |user|
+    #   user.business && user.business.name
+    # end
     actions
   end
 
@@ -90,7 +119,6 @@ ActiveAdmin.register User do
           status_tag("No Sitterform Available")
         end
       end
-      row :is_business
       row :address do
         user.address
       end
@@ -103,47 +131,6 @@ ActiveAdmin.register User do
       row :updated_at
       row :problems
     end
-    panel("Business details") do
-      attributes_table_for user.business do
-        row :name
-        row :contact_name
-        row :contact_email
-        row :contact_phone
-        row :fax
-        row :promotional_additional_notes
-        row :use_business_card_for_web_banner
-        row :promotional_media_text
-        row :promotional_media_additional_notes
-        row :do_not_mail
-        row :snail_mail
-        row :completed_step
-        row :business_card do |biz|
-          if biz && biz.business_card
-            link_to image_tag(biz.business_card.attachment.url(:thumb)), biz.business_card.attachment.url
-          end
-        end
-        row :business_logo do |biz|
-          if biz && biz.business_logo
-            link_to image_tag(biz.business_logo.attachment.url(:thumb)), biz.business_logo.attachment.url
-          end
-        end
-        row :web_banner do |biz|
-          if biz && biz.web_banner
-            link_to image_tag(biz.web_banner.attachment.url(:thumb)), biz.web_banner.attachment.url
-          end
-        end
-        row :promotional_media_mp3 do |biz|
-          if biz && biz.promotional_media_mp3
-            link_to biz.promotional_media_mp3.attachment_file_name, biz.promotional_media_mp3.attachment.url
-          end
-        end
-        row :promotional_media_upload do |biz|
-          if biz && biz.promotional_media_upload
-            link_to biz.promotional_media_upload.attachment_file_name, biz.promotional_media_upload.attachment.url
-          end
-        end
-      end
-    end
 
     table_for user.adg_answers do
       column "Question" do |question|
@@ -155,13 +142,13 @@ ActiveAdmin.register User do
       end
     end
 
-    table_for user.profile_preferences do
+    table_for user.preferences.profile do
       column "Profile Preferences" do |question|
         question.name
       end
     end
 
-    table_for user.subscription_preferences do
+    table_for user.preferences.subscription do
       column "Subscription Preferences" do |question|
         question.name
       end
@@ -190,20 +177,14 @@ ActiveAdmin.register User do
       f.input :fax
       f.input :medium_registration, as: :boolean
       f.input :sitter_registration, as: :boolean
-      f.input :is_business do |user|
-        user.business.present?
-      end
       f.input :enrolled_from
       f.input :enrolled_at, start_year: 2004
       f.input :do_not_mail
       f.input :snail_mail
-      f.input :last_sign_in_at
-      f.input :created_at, start_year: 2004
-      f.input :updated_at, start_year: 2004
       f.input :problems
       f.input :categories, as: :check_boxes
-      f.input :profile_preferences, as: :check_boxes, collection: Preference.profile_preferences
-      f.input :subscription_preferences, as: :check_boxes, collection: Preference.subscription_preferences
+      f.input :preferences, as: :check_boxes, collection: Preference.profile, label: 'Profile Preferences'
+      f.input :preferences, as: :check_boxes, collection: Preference.subscription, label: 'Subscription Preferences'
       f.inputs "Address", for: [:address, f.object.address || Address.new] do |address|
         address.input :address
         address.input :city
@@ -211,12 +192,6 @@ ActiveAdmin.register User do
         address.input :zip
         address.input :country
       end
-      f.has_many :family_members do |family_member|
-        family_member.input :first_name
-        family_member.input :last_name
-        family_member.input :relationship
-      end
-
     end
     f.actions
   end

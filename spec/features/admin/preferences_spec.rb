@@ -1,35 +1,22 @@
-RSpec.feature 'Admin area: Preferences' do
+RSpec.feature 'As an Admin user' do
+  let(:user) { users(:admin) }
+  let(:profile_preference_1) { preferences(:profile_1) }
+  let(:subscription_preference_1) { preferences(:subscription_1) }
+  let(:name) { Faker::Lorem.word }
+
   before do
-    sign_in_as_admin
+    login_as user
+    visit admin_preferences_path
   end
 
-  let!(:pref_1) { create(:preference, name: 'Receive Emails?') }
-  let!(:pref_2) { create(:preference) }
-
-  scenario 'index renders successfully' do
-    click_on 'Preferences'
-    expect(page).to have_content pref_1.name
-    expect(page).to have_content pref_2.name
-  end
-
-  scenario 'create works correctly' do
-    click_on 'Preferences'
+  scenario 'I can manage Preferences' do
     click_on 'New Preference'
-    expect(page).to have_selector '#page_title', text: 'New Preference'
-    fill_in 'Name', with: 'Receive emails?'
+    fill_in 'Name', with: name
+    select 'Profile', from: 'Preference type'
     click_on 'Create Preference'
     expect(page).to have_content 'Preference was successfully created.'
+    visit admin_preferences_path
+    expect(page).to have_content profile_preference_1.name
+    expect(page).to have_content subscription_preference_1.name
   end
-
-  scenario 'pref works correctly' do
-    click_on 'Preferences'
-    within('tr', text: pref_1.name) do
-      click_on 'Edit'
-    end
-    fill_in 'Name', with: 'Get emails?'
-    click_on 'Update Preference'
-    expect(page).to have_content 'Preference was successfully updated.'
-    expect(page).to have_content 'Get emails?'
-  end
-
 end

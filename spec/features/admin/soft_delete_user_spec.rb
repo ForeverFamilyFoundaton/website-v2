@@ -1,8 +1,8 @@
 RSpec.feature 'As an admin user' do
-  let!(:user) { create(:user) }
+  let(:user) { users(:admin) }
 
   before do
-    sign_in_as_admin
+    login_as user
   end
 
   scenario 'I can soft delete a user', :js do

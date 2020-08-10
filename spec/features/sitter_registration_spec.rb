@@ -1,80 +1,71 @@
-RSpec.feature 'Sitter registration' do
+RSpec.feature 'As a User' do
+  include_context 'User Profile Data'
+  include_context 'Social Media Data'
+
+  let(:user) { users(:homer) }
+
   before do
-    @user = FactoryBot.create(:user, { email: 'abc@example.com', password: 'password'})
-    @user2 = FactoryBot.create(:user, { email: 'qwe@example.com', password: 'password', sitter_registration: true})
+    login_as user
+    visit user_path(user)
   end
 
-  it 'Sitterform login with no sitter_registration flag', :sitterform do
-    visit '/login'
-    sign_in(@user)
-    visit '/login'
-    expect(page).to_not have_content 'Sitter Registration'
+  context 'with no Sitter Registration Flag' do
+    before do
+      user.update! sitter_registration: false
+    end
+
+    scenario 'I do not see the Sitter Registration options' do
+      expect(page).to_not have_content 'Sitter Registration'
+    end
   end
 
-  it 'Sitterform login with sitter_registration flag', :sitterform do
-    visit '/login'
-    sign_in(@user2)
-    visit '/login'
-    expect(page).to have_content 'Sitter Registration'
+  context 'with Sitter Registration Flag set to true' do
+    let(:related_contact_info) { Faker::Lorem.paragraph }
+    let(:medium_contacts) { Faker::Lorem.paragraph }
+    let(:belief_type) { BeliefType.all.map(&:name).sample }
+    let(:known_dead_first_name) { Faker::Name.first_name }
+    let(:known_dead_relationship) { Relationship.all.map(&:name).sample }
+    let(:known_dead_year) { (100.years.ago.year..Date.today.year).to_a.sample }
+
+    before do
+      user.update! sitter_registration: true
+      visit user_path(user)
+    end
+
+    scenario 'I can fill out the Sitter Registration' do
+      within '.sitter-registration' do
+        click_on 'Begin Registration'
+      end
+      within '.social-media' do
+        fill_in 'Website', with: website
+        fill_in 'Facebook', with: facebook
+        fill_in 'Pinterest', with: pinterest
+        fill_in 'Instagram', with: instagram
+        fill_in 'Twitter', with: twitter
+        fill_in 'Youtube', with: youtube
+        fill_in 'Blog', with: blog
+      end
+      fill_in I18n.t('sitter_registration.labels.related_contact_info'), with: related_contact_info
+      fill_in I18n.t('sitter_registration.labels.medium_contacts'), with: medium_contacts
+      choose belief_type
+      within first('.known-dead') do
+        fill_in 'First name', with: known_dead_first_name
+        select known_dead_relationship
+        fill_in 'YYYY', with: known_dead_year
+      end
+      click_on 'Save'
+      expect(page).to have_content 'Sitterform was successfully created.'
+      within '.sitter-registration' do
+        click_on 'Continue Registration'
+      end
+      expect(page).to have_field 'Website', with: website
+      expect(page).to have_field 'Facebook', with: facebook
+      expect(page).to have_field 'Pinterest', with: pinterest
+      expect(page).to have_field 'Instagram', with: instagram
+      expect(page).to have_field 'Twitter', with: twitter
+      expect(page).to have_field 'Youtube', with: youtube
+      expect(page).to have_field 'Blog', with: blog
+
+    end
   end
-
-  it 'Sitterform form shows', :sitterform do
-    visit '/login'
-    sign_in(@user2)
-    visit '/login'
-    click_link('Sitter Registration Form')
-    expect(page).to have_content 'CONDITIONS AND TERMS OF PARTICIPATION AS A SITTER IN THE PROGRAM'
-  end
-
-  it 'Sitterform signature_checkbox need to be checked', :sitterform do
-    visit '/login'
-    sign_in(@user2)
-    visit '/login'
-    click_link('Sitter Registration Form')
-    fill_in('Electronic Signature', :with => 'John Doe')
-    click_button('Submit')
-    expect(page).to have_content 'Signature checkbox needs to be checked'
-  end
-
-  # it 'Sitterform signature and signature_checkbox', :driver => :webkit, type: :sitterform do
-  #   visit '/login'
-  #   sign_in(@user2)
-  #   visit '/'
-  #   click_link('Sitter Registration Form')
-  #   #choose('sitterform_belief_type_id_1', visible: false)
-  #   page.execute_script("document.getElementById('sitterform_belief_type_id_1').ch‌​ecked = true")
-  #   fill_in('Electronic Signature', :with => 'John Doe')
-  #   page.check("sig_check_box")
-  #   #find(:css, "#sig_check_box").set(true)
-  #   click_button('Submit')
-
-  #   expect(page).to have_content 'Sitterform was successfully'
-  # end
-
-
-  # it 'biz reg' do
-  #   visit '/users/login'
-  #   fill_in "user_email", :with => 'asd@example.com'
-  #   fill_in "user_email_confirmation", :with => 'asd@example.com'
-  #   fill_in "user_password", :with => "password"
-  #   fill_in "user_password_confirmation", :with => "password"
-  #   fill_in "user_first_name", :with => "Fname"
-  #   fill_in "user_last_name", :with => "Lname"
-  #   fill_in "Address", :with => "Street no. 100"
-  #   fill_in "City", :with => "Los Angeles"
-  #   fill_in "State", :with => "CA"
-  #   fill_in "Zip", :with => "90001"
-  #   check "Yes, I accept the Terms of Use"
-  #   check "I am registering a business"
-  #   click_on "Register"
-  #   expect(current_url).to match "/users/#{User.last.id}/businesses/new"
-  # end
-
-  # it 'confirms email case insensitive' do
-  #   visit '/users/sign_up'
-  #   fill_in_reg(email: 'CASE@sensative.com', email_confirmation: 'CASE@sensative.com', password: '')
-  #   expect(find_field('user_email').value).to eq 'case@sensative.com'
-  #   expect(find_field('user_email_confirmation').value).to eq 'case@sensative.com'
-  # end
-
 end

@@ -19,21 +19,21 @@
       - if current_user.home_phone.blank?
         %span.text-muted Home phone...
       - else
-        = current_user.home_phone
+        = current_user.home_phone.phony_formatted
 
     %li.list-group-item.cell-phone
       %i
       - if current_user.cell_phone.blank?
         %span.text-muted Cell phone...
       - else
-        = current_user.cell_phone
+        = current_user.cell_phone.phony_formatted
 
     %li.list-group-item.work-phone
       %i
       - if current_user.work_phone.blank?
         %span.text-muted Work phone...
       - else
-        = current_user.work_phone
+        = current_user.work_phone.phony_formatted
 
     %li.list-group-item.address
       %i

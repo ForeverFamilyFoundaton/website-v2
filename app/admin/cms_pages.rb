@@ -1,8 +1,5 @@
 ActiveAdmin.register CmsPage do
   filter :title
-  filter :reference_string
-  filter :parent
-  filter :children
 
   permit_params :reference_string, :title, :sub_title, :body
 

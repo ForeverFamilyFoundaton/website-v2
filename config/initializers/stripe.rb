@@ -1,3 +1,9 @@
+require 'charge_succeeded_webhook'
+require 'charge_refunded_webhook'
+require 'subscription_updated_webhook'
+require 'subscription_deleted_webhook'
+require 'payment_action_required_webhook'
+
 Stripe.api_key = Rails.application.credentials.stripe[:private_key]
 
 class PaymentIncomplete < StandardError

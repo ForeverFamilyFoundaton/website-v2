@@ -9,7 +9,7 @@ class PaymentsController < ApplicationController
   def update
     current_user.update_card(params[:payment_method_id]) if params[:payment_method_id].present?
 
-    redirect_to root_path, notice: "Thanks for your payment"
+    redirect_to user_path(current_user), notice: "Thanks for your payment"
   end
 
   private

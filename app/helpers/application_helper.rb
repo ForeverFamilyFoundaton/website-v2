@@ -1,6 +1,11 @@
 module ApplicationHelper
   def fa_icon(icon, opts = {})
-    content_tag :i, nil, class: ([:far, "fa-#{icon}"] << opts[:class]), data: opts[:data]
+    content_tag(
+      :i,
+      nil,
+      class: ([:far, "fa-#{icon}"] << opts[:class]),
+      data: opts[:data]
+    )
   end
 
   def setup_user(user)

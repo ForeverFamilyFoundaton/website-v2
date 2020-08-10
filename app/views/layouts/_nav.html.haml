@@ -8,16 +8,17 @@
         %a.btn.btn-sm.btn-outline-warning.mr-3{ href: new_user_registration_path } Become a member
       %li.nav-item
         %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
-      %li.nav-item
-        - unless user_signed_in?
-          %a.nav-link{href: new_user_session_path}
-            = fa_icon('sign-in-alt', class: :fas)
-            Sign in
-        - else
+      - if user_signed_in?
+        %li.nav-item
+          %a.nav-link{ href: user_path(current_user) }= current_user.email
+        %li.nav-item
           = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
             = fa_icon 'sign-out-alt', class: :fas
-            Sign out
-      - if current_admin_user
-        %li.nav-item
-          %a.nav-link{ href: admin_dashboard_path }
-            = fa_icon 'unlock-alt', class: :fas
+        - if current_user.admin?
+          %li.nav-item
+            %a.nav-link{ href: admin_dashboard_path }
+              = fa_icon 'cog', class: :fas
+      - else
+        %a.nav-link{href: new_user_session_path}
+          = fa_icon('sign-in-alt', class: :fas)
+          Sign in

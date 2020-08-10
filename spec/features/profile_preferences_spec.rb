@@ -1,7 +1,7 @@
 RSpec.feature 'As a registered user' do
   let(:user) { users(:homer) }
-  let(:selected_preference) { preferences(:one) }
-  let(:unselected_preference) { preferences(:two) }
+  let(:selected_preference) { preferences(:profile_1) }
+  let(:unselected_preference) { preferences(:profile_2) }
 
   before do
     user.user_preference_selections.create! preference: selected_preference

@@ -1,7 +1,7 @@
 ActiveAdmin.register Preference do
-  menu false
   config.filters = false
 
+  permit_params :name, :preference_type
 
   index do
     column :name

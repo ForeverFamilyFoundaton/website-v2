@@ -4,10 +4,9 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  # # attr_accessible :category_ids, :categories
-  # has_and_belongs_to_many :roles
-  # has_many :user_categories
-  # has_many :categories, through: :user_categories
+  has_and_belongs_to_many :roles
+  has_many :user_categories
+  has_many :categories, through: :user_categories
 
   has_one :address, as: :addressable
   accepts_nested_attributes_for :address
@@ -20,6 +19,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_preference_selections
   has_many :preferences, through: :user_preference_selections
   has_one :mediumform
+  has_many :adg_answers, -> { order(:adg_question_id) }
+  accepts_nested_attributes_for :adg_answers, reject_if: :all_blank
 
   phony_normalize :cell_phone, default_country_code: 'US'
   phony_normalize :home_phone, default_country_code: 'US'
@@ -29,14 +30,20 @@ class User < ApplicationRecord
   validates :home_phone, phony_plausible: true
   validates :work_phone, phony_plausible: true
 
-  attr_accessor :role
+  def admin?
+    roles.map(&:name).include? 'Admin'
+  end
 
   def family_members
     family.members.where.not(id: id)
+  rescue
+    []
   end
 
   def family_owner?
     family_membership.role == 'Owner'
+  rescue
+    false
   end
 
   def has_preference?(preference)
@@ -108,12 +115,11 @@ class User < ApplicationRecord
       customer
     end
   end
-  # has_one :sitterform
+  has_one :sitterform
   # has_many :family_members
   # has_many :known_deads
   # has_many :relationships, through: :known_deads
   # accepts_nested_attributes_for :known_deads, reject_if: proc { |a| a[:name].blank? }, allow_destroy: true
-  # has_many :adg_answers
   # has_many :notes
   # has_many :profile_preferences, -> {where("preferences.preference_type = 'Profile'")},
   #   through: :user_preference_selections,
@@ -153,7 +159,7 @@ class User < ApplicationRecord
   # before_create :build_address
   # after_create :welcome_message
 
-  # scope :registered_for_adg, -> { includes(:adg_answers).where.not(adg_answers: { id: nil }) }
+  scope :registered_for_adg, -> { includes(:adg_answers).where.not(adg_answers: { id: nil }) }
 
   # comma do
   #   id

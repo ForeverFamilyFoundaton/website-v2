@@ -1,6 +1,7 @@
 ActiveAdmin.register ExternalLink do
-  menu false
   config.filters = false
+
+  permit_params :text, :url
 
   index do
     column :text
@@ -23,5 +24,4 @@ ActiveAdmin.register ExternalLink do
       link_to external_link.text, external_link.url, target: '_blank'
     end
   end
-
 end

@@ -1,0 +1,107 @@
+= simple_form_for @sitterform do |f|
+  %p Please answer all questions to the best of you ability and do not leave any blank spaces.      If you do not have a specific answer to the question, please type "none" into the field.
+
+  %p
+    %strong
+      Your responses will determine your eligibility to participate in this program.
+  %p
+    You do not need to fill out the form in one sitting and may return to this form as often as necessary until you sign and check the signature box for final submission.
+
+  %h2 Forever Family Foundation Information
+  .row
+    .col-sm
+      %ul.profile-details
+        %li
+          %strong First Name:
+          = @sitterform.user.first_name
+        %li
+          %strong Middle Name:
+          = @sitterform.user.middle_name
+        %li
+          %strong Last Name:
+          = @sitterform.user.last_name
+        %li
+          %strong Cell Phone:
+        %li
+          %strong Work Phone:
+        %li
+          %strong Home Phone:
+    .col-sm
+      %ul.address
+        %li
+          %strong Address:
+          = @sitterform.user.address.address
+        %li
+          %strong City:
+          = @sitterform.user.address.city
+        %li
+          %strong State:
+          = @sitterform.user.address.state
+        %li
+          %strong Zip:
+          = @sitterform.user.address.zip
+        %li
+          %strong Country:
+          = @sitterform.user.address.country
+
+  .social-media
+    %h2 Social Networking
+    %p
+      %strong Please provide the link(s) (URL) for each of your social networking accounts below:
+    = f.input :website, as: :string, wrapper: :horizontal_form
+    = f.input :facebook, as: :string, wrapper: :horizontal_form
+    = f.input :pinterest, as: :string, wrapper: :horizontal_form
+    = f.input :instagram, as: :string, wrapper: :horizontal_form
+    = f.input :twitter, as: :string, wrapper: :horizontal_form
+    = f.input :youtube, as: :string, wrapper: :horizontal_form
+    = f.input :blog, as: :string, wrapper: :horizontal_form
+
+  %h2 Other Activities
+  = f.input :related_contact_info, placeholder: 'Related field contact information', label: t('sitter_registration.labels.related_contact_info')
+  %h2 Past Medium Contact
+  = f.input :medium_contacts, placeholder: "Medium contact names", label: t('sitter_registration.labels.medium_contacts')
+  = f.input :belief_type_id, as: :radio_buttons, label: t('sitter_registration.labels.belief_type'), collection: BeliefType.all
+
+  %h2 Personal Loss
+  %p
+    %strong If you have suffered the loss of a loved one, please list below the first name of up to five deceased people with whom you would like to connect.
+  %table.table.known-deads
+    %thead
+      %tr
+        %th Name
+        %th Relationship
+        %th Year of Death
+    %tbody
+      - for known_dead in @sitterform.known_deads
+        = f.fields_for :known_deads, known_dead do |known_dead|
+          = known_dead.input :user_id, as: :hidden, input_html: { value: current_user.id }
+          %tr.known-dead
+            %td= known_dead.input :name, placeholder: "First name", label: false
+            %td= known_dead.input :relationship_id, as: :select, collection: Relationship.all, label: false, prompt: 'Choose one...'
+            %td= known_dead.input :year_of_death, placeholder: "YYYY", label: false
+
+  %h2 Certification Program
+  %p
+    %strong Purpose
+  %p In fulfillment of the mission of the Forever Family Foundation, the foundation has embarked on the creation and establishment of a medium certification program/project.  The board of Forever Family Foundation has identified the need for an objective evaluation of those individuals who wish to publicly “validate” their mediumship abilities. In devising such a program, Forever Family Foundation seeks to:
+  %ol
+    %li Minimize the harm to the general public inflicted by fraudulent, unscrupulous practitioners who exploit their grief and vulnerabilities.
+    %li Set a standard which must be met by mediums before they are recognized as having attained a basic level of proficiency in the field so as to be a benefit to the public.
+    %li Procure data through scientific, objective observation for use in the Forever Family Foundation supported research endeavors.
+  %p
+    %strong CONDITIONS AND TERMS OF PARTICIPATION AS A SITTER IN THE PROGRAM:
+  %ol
+    %li
+      As a part of the certification process, I understand that I will be participating in medium reading session(s) which may be video and/or audio taped.  This tape(s) will remain the property of Forever Family Foundation, Inc. and cannot be retained or shared for any purposes by the sitter.
+      %span{:style => "color:red;"} I understand that I am prohibited from recording any parts of any of these sessions.
+    %li I understand that the audio and/or video recordings along with any data collected in this program may be used for scientific, educational, or charitable purposes and as such may result in the publication, reproduction or other use as the result of my participation.
+    %li I fully release, indemnify and hold harmless Forever Family Foundation, its board, employees, agents, and others acting on their behalf, from any and all liability which may arise as a result of my participation.
+    %li I understand that due to Forever Family Foundation’s promise of confidentiality to the mediums, I cannot divulge any particular medium's participation, nor their subsequent passing or failing in their certification attempt.
+    %li
+      %span{:style => "color:red;"} I understand that my participation in and knowledge of this certification process must be kept private and confidential, as sharing such information may compromise the integrity of the process.
+    %li As an active volunteer of Forever Family Foundation I will assist with the work of maintaining and promoting the positive pubic image of the organization.
+
+  %h2 Signature
+  = f.input :signature, label: 'Electronic Signature', placeholder: "Your Full Name"
+  = f.input :signature_checkbox, label: 'I understand that checking this box constitutes a legal signature confirming that I acknowledge and warrant the truthfulness of the information provided in this document.'
+  = f.submit 'Save', class: 'btn btn-primary'

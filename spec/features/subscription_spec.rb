@@ -3,6 +3,7 @@ RSpec.feature 'As a registered user' do
 
   before do
     login_as user, scope: :user
+    visit user_path(user)
   end
 
   scenario 'I can upgrade to a paid subscription' do

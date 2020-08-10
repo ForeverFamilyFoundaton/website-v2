@@ -30,7 +30,7 @@ RSpec.describe User do
 
   describe '#has_preference?' do
     let(:result) { user.has_preference?(preference) }
-    let(:preference) { preferences(:one) }
+    let(:preference) { preferences(:profile_1) }
 
     context 'with a selected preference' do
       before do
