@@ -17,4 +17,4 @@ document.addEventListener("DOMContentLoaded", function () {
   $('[data-toggle="popover"]').popover();
 });
 
-import "@fortawesome/fontawesome-pro/css/all.css";
+import "@fortawesome/fontawesome-pro/js/all.js";
