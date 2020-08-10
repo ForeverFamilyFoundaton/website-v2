@@ -1,5 +1,7 @@
 RSpec.feature 'As a user' do
   include_context 'User Profile Data'
+  include_context 'Social Media Data'
+
   let(:user) { users(:homer) }
   let(:other_activities_1) { Faker::Lorem.paragraph }
   let(:other_activities_2) { Faker::Lorem.paragraph }

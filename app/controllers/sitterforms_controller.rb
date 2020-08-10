@@ -33,7 +33,6 @@ class SitterformsController < ApplicationController
 
   def create
     @sitterform = current_user.build_sitterform sitterform_params
-    byebug
     if @sitterform.save
       if @sitterform.signature_checkbox
         @user = current_user

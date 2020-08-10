@@ -12,7 +12,7 @@ RSpec.feature 'As a user registering for a ADG Discussion group' do
       visit user_path(user)
     end
 
-    scenario 'I can fill out the ADG Registration', :chrome do
+    scenario 'I can fill out the ADG Registration' do
       within '.adg-registration' do
         click_on 'Begin Registration'
       end

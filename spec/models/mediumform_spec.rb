@@ -1,11 +1,9 @@
-RSpec.describe Sitterform do
+RSpec.describe Mediumform do
   let(:user) { users(:homer) }
-  let(:belief_type) { belief_types(:non_believer) }
   let(:instance) { described_class.new(params) }
   let(:params) do
     {
       user: user,
-      belief_type: belief_type,
       signature: signature,
       signature_checkbox: signature_checkbox
     }
@@ -13,10 +11,7 @@ RSpec.describe Sitterform do
   let(:signature) { Faker::Name.name }
   let(:signature_checkbox) { '1' }
 
-  it { is_expected.to have_many :known_deads }
-  it { is_expected.to have_many :relationships }
-
-  describe '#valid?' do
+    describe '#valid?' do
     context 'with a signature but no checkbox' do
       let(:signature_checkbox) { 0 }
 
@@ -48,5 +43,4 @@ RSpec.describe Sitterform do
       end
     end
   end
-
 end

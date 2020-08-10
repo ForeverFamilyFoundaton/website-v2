@@ -6,6 +6,7 @@ RSpec.feature 'As a User' do
 
   before do
     login_as user
+    visit user_path(user)
   end
 
   context 'with no Sitter Registration Flag' do
@@ -53,7 +54,6 @@ RSpec.feature 'As a User' do
         fill_in 'YYYY', with: known_dead_year
       end
       click_on 'Save'
-      pause
       expect(page).to have_content 'Sitterform was successfully created.'
       within '.sitter-registration' do
         click_on 'Continue Registration'
