@@ -12,5 +12,6 @@ RSpec.shared_context 'User Profile Data' do
   let(:city) { Faker::Address.city }
   let(:state) { Faker::Address.state }
   let(:zip) { Faker::Address.zip }
+  let(:country) { Faker::Address.country }
   let(:password) { 'password' }
 end

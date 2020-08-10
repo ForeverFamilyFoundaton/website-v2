@@ -32,22 +32,17 @@ class SitterformsController < ApplicationController
   end
 
   def create
-    @sitterform = Sitterform.new(sitterform_params)
-    @sitterform.user_id = current_user.id
-
-    respond_to do |format|
-      if @sitterform.save
-        if @sitterform.signature_checkbox
-          @user = current_user
-          @user.sitter_registration = false
-          @user.save
-        end
-        format.html { redirect_to @sitterform, notice: 'Sitterform was successfully created.' }
-        format.json { render :show, status: :created, location: @sitterform }
-      else
-        format.html { render :new }
-        format.json { render json: @sitterform.errors, status: :unprocessable_entity }
+    @sitterform = current_user.build_sitterform sitterform_params
+    byebug
+    if @sitterform.save
+      if @sitterform.signature_checkbox
+        @user = current_user
+        @user.sitter_registration = false
+        @user.save
       end
+      redirect_to current_user, notice: 'Sitterform was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -95,10 +90,35 @@ class SitterformsController < ApplicationController
     end
 
     def sitterform_params
-      params.require(:sitterform).permit(:user_id, :phone, :alt_email, :cell, :website, :facebook, :pinterest, \
-        :instagram, :twitter, :youtube, :blog, :related_contact_info, :been_to_medium, :belief_type_id, \
-        :lost_loved_one, :medium_contacts,\
-        [known_deads_attributes: [:id, :user_id, :relationship_id, :sitterform_id, :name, :year_of_death, :_destroy]], :signature, :signature_checkbox)
+      params.require(:sitterform).permit(
+        :alt_email,
+        :been_to_medium,
+        :belief_type_id,
+        :blog,
+        :cell,
+        :facebook,
+        :instagram,
+        :lost_loved_one,
+        :medium_contacts,
+        :phone,
+        :pinterest,
+        :related_contact_info,
+        :twitter,
+        :user_id,
+        :website,
+        :youtube,
+        :signature,
+        :signature_checkbox,
+        known_deads_attributes: [
+          :_destroy,
+          :id,
+          :name,
+          :relationship_id,
+          :sitterform_id,
+          :user_id,
+          :year_of_death
+        ]
+      )
     end
 end
 

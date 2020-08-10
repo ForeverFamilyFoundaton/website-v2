@@ -44,31 +44,28 @@
           %strong Country:
           = @sitterform.user.address.country
 
-  %h2 Social Networking
-  %p
-    %strong Please provide the link(s) (URL) for each of your social networking accounts below:
-  = f.input :website, as: :string, wrapper: :horizontal_form
-  = f.input :facebook, as: :string, wrapper: :horizontal_form
-  = f.input :pinterest, as: :string, wrapper: :horizontal_form
-  = f.input :instagram, as: :string, wrapper: :horizontal_form
-  = f.input :twitter, as: :string, wrapper: :horizontal_form
-  = f.input :youtube, as: :string, wrapper: :horizontal_form
-  = f.input :blog, as: :string, wrapper: :horizontal_form
+  .social-media
+    %h2 Social Networking
+    %p
+      %strong Please provide the link(s) (URL) for each of your social networking accounts below:
+    = f.input :website, as: :string, wrapper: :horizontal_form
+    = f.input :facebook, as: :string, wrapper: :horizontal_form
+    = f.input :pinterest, as: :string, wrapper: :horizontal_form
+    = f.input :instagram, as: :string, wrapper: :horizontal_form
+    = f.input :twitter, as: :string, wrapper: :horizontal_form
+    = f.input :youtube, as: :string, wrapper: :horizontal_form
+    = f.input :blog, as: :string, wrapper: :horizontal_form
 
   %h2 Other Activities
-  %p
-    %strong Do you work in any other fields related to Health, Healing, or Spirituality? If so, please provide contact information:
-  = f.input :related_contact_info, placeholder: 'Related field contact information', label: false
+  = f.input :related_contact_info, placeholder: 'Related field contact information', label: t('sitter_registration.labels.related_contact_info')
   %h2 Past Medium Contact
-  %p
-    %strong If you have been to a medium (or mediums), please list them by name.
-  = f.input :medium_contacts, placeholder: "Medium contact names", label: false
-  = f.input :belief_type_id, as: :radio_buttons, label: 'Regarding an Afterlife, which would you consider yourself to be?', collection: BeliefType.all
+  = f.input :medium_contacts, placeholder: "Medium contact names", label: t('sitter_registration.labels.medium_contacts')
+  = f.input :belief_type_id, as: :radio_buttons, label: t('sitter_registration.labels.belief_type'), collection: BeliefType.all
 
   %h2 Personal Loss
   %p
     %strong If you have suffered the loss of a loved one, please list below the first name of up to five deceased people with whom you would like to connect.
-  %table.table
+  %table.table.known-deads
     %thead
       %tr
         %th Name
@@ -77,9 +74,10 @@
     %tbody
       - for known_dead in @sitterform.known_deads
         = f.fields_for :known_deads, known_dead do |known_dead|
-          %tr
+          = known_dead.input :user_id, as: :hidden, input_html: { value: current_user.id }
+          %tr.known-dead
             %td= known_dead.input :name, placeholder: "First name", label: false
-            %td= known_dead.input :relationship_id, as: :select, collection: Relationship.all.collect { |p| [ p.name, p.id ] }, label: false
+            %td= known_dead.input :relationship_id, as: :select, collection: Relationship.all, label: false, prompt: 'Choose one...'
             %td= known_dead.input :year_of_death, placeholder: "YYYY", label: false
 
   %h2 Certification Program

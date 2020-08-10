@@ -1,14 +1,6 @@
 RSpec.feature 'As a user' do
   include_context 'User Profile Data'
   let(:user) { users(:homer) }
-  let(:country) { Faker::Address.country }
-  let(:website) { Faker::Internet.url }
-  let(:facebook) { Faker::Internet.url }
-  let(:pinterest) { Faker::Internet.url }
-  let(:instagram) { Faker::Internet.url }
-  let(:twitter) { Faker::Internet.url }
-  let(:youtube) { Faker::Internet.url }
-  let(:blog) { Faker::Internet.url }
   let(:other_activities_1) { Faker::Lorem.paragraph }
   let(:other_activities_2) { Faker::Lorem.paragraph }
   let(:other_activities_3) { Faker::Lorem.paragraph }

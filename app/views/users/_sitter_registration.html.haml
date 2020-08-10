@@ -1,0 +1,8 @@
+.card.sitter-registration
+  .card-header
+    Sitter Registration
+  .card-body
+    - if current_user.sitterform
+      %a{ href: edit_sitterform_path(current_user.sitterform) } Continue Registration
+    - else
+      %a{ href: new_sitterform_path } Begin Registration
