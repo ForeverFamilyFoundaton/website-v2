@@ -1,24 +1,34 @@
 body.splash {
-  background-color: black;
+  background-color: white;
   color: white;
 }
 
 .splash-page {
   .masthead {
-    padding: $margin * 10 0;
+    padding: $margin;
     margin-bottom: $margin * 2;
-    background-image: asset-url("stars-and-tree.jpg");
-    background-position: 0% 60%;
+    background-image: asset-url("hands.jpg");
+    height: 400px;
+    background-position: top left;
+    opacity: 0.9;
     background-repeat: no-repeat;
 
-    h1 {
-      font-size: 4rem;
-      font-weight: 700;
-    }
-
-    p.mission {
-      font-size: 1.1rem;
+    .header {
+      display: inline-block;
+      background-color: white;
+      padding: $margin;
+      color: #2a2925;
+      opacity: 0.8;
+      border-radius: 5px;
       margin-bottom: $margin * 5;
+      h1 {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      p.mission {
+        font-size: 1.1rem;
+      }
     }
 
     p {

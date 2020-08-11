@@ -1,4 +1,13 @@
-.top-nav {
+nav.top-nav.navbar {
+  span.logo {
+    display: inline-block;
+    font-size: 3rem;
+    float: left;
+    margin-right: $margin;
+  }
+  a.navbar-brand {
+    text-align: left;
+  }
   .navbar-nav {
     .nav-item {
       .nav-link {
