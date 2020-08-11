@@ -6,7 +6,6 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/announcements_spec.rb[1:2]      | passed  | 1.04 seconds    |
 ./spec/features/admin/external_link_spec.rb[1:1]      | passed  | 1.31 seconds    |
 ./spec/features/admin/preferences_spec.rb[1:1]        | passed  | 1 second        |
-./spec/features/admin/sidkiq_ui_spec.rb[1:1]          | passed  | 0.90285 seconds |
 ./spec/features/admin/soft_delete_user_spec.rb[1:1]   | passed  | 4.3 seconds     |
 ./spec/features/admin/users_spec.rb[1:1]              | passed  | 1.2 seconds     |
 ./spec/features/admin/users_spec.rb[1:2]              | passed  | 1.18 seconds    |
@@ -14,7 +13,8 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/users_spec.rb[1:4]              | passed  | 0.95114 seconds |
 ./spec/features/cms_pages_spec.rb[1:1]                | passed  | 0.83849 seconds |
 ./spec/features/medium_registration_spec.rb[1:1:1]    | passed  | 0.96253 seconds |
-./spec/features/medium_registration_spec.rb[1:2:1]    | passed  | 0.99943 seconds |
+./spec/features/medium_registration_spec.rb[1:2:1:1]  | passed  | 4.98 seconds    |
+./spec/features/medium_registration_spec.rb[1:2:2]    | unknown |                 |
 ./spec/features/profile_preferences_spec.rb[1:1]      | passed  | 3.25 seconds    |
 ./spec/features/radio_archives_spec.rb[1:1]           | passed  | 0.86391 seconds |
 ./spec/features/radio_archives_spec.rb[1:2]           | passed  | 3.12 seconds    |

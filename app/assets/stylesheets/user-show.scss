@@ -1,4 +1,16 @@
 .user-show {
+  .user-modules {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: $margin * -1;
+    .card {
+      margin-right: $margin;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
   .personal-information {
     li {
       position: relative;

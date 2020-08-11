@@ -36,6 +36,17 @@ RSpec.feature 'As a user' do
       login_as user
     end
 
+    context 'with no Medium Registration Flag' do
+      before do
+        user.update! medium_registration: false
+      end
+
+      scenario 'I do not see the Sitter Registration options' do
+        visit user_path(user)
+        expect(page).to_not have_content 'Medium Registration'
+      end
+    end
+
     scenario 'I can register to be a Medium' do
       visit new_mediumform_path
       expect(page).to have_content 'Mediumforms: New'

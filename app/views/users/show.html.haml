@@ -1,22 +1,9 @@
 .user-show
-  .row
-    .col
-      %h2= t('.title')
-  .row
-    .col-sm
-      = render 'profile'
-    .col-sm
-      = render 'subscription'
-  .row
-    .col-sm
-      = render 'family_members'
-    .col-sm
-      = render 'preferences'
-  .row
-    .col-sm
-      = render 'medium_registration'
-    .col-sm
-      = render 'adg_registration'
-  .row
-    .col-sm
-      = render 'sitter_registration' if current_user.sitter_registration
+  %h2= t('.title')
+  .user-modules
+    = render 'profile'
+    = render 'subscription'
+    = render 'medium_registration' if current_user.medium_registration
+    = render 'sitter_registration' if current_user.sitter_registration
+    = render 'adg_registration'
+    = render 'preferences'
