@@ -1,92 +1,14 @@
 .splash-page
   .masthead
-    .header
+    .content
       %h1 Forever Family Foundation
       %p.mission= t('cover.mission')
-    .d-flex.justify-content-around
-      .goal
-        %h3 Goal
-        %p= t('cover.goal')
-      .afterlife-science
-        %h3 afterlife science (af'ter·lïf' sï'ens) n.
-        %p
-          = t('cover.afterlife_science')
-          %small
-            %a{ href: '/pages/afterlife-science' } Read more...
 
+  .splash-nav
+    = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Upcoming Events', link: events_path, body: 'Listings of upcoming events sorted by date.', icon: 'calendar-alt', direction: :left
 
-  .splash-nav.d-flex.flex-wrap
-    .splash-nav-item.upcoming-events
-      .header
-        %h4
-          %a{ href: events_path}
-            = fa_icon 'calendar-alt'
-            Upcoming Events
-      .body
-        %p Listings of upcoming events sorted by date.
-    .splash-nav-item.signs-of-life-radio
-      .header
-        %h4
-          %a{ href: '/site/signs_of_life_radio' }
-            = fa_icon 'radio'
-            Signs of Life Radio
-      .body
-        %p A one-of-a-kind radio show dedicated to the exploration of life after death
+    = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Signs of Life Radio', link: '/site/signs_of_life_radio', body: 'A one-of-a-kind radio show dedicated to the exploration of life after death.', icon: 'radio', direction: :right
 
-    .splash-nav-item.signs-of-life-magazine
-      .header
-        %h4
-          %a{ href: '/site/signs_of_life_newsletter'}
-            = fa_icon 'book-open'
-            Signs of Life Magazine
-      .body
-        %p Published since 2004, this informational magazine is mailed via the United States Postal Service free of charge to all members of Forever Family Foundation who reside in the United States.
-    .splash-nav-item.certified-mediums
-      .header
-        %h4
-          %a{ href: '/site/after_life_discussion_group'}
-            = fa_icon 'users'
-            Afterlife Discussion Groups
-      .body
-        %p Free Groups For Sharing, Learning and Exploring
-    .splash-nav-item.signs-of-life-radio
-      .header
-        %h4
-          %a{ href: '/site/conciousness_blogs'}
-            = fa_icon 'blog'
-            Conciousness Blogs
-      .body
-        %p A one-of-a-kind radio show dedicated to the exploration of life after death
+    = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Signs of Life Magazine', link: '/site/signs_of_life_newsletter', body: 'Published since 2004, this informational magazine is mailed via the United States Postal Service free of charge to all members of Forever Family Foundation who reside in the United States.', icon: 'book-open', direction: :left
 
-    .splash-nav-item.signs-of-life-magazine
-      .header
-        %h4
-          %a{ href: '/site/certified_mediums'}
-            = fa_icon 'phone'
-            Certified Mediums
-      .body
-        %p
-    .splash-nav-item.certified-mediums
-      .header
-        %h4
-          %a{ href: '/site/support_and_information'}
-            = fa_icon 'info'
-            Support and Information
-      .body
-        %p
-    .splash-nav-item.signs-of-life-radio
-      .header
-        %h4
-          %a{ href: '/site/books'}
-            = fa_icon 'book'
-            Recommended Books
-      .body
-        %p
-    .splash-nav-item.signs-of-life-magazine
-      .header
-        %h4
-          %a{ href: '/site/store'}
-            = fa_icon 'store'
-            FFF Store
-      .body
-        %p
+    = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Afterlife Discussion Groups', link: '/site/after_life_discussion_group', body: 'Free Groups For Sharing, Learning and Exploring.', icon: 'users', direction: :right

@@ -1,4 +1,4 @@
-%nav.top-nav.navbar.navbar-expand-lg.navbar-light.bg-light
+%nav#splash-nav.top-nav.fixed-top.navbar.navbar-expand-lg.navbar-light
   %a.navbar-brand{href: root_path}
     %span.logo
       = fa_icon 'users', class: :fad
@@ -9,8 +9,6 @@
     %span.navbar-toggler-icon
   #navbar.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto
-      %li.nav-item
-        %a.btn.btn-sm.btn-warning.mr-3{ href: new_user_registration_path } Become a member
       %li.nav-item
         %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
       - if user_signed_in?
@@ -24,6 +22,8 @@
             %a.nav-link{ href: admin_dashboard_path }
               = fa_icon 'cog', class: :fas
       - else
-        %a.nav-link{href: new_user_session_path}
-          = fa_icon('sign-in-alt', class: :fas)
-          Sign in
+        %li.nav-item
+          %a.btn.btn-sm.btn-warning.mr-3{ href: new_user_registration_path } Become a member
+        %li.nav-item
+          %a.nav-link{href: new_user_session_path}
+            = fa_icon('sign-in-alt', class: :fas)
