@@ -7,7 +7,7 @@
       %p.mission= t('splash.mission')
 
     .call-to-action
-      %button.btn.btn-danger Call to action!
+      %button.btn.btn-outline-primary Call to action!
       %p.small Your donations help to keep us in business.
   .splash-nav
     = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Upcoming Events', link: events_path, body: 'Listings of upcoming events sorted by date.', icon: 'calendar-alt', direction: :left

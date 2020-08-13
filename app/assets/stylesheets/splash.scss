@@ -1,5 +1,5 @@
 body.splash {
-  background-color: #fffaf5;
+  background-color: #f0e5d1;
   color: #2f1904;
 }
 
@@ -58,17 +58,18 @@ body.splash {
   text-align: center;
 
   .splash-nav-item {
+    color: #032b38;
     border: 1px solid #150b02;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #888888;
+    background: #f5f2ed;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #aaa;
     width: 80%;
     margin: $margin * 3 auto;
     padding: $margin * 1.5;
 
     img {
       width: 300px;
-      border-radius: 20px;
+      border-radius: 10px;
     }
 
     &.left {
@@ -90,7 +91,7 @@ body.splash {
     h2 {
       font-size: 2.5rem;
       a {
-        color: #2f1904;
+        color: #032b38;
         &:hover {
           text-decoration: none;
         }
@@ -98,7 +99,7 @@ body.splash {
     }
     .body {
       font-size: 1.5rem;
-      font-weight: 400;
+      font-weight: 200;
     }
   }
 }
