@@ -10,7 +10,17 @@
   #navbar.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto
       %li.nav-item
-        %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
+        %a.nav-link{href: "#"} Example Link
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+          Example Dropdown
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          %a.dropdown-item{href: "#"} Action
+          %a.dropdown-item{href: "#"} Another action
+          .dropdown-divider
+          %a.dropdown-item{href: "#"} Something else here
+      / %li.nav-item
+      /   %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
       - if user_signed_in?
         %li.nav-item
           %a.nav-link{ href: user_path(current_user) }= fa_icon :user, class: :fas

@@ -3,8 +3,13 @@
   .title
     %h2
       %a{ href: link}
-        = title
-        = fa_icon icon
+        - if direction == :right
+          = title
+          = fa_icon icon
+        - else
+          = fa_icon icon
+          = title
+
   .body
     %p= body
   .clearfix

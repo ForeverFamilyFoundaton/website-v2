@@ -3,14 +3,6 @@
 
 en:
   site_name: Forever Family Foundation
-  cover:
-    mission: Where science and spirituality work hand in hand to find answers for the world and bring comfort to the bereaved.
-    goal: To further the understanding of Afterlife Science through research and education while providing support and healing for people in grief.
-    afterlife_science: The study of phenomena associated with survival of consciousness after death; including near death experiences, after death communications, life after life (death), and reincarnation.
-
-  links:
-    logout: Logout
-    login: Login
 
   labels:
     email: Email
