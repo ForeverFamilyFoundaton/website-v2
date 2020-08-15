@@ -18,6 +18,7 @@ require 'support/helpers'
 require 'support/shoulda_matchers'
 require 'support/webmock-vcr'
 require 'support/stripe_helpers'
+require 'support/test_data'
 Dir[Rails.root.join('spec/shared/context/*.rb')].each do |context|
   require context
 end
