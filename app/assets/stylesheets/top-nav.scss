@@ -1,0 +1,23 @@
+body.splash nav {
+  background-color: white;
+}
+body.main nav {
+  background-color: $purple;
+}
+nav.top-nav.navbar {
+  transition: background 1s;
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  span.logo {
+    font-size: 1.5rem;
+  }
+  a.navbar-brand {
+    text-align: left;
+    line-height: 1.5rem;
+  }
+
+  .nav-link.login {
+    padding: 5px;
+  }
+}

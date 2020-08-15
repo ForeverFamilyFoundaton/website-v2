@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_154618) do
+ActiveRecord::Schema.define(version: 2020_10_09_051247) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", id: :serial, force: :cascade do |t|
@@ -461,6 +462,17 @@ ActiveRecord::Schema.define(version: 2020_06_22_154618) do
     t.boolean "signature_checkbox", default: false
   end
 
+  create_table "splash_nav_items", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.text "image_data"
+    t.string "link"
+    t.integer "row_order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "video_url"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "stripe_id"
@@ -537,8 +549,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_154618) do
     t.datetime "invitation_sent_at"
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
-    t.integer "invited_by_id"
     t.string "invited_by_type"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.string "stripe_id"
     t.string "card_brand"
@@ -548,6 +560,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_154618) do
     t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

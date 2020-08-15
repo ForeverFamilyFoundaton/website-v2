@@ -1,5 +1,9 @@
 $margin: 20px;
-
+$purple: #362d52;
+$light-purple: #605091;
+$beige: #f0e5d1;
+$fff-border-radius: 10px;
 $theme-colors: (
-  "primary": #73bbdc
+  "primary": $light-purple,
+  "danger": #ff4136
 );

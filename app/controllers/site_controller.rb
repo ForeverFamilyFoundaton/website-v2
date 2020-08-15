@@ -1,6 +1,9 @@
 class SiteController < ApplicationController
   layout 'splash', only: :index
 
+  def index
+    @splash_nav_items = SplashNavItem.rank(:row_order).all
+  end
   def page; end
   def after_life_discussion_group; end
   def after_life_science; end
@@ -11,10 +14,11 @@ class SiteController < ApplicationController
   def contributions; end
   def conciousness_blogs; end
   def grief_and_loss; end
-  def index; end
   def logged_in_index; end
   def signs_of_life_newsletter; end
-  def signs_of_life_radio; end
+  def signs_of_life_radio
+
+  end
   def store; end
   def recc_book_categories; end
   def support_and_information; end

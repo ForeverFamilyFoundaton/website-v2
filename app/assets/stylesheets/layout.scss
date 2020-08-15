@@ -1,13 +1,16 @@
 html,
 body {
   height: 100%;
+  background-color: #f0e5d1;
 }
 
 body {
   font-family: "Josefin Sans", sans-serif;
 
-  .container {
-    margin-top: $margin;
+  .container-fluid {
+    margin-top: 50px;
+    padding: $margin;
+    background-color: $beige;
   }
 }
 

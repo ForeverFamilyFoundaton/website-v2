@@ -2,6 +2,7 @@
   .user-modules {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-right: $margin * -1;
     .card {
       margin-right: $margin;
@@ -17,7 +18,7 @@
       padding-left: 3rem;
 
       i {
-        @extend .fal;
+        // @extend .fal;
         margin: auto;
         position: absolute;
         height: 1em;
@@ -27,36 +28,36 @@
         right: 0;
       }
 
-      &.email i {
-        &:before {
-          content: fa-content($fa-var-envelope);
-        }
-      }
-      &.name i {
-        &:before {
-          content: fa-content($fa-var-user-alt);
-        }
-      }
-      &.cell-phone i {
-        &:before {
-          content: fa-content($fa-var-mobile-alt);
-        }
-      }
-      &.home-phone i {
-        &:before {
-          content: fa-content($fa-var-phone);
-        }
-      }
-      &.work-phone i {
-        &:before {
-          content: fa-content($fa-var-phone-office);
-        }
-      }
-      &.address i {
-        &:before {
-          content: fa-content($fa-var-map-marker-alt);
-        }
-      }
+      // &.email i {
+      //   &:before {
+      //     content: fa-content($fa-var-envelope);
+      //   }
+      // }
+      // &.name i {
+      //   &:before {
+      //     content: fa-content($fa-var-user-alt);
+      //   }
+      // }
+      // &.cell-phone i {
+      //   &:before {
+      //     content: fa-content($fa-var-mobile-alt);
+      //   }
+      // }
+      // &.home-phone i {
+      //   &:before {
+      //     content: fa-content($fa-var-phone);
+      //   }
+      // }
+      // &.work-phone i {
+      //   &:before {
+      //     content: fa-content($fa-var-phone-office);
+      //   }
+      // }
+      // &.address i {
+      //   &:before {
+      //     content: fa-content($fa-var-map-marker-alt);
+      //   }
+      // }
     }
   }
 

@@ -1,0 +1,27 @@
+#sticky-donate-button {
+  font-weight: 600;
+  color: white;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+  margin: 0px;
+  width: 160px;
+  height: 40px;
+  background: #ff931e;
+  z-index: 15;
+  border-radius: 5px 5px 0px 0px;
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform-origin: bottom right;
+  position: fixed;
+  right: 0px;
+  top: 40%;
+  // visibility: hidden;
+  // opacity: 0;
+  // transition: visibility 0.5s, opacity 0.5s linear;
+  // &.scrolled {
+  //   visibility: visible;
+  //   opacity: 1;
+  // }
+}

@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-  layout 'registration'
   before_action :authenticate_user!
   before_action :set_plan, only: [:new, :create, :update]
 

@@ -1,0 +1,33 @@
+.cms-page {
+  .header {
+    text-align: center;
+    h2 {
+      color: $purple;
+      text-transform: capitalize;
+      border: 1px solid $purple;
+      border-width: 0 0 1px 0;
+      width: 60%;
+      margin: 0 auto $margin/2 auto;
+    }
+
+    h3 {
+      color: $purple;
+      font-size: 1rem;
+    }
+  }
+  .child-nav {
+    text-align: center;
+  }
+
+  .content {
+    iframe {
+      float: left;
+      margin-right: $margin;
+    }
+    margin-top: $margin;
+    border: 1px solid $purple;
+    border-radius: $fff-border-radius;
+    background-color: white;
+    padding: $margin;
+  }
+}

@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+
+  .container {
+    margin-top: 90px;
+  }
+}
+
+.row {
+  margin-bottom: $margin;
+}

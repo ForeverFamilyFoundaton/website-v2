@@ -37,7 +37,6 @@ RSpec.feature 'As a guest' do
     fill_in 'Password', with: password
     click_on 'Log in'
     expect(page).to have_content I18n.t 'devise.sessions.signed_in'
-    expect(page).to have_content I18n.t 'users.show.title'
     expect(page).to have_content email
   end
 end

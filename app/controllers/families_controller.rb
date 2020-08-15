@@ -1,9 +1,8 @@
 class FamiliesController < ApplicationController
-  layout 'registration'
-
   def create
     @family = current_user.family.new family_params
   end
+
   def new
     @family = Family.new
   end

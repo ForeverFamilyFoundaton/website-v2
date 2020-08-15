@@ -1,5 +1,11 @@
+@import "vars";
+@import "bootstrap";
+@import "top-nav";
+@import "footer";
+@import "sticky-donate-button";
+
 body.splash {
-  background-color: #f0e5d1;
+  background-color: $beige;
   color: #2f1904;
 }
 
@@ -7,10 +13,10 @@ body.splash {
   padding: 0;
 
   .masthead {
-    margin-top: 80px;
+    margin-top: 75px;
     padding: 0;
     height: 500px;
-    background-image: url(image-path("hands.jpg"));
+    background-image: image-url("hands.jpg");
     background-position: 0 -50px;
     background-repeat: no-repeat;
     color: white;
@@ -52,81 +58,53 @@ body.splash {
       font-weight: 400;
     }
   }
-}
 
-.splash-nav {
-  text-align: center;
+  .splash-nav {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 200;
+    line-height: 1.5rem;
+    .splash-nav-item {
+      color: #032b38;
+      border: 1px solid #150b02;
+      background: #f5f2ed;
+      border-radius: $fff-border-radius;
+      box-shadow: 5px 5px $border-radius #aaa;
+      width: 80%;
+      margin: $margin * 3 auto;
+      padding: $margin * 1.5;
 
-  .splash-nav-item {
-    color: #032b38;
-    border: 1px solid #150b02;
-    background: #f5f2ed;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px #aaa;
-    width: 80%;
-    margin: $margin * 3 auto;
-    padding: $margin * 1.5;
-
-    img {
-      width: 300px;
-      border-radius: 10px;
-    }
-
-    &.left {
-      text-align: right;
       img {
-        float: left;
-        margin-right: $margin;
+        width: 300px;
+        border-radius: 10px;
       }
-    }
 
-    &.right {
-      text-align: left;
-      img {
-        float: right;
-        margin-left: $margin;
+      &.left {
+        text-align: left;
+        img {
+          float: left;
+          margin-right: $margin;
+        }
       }
-    }
 
-    h2 {
-      font-size: 2.5rem;
-      a {
-        color: #032b38;
-        &:hover {
-          text-decoration: none;
+      &.right {
+        text-align: left;
+        img {
+          float: right;
+          margin-left: $margin;
+        }
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        a {
+          color: #032b38;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }
-    .body {
-      font-size: 1.5rem;
-      font-weight: 200;
-    }
   }
-}
-#sticky-donate-button {
-  font-weight: 600;
-  color: white;
-  padding: 0px 0px 0px 0px;
-  text-align: center;
-  margin: 0px;
-  width: 160px;
-  height: 40px;
-  background: #ff931e;
-  z-index: 15;
-  border-radius: 5px 5px 0px 0px;
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  transform-origin: bottom right;
-  position: fixed;
-  right: 0px;
-  top: 40%;
-  // visibility: hidden;
-  // opacity: 0;
-  // transition: visibility 0.5s, opacity 0.5s linear;
-  // &.scrolled {
-  //   visibility: visible;
-  //   opacity: 1;
-  // }
 }

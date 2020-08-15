@@ -1,6 +1,4 @@
 class CardsController < ApplicationController
-  layout 'registration'
-
   before_action :authenticate_user!
 
   def edit
