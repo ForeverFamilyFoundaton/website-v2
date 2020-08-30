@@ -1,0 +1,72 @@
+.user-show {
+  .user-modules {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: $margin * -1;
+    .card {
+      margin-right: $margin;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .personal-information {
+    li {
+      position: relative;
+      padding-left: 3rem;
+
+      i {
+        @extend .fal;
+        margin: auto;
+        position: absolute;
+        height: 1em;
+        top: 0;
+        left: $margin;
+        bottom: 0;
+        right: 0;
+      }
+
+      &.email i {
+        &:before {
+          content: fa-content($fa-var-envelope);
+        }
+      }
+      &.name i {
+        &:before {
+          content: fa-content($fa-var-user-alt);
+        }
+      }
+      &.cell-phone i {
+        &:before {
+          content: fa-content($fa-var-mobile-alt);
+        }
+      }
+      &.home-phone i {
+        &:before {
+          content: fa-content($fa-var-phone);
+        }
+      }
+      &.work-phone i {
+        &:before {
+          content: fa-content($fa-var-phone-office);
+        }
+      }
+      &.address i {
+        &:before {
+          content: fa-content($fa-var-map-marker-alt);
+        }
+      }
+    }
+  }
+
+  .profile-preferences {
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+      }
+    }
+  }
+}

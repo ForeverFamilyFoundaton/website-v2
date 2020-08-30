@@ -1,2 +1,7 @@
 @import "~@activeadmin/activeadmin/src/scss/mixins";
 @import "~@activeadmin/activeadmin/src/scss/base";
+$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts";
+@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "~@fortawesome/fontawesome-pro/scss/light";
+
+@import "admin-sort";

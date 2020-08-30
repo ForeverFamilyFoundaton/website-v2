@@ -1,7 +1,4 @@
 class CmsPage < ApplicationRecord
-  # include RankedModel
-  # ranks :position, with_same: :parent_id
-
   acts_as_tree order: :position
 
   alias_attribute :subject, :title
