@@ -15,7 +15,6 @@ RSpec.describe SplashNavItem do
 
   it { is_expected.to validate_presence_of :title }
   it { is_expected.to validate_presence_of :body }
-  it { is_expected.to validate_presence_of :image }
 
   context 'with a well-formed url' do
     it 'is valid' do
