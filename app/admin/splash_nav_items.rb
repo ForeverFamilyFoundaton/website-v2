@@ -39,7 +39,7 @@ ActiveAdmin.register SplashNavItem do
         blog splash_nav_item.body
       end
       row :image do
-        image_tag splash_nav_item.image(:thumbnail).url
+        image_tag splash_nav_item.image(:thumbnail).url if splash_nav_item.image
       end
       row :link
     end

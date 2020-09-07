@@ -51,4 +51,12 @@ RSpec.feature 'As an Admin' do
       expect(page).to have_content item_3.title
     end
   end
+
+  scenario 'I can view a SplashNavItem with no image' do
+    click_on 'New Splash Nav Item'
+    fill_in 'Title', with: title
+    fill_in 'Body', with: body
+    click_on 'Create Splash nav item'
+    expect(page).to have_content 'Splash nav item was successfully created'
+  end
 end
