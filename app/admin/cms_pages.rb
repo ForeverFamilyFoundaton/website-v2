@@ -11,6 +11,9 @@ ActiveAdmin.register CmsPage do
     column 'URL' do |q|
       link_to page_by_id_url(q), page_by_id_url(q)
     end
+    column :parent do |q|
+      q.parent&.title
+    end
     column :updated_at
     column "Actions" do |q|
       link_to 'Show', admin_cms_page_path(q)
@@ -20,6 +23,7 @@ ActiveAdmin.register CmsPage do
   form do |f|
     f.inputs 'Details' do
       f.input :reference_string
+      f.input :parent, collection: CmsPage.order(reference_string: :asc), label_method: :reference_string, input_html: { class: 'js-select' }
       f.input :title
       f.input :sub_title
       f.input :body, label: false, input_html: { class: [:code, :markdown] }

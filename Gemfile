@@ -5,6 +5,7 @@ ruby '2.6.6'
 gem 'rails', '~> 6.0.3'
 
 gem 'activeadmin'
+gem 'activeadmin_addons'
 gem 'acts_as_tree'
 gem 'aws-sdk-s3'
 gem 'bcrypt'
