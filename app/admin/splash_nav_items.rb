@@ -1,6 +1,6 @@
 ActiveAdmin.register SplashNavItem do
   config.sort_order = 'row_order_asc'
-  permit_params :title, :body, :image, :link
+  permit_params :title, :body, :image, :link, :video_url
 
   controller do
     def scoped_collection
@@ -23,10 +23,7 @@ ActiveAdmin.register SplashNavItem do
     f.inputs 'Details' do
       f.input :title
       f.input :body
-      f.input :image, as: :hidden, input_html: { value: f.object.cached_image_data }
-      f.input :image, as: :file, hint: (
-        image_tag(f.object.image(:thumbnail).url) if splash_nav_item.image.present?
-      )
+      f.input :video_url
       f.input :link
     end
     f.actions
@@ -42,6 +39,12 @@ ActiveAdmin.register SplashNavItem do
         image_tag splash_nav_item.image(:thumbnail).url if splash_nav_item.image
       end
       row :link
+      row :video_url
+      row :video_link do |splash_nav_item|
+        video controls: "controls", width: 500, height: 281 do
+          source src: splash_nav_item.video_url, type: "video/mp4"
+        end
+      end
     end
   end
 

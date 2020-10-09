@@ -19,7 +19,7 @@ RSpec.feature 'As an Admin' do
     fill_in 'Title', with: title
     fill_in 'Body', with: body
     fill_in 'Link', with: link
-    attach_file 'spec/fixtures/img/test.gif'
+    fill_in 'Video Url', with: url
     click_on 'Create Splash nav item'
     expect(page).to have_content 'Splash nav item was successfully created'
     expect(page).to have_content title

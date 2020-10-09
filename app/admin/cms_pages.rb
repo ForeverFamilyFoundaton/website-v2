@@ -1,7 +1,7 @@
 ActiveAdmin.register CmsPage do
   filter :title
 
-  permit_params :reference_string, :title, :sub_title, :body
+  permit_params :reference_string, :title, :sub_title, :body, :parent_id
 
   index do
     column :reference_string
@@ -23,7 +23,7 @@ ActiveAdmin.register CmsPage do
   form do |f|
     f.inputs 'Details' do
       f.input :reference_string
-      f.input :parent, collection: CmsPage.order(reference_string: :asc), label_method: :reference_string, input_html: { class: 'js-select' }
+      f.input :parent, collection: CmsPage.order(reference_string: :asc).pluck(:reference_string, :id), input_html: { class: 'js-select' }
       f.input :title
       f.input :sub_title
       f.input :body, label: false, input_html: { class: [:code, :markdown] }
@@ -37,8 +37,10 @@ ActiveAdmin.register CmsPage do
   end
 
   show do
+    div cms_page.parent.reference_string if cms_page.parent.present?
     h1 cms_page.title
     h2 cms_page.sub_title
+    div cms_page.reference_string
     div do
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
       raw markdown.render(cms_page.body)
