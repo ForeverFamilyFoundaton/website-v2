@@ -19,12 +19,10 @@ RSpec.feature 'As an Admin' do
     fill_in 'Title', with: title
     fill_in 'Body', with: body
     fill_in 'Link', with: link
-    fill_in 'Video Url', with: url
     click_on 'Create Splash nav item'
     expect(page).to have_content 'Splash nav item was successfully created'
     expect(page).to have_content title
     expect(page).to have_content body
-    expect(page).to have_css "img[src*='thumbnail']"
     click_on 'Edit Splash Nav Item'
     fill_in 'Title', with: new_title
     click_on 'Update Splash nav item'
