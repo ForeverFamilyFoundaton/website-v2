@@ -1,5 +1,7 @@
 ActiveAdmin.register CmsPage do
   filter :title
+  filter :reference_string
+  filter :parent, input_html: { class: 'js-select' }
 
   permit_params :reference_string, :title, :sub_title, :body, :parent_id
 

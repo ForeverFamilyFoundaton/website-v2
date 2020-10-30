@@ -1,6 +1,6 @@
 ActiveAdmin.register SplashNavItem do
   config.sort_order = 'row_order_asc'
-  permit_params :title, :body, :image, :link, :video_url
+  permit_params :title, :body, :image, :link, :youtube_link
 
   controller do
     def scoped_collection
@@ -23,7 +23,7 @@ ActiveAdmin.register SplashNavItem do
     f.inputs 'Details' do
       f.input :title
       f.input :body
-      f.input :video_url
+      f.input :image, as: :file
       f.input :link
     end
     f.actions
@@ -39,12 +39,9 @@ ActiveAdmin.register SplashNavItem do
         image_tag splash_nav_item.image(:thumbnail).url if splash_nav_item.image
       end
       row :link
-      row :video_url
-      row :video_link do |splash_nav_item|
-        video controls: "controls", width: 500, height: 281 do
-          source src: splash_nav_item.video_url, type: "video/mp4"
-        end
-      end
+      # row :youtube_link do |splash_nav_item|
+      #   iframe width: "560", height: "315", src: splash_nav_item.youtube_link, frameborder: "0", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: 'allowfullscreen'
+      # end
     end
   end
 

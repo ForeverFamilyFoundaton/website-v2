@@ -1,6 +1,7 @@
 .splash-nav-item{ class: (splash_nav_item_counter % 2 == 0 ? :left : :right)}
   - if splash_nav_item.image.present?
-    %img.img-fluid{ src: splash_nav_item.image(:thumbnail).url }
+    %a{ href: splash_nav_item.link}
+      %img.img-fluid{ src: splash_nav_item.image(:thumbnail).url }
   .title
     %h2
       %a{ href: splash_nav_item.link}
