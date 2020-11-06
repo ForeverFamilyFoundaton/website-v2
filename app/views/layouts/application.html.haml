@@ -15,16 +15,16 @@
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&display=swap', media: 'all'
     = javascript_pack_tag 'application'
-    = stylesheet_pack_tag 'application', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
 
-  %body
-    = render 'layouts/nav'
-    .container
-      - if flash
-        .row
-          .col-12
-            = render 'layouts/messages'
+  %body.main
+    %button#sticky-donate-button.btn.btn-warning
+      Donate Now!
+    %nav.top-nav.fixed-top.navbar.navbar-expand-lg.navbar-dark
+      = render 'layouts/top_nav'
+    .container-fluid
+      =# render 'layouts/messages' if flash
       = render 'layouts/cms_page' if @cms_page
 
       = yield

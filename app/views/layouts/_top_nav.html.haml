@@ -1,0 +1,38 @@
+%a.navbar-brand{href: root_path}
+  %span.logo
+    = fa_icon 'users', class: :fad
+  Forever Family
+  %br
+  Foundation
+%button.navbar-toggler{"aria-controls" => "navbar", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
+  %span.navbar-toggler-icon
+#navbar.collapse.navbar-collapse
+  %ul.navbar-nav.ml-auto
+    %li.nav-item
+      %a.nav-link{href: "#"} Example Link
+    %li.nav-item.dropdown
+      %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+        Example Dropdown
+      .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+        %a.dropdown-item{href: "#"} Action
+        %a.dropdown-item{href: "#"} Another action
+        .dropdown-divider
+        %a.dropdown-item{href: "#"} Something else here
+    / %li.nav-item
+    /   %a.btn.btn-sm.btn-danger.mr-3{ href: '#' } Donate
+    - if user_signed_in?
+      %li.nav-item
+        %a.nav-link{ href: user_path(current_user) }= fa_icon :user, class: :fas
+      %li.nav-item
+        = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+          = fa_icon 'sign-out-alt', class: :fas
+      - if current_user.admin?
+        %li.nav-item
+          %a.nav-link{ href: admin_dashboard_path }
+            = fa_icon 'cog', class: :fas
+    - else
+      %li.nav-item
+        %a.btn.btn-sm.btn-warning.mr-3{ href: new_user_registration_path } Become a member
+      %li.nav-item
+        %a.nav-link{href: new_user_session_path}
+          = fa_icon('sign-in-alt', class: :fas)

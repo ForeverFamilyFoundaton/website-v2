@@ -16,7 +16,9 @@ class SiteController < ApplicationController
   def grief_and_loss; end
   def logged_in_index; end
   def signs_of_life_newsletter; end
-  def signs_of_life_radio; end
+  def signs_of_life_radio
+
+  end
   def store; end
   def recc_book_categories; end
   def support_and_information; end

@@ -1,6 +1,11 @@
-nav.top-nav.navbar {
+body.splash nav {
   background-color: white;
-  transition: background 2s;
+}
+body.main nav {
+  background-color: $purple;
+}
+nav.top-nav.navbar {
+  transition: background 1s;
   &.scrolled {
     background: rgba(255, 255, 255, 0.5);
   }

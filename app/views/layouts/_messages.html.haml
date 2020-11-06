@@ -1,6 +1,8 @@
-- flash.each do |name, msg|
-  - if msg.is_a?(String)
-    %div{ class: "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}", role:  "alert"}
-      = msg
-      %button.close{"data-dismiss" => "alert", type: "button"}
-        %span{ aria: { hidden: "true" } } &times;
+.row
+  .col
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        %div{ class: "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}", role:  "alert"}
+          = msg
+          %button.close{"data-dismiss" => "alert", type: "button"}
+            %span{ aria: { hidden: "true" } } &times;

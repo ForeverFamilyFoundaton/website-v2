@@ -1,11 +1,12 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
-    %span.navbar-toggler-icon
-  #navbarNav.collapse.navbar-collapse
-    %ul.navbar-nav
-      %li.nav-item
-        %a.nav-link{:href => "#"} Features
+- colors = [:primary, :success, :danger, :info, :warning]
+.cms-page
+  .header
+    %h2= @cms_page.title if @cms_page.title.present?
+    %h3= @cms_page.sub_title if @cms_page.sub_title.present?
+  - unless @cms_page.children.empty?
+    .child-nav
+      - @cms_page.children.each do |child|
+        %a.btn.btn-primary{ href: page_by_id_url(child) }= child.title
+  .content
 
-%h1= @cms_page.title if @cms_page.title.present?
-%h2= @cms_page.sub_title if @cms_page.sub_title.present?
-= blog(@cms_page.body) if @cms_page.body.present?
+    = blog(@cms_page.body) if @cms_page.body.present?
