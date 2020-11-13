@@ -5,5 +5,6 @@ class SplashNavItem < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :link, presence: true
+
+  belongs_to :cms_page
 end

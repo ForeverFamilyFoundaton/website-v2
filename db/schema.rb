@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_051247) do
+ActiveRecord::Schema.define(version: 2020_11_13_045137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -466,11 +466,11 @@ ActiveRecord::Schema.define(version: 2020_10_09_051247) do
     t.string "title"
     t.text "body"
     t.text "image_data"
-    t.string "link"
     t.integer "row_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "video_url"
+    t.bigint "cms_page_id"
+    t.index ["cms_page_id"], name: "index_splash_nav_items_on_cms_page_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

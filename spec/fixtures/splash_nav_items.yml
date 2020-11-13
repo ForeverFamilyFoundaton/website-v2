@@ -1,17 +1,17 @@
 one:
   title: Title one
   body: Body one
-  link: http://one.com
   row_order: 0
+  cms_page: one
 
 two:
   title: Title two
   body: Body two
-  link: http://two.com
   row_order: 1000
+  cms_page: one
 
 three:
   title: Title three
   body: Body three
-  link: http://three.com
   row_order: 2000
+  cms_page: one
