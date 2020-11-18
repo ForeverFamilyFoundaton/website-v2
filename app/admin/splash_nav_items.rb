@@ -24,7 +24,8 @@ ActiveAdmin.register SplashNavItem do
       f.input :title
       f.input :body
       f.input :cms_page, input_html: { class: 'js-select' }
-      f.input :image, as: :file
+      f.input :image, as: :file, hint: f.object.image.present? &&
+        image_tag(f.object.image(:thumbnail).url)
     end
     f.actions
   end
