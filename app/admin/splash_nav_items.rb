@@ -1,6 +1,6 @@
 ActiveAdmin.register SplashNavItem do
   config.sort_order = 'row_order_asc'
-  permit_params :title, :body, :image, :link, :youtube_link
+  permit_params :title, :body, :image, :cms_page_id
 
   controller do
     def scoped_collection
@@ -23,8 +23,8 @@ ActiveAdmin.register SplashNavItem do
     f.inputs 'Details' do
       f.input :title
       f.input :body
+      f.input :cms_page, input_html: { class: 'js-select' }
       f.input :image, as: :file
-      f.input :link
     end
     f.actions
   end
@@ -35,23 +35,20 @@ ActiveAdmin.register SplashNavItem do
       row :body do |splash_nav_item|
         blog splash_nav_item.body
       end
+      row :cms_page
       row :image do
         image_tag splash_nav_item.image(:thumbnail).url if splash_nav_item.image
       end
-      row :link
-      # row :youtube_link do |splash_nav_item|
-      #   iframe width: "560", height: "315", src: splash_nav_item.youtube_link, frameborder: "0", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen: 'allowfullscreen'
-      # end
     end
   end
 
   index row_class: -> record { 'splash-nav-item' } do
     column :title
+    column :cms_page
     column :image_data do |splash_nav_item|
       image_tag(splash_nav_item.image(:thumbnail).url) if splash_nav_item.image.present?
     end
     column :row_order
-    column :link
     actions
     column 'Move', class: 'drag-handle' do
       div do
