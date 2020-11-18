@@ -13,11 +13,11 @@ RSpec.feature 'As an Admin' do
     click_on 'Splash Nav Items'
   end
 
-  scenario 'I can manage SplashNavItems', :chrome do
+  scenario 'I can manage SplashNavItems', :js do
     click_on 'New Splash Nav Item'
     fill_in 'Title', with: title
     fill_in 'Body', with: body
-    js_select 'One', from: 'splash_nav_item_cms_page_input'
+    js_select item_1.title, from: 'Cms page'
     attach_file 'Image', Rails.root.join('spec/fixtures/img/test.jpg')
     click_on 'Create Splash nav item'
     expect(page).to have_content 'Splash nav item was successfully created'
