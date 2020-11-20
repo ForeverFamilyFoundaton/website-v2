@@ -3,10 +3,10 @@ require 'shrine/storage/file_system'
 require "shrine/storage/s3"
 
 s3_options = {
-  bucket: Rails.application.credentials.aws[:s3_bucket_name],
+  bucket: Rails.application.credentials.aws[:bucket],
   region: Rails.application.credentials.aws[:region],
   access_key_id: Rails.application.credentials.aws[:access_key_id],
-  secret_access_key: Rails.application.credentials.aws[:secret_access_ke]
+  secret_access_key: Rails.application.credentials.aws[:secret_access_key]
 }
 
 if Rails.env.production?
