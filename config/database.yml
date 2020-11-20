@@ -10,3 +10,10 @@ test:
   adapter: postgresql
   database: fffv2_test
   username: <%= `whoami` %>
+
+production:
+  encoding: utf8
+  pool: 10
+  adapter: postgresql
+  database: fffv2_test
+  username: <%= `whoami` %>
