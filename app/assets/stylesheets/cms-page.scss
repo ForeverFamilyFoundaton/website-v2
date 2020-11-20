@@ -1,7 +1,6 @@
 .cms-page {
   .header {
     text-align: center;
-
     h2 {
       color: $purple;
       text-transform: capitalize;
@@ -16,21 +15,14 @@
       font-size: 1rem;
     }
   }
-
   .child-nav {
     text-align: center;
   }
 
   .content {
-    iframe {
-      float: left;
-      margin-right: $margin;
-      margin-bottom: $margin;
-    }
-
     margin-top: $margin;
     border: 1px solid $purple;
-    border-radius: $fff-border-radius;
+    border-radius: $border-radius;
     background-color: white;
     padding: $margin;
   }
