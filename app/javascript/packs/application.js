@@ -2,6 +2,7 @@ require("@rails/ujs").start();
 require("@rails/activestorage").start();
 require("channels");
 
+import "@fortawesome/fontawesome-pro/js/all.js";
 import "bootstrap";
 import "src/stripe";
 import "src/password-toggle";
