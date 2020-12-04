@@ -1,4 +1,4 @@
-class RecommendedBookController < ApplicationController
+class RecommendedBooksController < ApplicationController
   def show
     archive = RecommendedBook.find(params[:id])
     @cms_page = CmsPage.new
@@ -7,7 +7,7 @@ class RecommendedBookController < ApplicationController
   end
 
   def index
-    @q = RecommendedBook.ransack(params[:q]) 
+    @q = RecommendedBook.ransack(params[:q])
     @recc_books = @q.result(distinct: true).page(params[:page] || 1).order('title asc')
   end
 end

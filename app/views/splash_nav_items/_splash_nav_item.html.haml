@@ -1,10 +1,10 @@
 .splash-nav-item{ class: (splash_nav_item_counter % 2 == 0 ? :left : :right)}
   - if splash_nav_item.image.present?
-    %a{ href: page_by_id_url(splash_nav_item.cms_page)}
+    %a{ href: page_path(splash_nav_item.cms_page) }
       %img.img-fluid{ src: splash_nav_item.image(:thumbnail).url }
   .title
     %h2
-      %a{ href: page_by_id_url(splash_nav_item.cms_page)}
+      %a{ href: page_path(splash_nav_item.cms_page) }
         = splash_nav_item.title
   .body
     %p= splash_nav_item.body

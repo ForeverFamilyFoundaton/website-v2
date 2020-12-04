@@ -4,3 +4,6 @@ one:
 two:
   title: Two
   reference_string: Two
+beer_is_great:
+  title: Beer in great
+  slug: beer-is-great
