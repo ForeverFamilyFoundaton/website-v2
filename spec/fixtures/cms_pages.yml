@@ -7,3 +7,7 @@ two:
 beer_is_great:
   title: Beer in great
   slug: beer-is-great
+medium_registration:
+  reference_string: medium_registration
+  title: Beer in great
+  slug: medium-registration

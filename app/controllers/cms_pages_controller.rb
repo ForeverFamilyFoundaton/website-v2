@@ -4,7 +4,12 @@ class CmsPagesController < ApplicationController
 
     case @cms_page.slug
     when /recommended-books/
-      @q = RecommendedBook.ransack(params[:q])
+      @q = RecommendedBook.ransack params[:q]
+    when /radio-archives/
+      @q = RadioArchive.ransack params[:q]
+    end
+
+    if @q
       @collection = @q.result(distinct: true).page(params[:page] || 1).order('title asc')
     end
   end

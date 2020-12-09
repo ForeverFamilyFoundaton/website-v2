@@ -1,5 +1,4 @@
 = simple_form_for @mediumform do |f|
-  %h2 Forever Family Foundation Information
   .card.profile-details
     .card-header
       = f.input :personalprofessional, as: :radio_buttons, collection: [['Personal Information', :alternate_is_professional], ['Professional Information', :fff_is_professional]], label: 'This information is', wrapper: :horizontal_collection_inline
