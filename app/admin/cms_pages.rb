@@ -5,26 +5,27 @@ ActiveAdmin.register CmsPage do
 
   permit_params :reference_string, :title, :sub_title, :body, :parent_id
 
+  controller do
+    def find_resource
+      scoped_collection.where(slug: params[:id]).first!
+    end
+  end
+
   index do
-    column :reference_string
-    column 'Title' do |q|
-      q.title
+    column :title
+    column 'URL' do |cms_page|
+      link_to page_path(cms_page), page_path(cms_page)
     end
-    column 'URL' do |q|
-      link_to page_by_id_url(q), page_by_id_url(q)
-    end
-    column :parent do |q|
-      q.parent&.title
+    column :parent do |cms_page|
+      cms_page.parent&.title
     end
     column :updated_at
-    column "Actions" do |q|
-      link_to 'Show', admin_cms_page_path(q)
-    end
+    actions
   end
 
   form do |f|
     f.inputs 'Details' do
-      f.input :reference_string
+      f.input :reference_string, input_html: { disabled: !object.new_record? }
       f.input :parent, collection: CmsPage.order(reference_string: :asc).pluck(:reference_string, :id), input_html: { class: 'js-select' }
       f.input :title
       f.input :sub_title

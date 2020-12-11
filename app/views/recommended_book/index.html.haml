@@ -1,9 +1,6 @@
-
-= javascript_include_tag 'recommended_books.js'
-
 - RecommendedBookCategory.all.select do |s|
   .page_section
-    %h2.page_section_header= s.name 
+    %h2.page_section_header= s.name
     - RecommendedBookGroup.where("recommended_book_category_id = ?", s.id).select do |recc_group|
       .page_section_content
         - RecommendedBook.where("id = ?", recc_group.recommended_book_id).select do |recc_book|

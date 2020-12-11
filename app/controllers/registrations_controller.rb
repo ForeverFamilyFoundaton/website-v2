@@ -5,12 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super do |resource|
-      Family.create!(
-        family_memberships_attributes: [{
-                                          user: resource,
-                                          role: 'Owner'
-        }]
-      )
+      Family.create! family_memberships_attributes: [{ user: resource, role: 'Owner' }]
     end
   end
 
@@ -54,7 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def get_cms_page
-    @cms_page = CmsPage.get('Registrations: New')
+    @cms_page = CmsPage.find_by reference_string: :registrations
   end
 
   def update_resource(object, attributes)

@@ -7,20 +7,23 @@
       border: 1px solid $purple;
       border-width: 0 0 1px 0;
       width: 60%;
-      margin: 0 auto $margin/2 auto;
+      margin: 0 auto $margin / 4 auto;
     }
 
     h3 {
       color: $purple;
       font-size: 1rem;
+      margin: 0 auto $margin / 4 auto;
     }
   }
   .child-nav {
-    text-align: center;
+    a {
+      margin: $margin / 4;
+    }
   }
 
   .content {
-    margin-top: $margin;
+    margin-top: $margin / 4;
     border: 1px solid $purple;
     border-radius: $border-radius;
     background-color: white;

@@ -47,9 +47,11 @@ RSpec.feature 'As a user' do
       end
     end
 
+    let(:cms_page) { CmsPage.find_by(reference_string: :medium_registration) }
+
     scenario 'I can register to be a Medium' do
       visit new_mediumform_path
-      expect(page).to have_content 'Mediumforms: New'
+      expect(page).to have_content cms_page.title
       within '.profile-details' do
         expect(page).to have_content user.first_name
         expect(page).to have_content user.middle_name

@@ -1,0 +1,13 @@
+one:
+  title: One
+  reference_string: One
+two:
+  title: Two
+  reference_string: Two
+beer_is_great:
+  title: Beer in great
+  slug: beer-is-great
+medium_registration:
+  reference_string: medium_registration
+  title: Beer in great
+  slug: medium-registration
