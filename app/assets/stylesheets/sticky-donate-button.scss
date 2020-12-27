@@ -17,11 +17,10 @@
   position: fixed;
   right: 0px;
   top: 40%;
-  // visibility: hidden;
-  // opacity: 0;
-  // transition: visibility 0.5s, opacity 0.5s linear;
-  // &.scrolled {
-  //   visibility: visible;
-  //   opacity: 1;
-  // }
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

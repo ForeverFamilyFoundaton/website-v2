@@ -6,14 +6,15 @@
       text-transform: capitalize;
       border: 1px solid $purple;
       border-width: 0 0 1px 0;
-      width: 60%;
+      width: 80%;
       margin: 0 auto $margin / 4 auto;
     }
 
     h3 {
       color: $purple;
       font-size: 1rem;
-      margin: 0 auto $margin / 4 auto;
+      width: 80%;
+      margin: $margin / 2 auto;
     }
   }
   .child-nav {
@@ -28,5 +29,17 @@
     border-radius: $border-radius;
     background-color: white;
     padding: $margin;
+
+    img,
+    iframe {
+      &.left {
+        float: left;
+        margin-right: $margin;
+      }
+      &.right {
+        float: right;
+        margin-left: $margin;
+      }
+    }
   }
 }

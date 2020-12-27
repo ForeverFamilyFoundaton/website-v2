@@ -1,0 +1,12 @@
+ul.cms-collection {
+  padding: 0;
+  li {
+    list-style: none;
+
+    .amazon-links {
+      a {
+        margin-right: $margin / 2;
+      }
+    }
+  }
+}
