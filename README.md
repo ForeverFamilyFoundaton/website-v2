@@ -5,9 +5,8 @@ Forever Family Foundation Website.
 # memberships
 
 - Events
-- Radio archives
-- Recommended Books
 - Videos
+- Form email notification
 
 Registrations - Discussion Group - NO MORE - Medium Reg - Volunteer
 
