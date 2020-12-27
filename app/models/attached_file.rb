@@ -7,7 +7,7 @@ class AttachedFile < ApplicationRecord
 
   before_save :set_content_type
 
-  paperclip_opts.merge!( { bucket: Rails.application.credentials.AWS_S3_ATTACH_FILES } )
+  paperclip_opts.merge!( { bucket: Rails.application.credentials.aws[:bucket] } )
   #
   # explicitly set some content_type using file extension
   # if not one of the explicits, then default to what paperclip thinks it is
@@ -15,30 +15,30 @@ class AttachedFile < ApplicationRecord
   def set_content_type
     extension = File.extname(attachment_file_name).downcase
     case extension
-      when '.pdf'
-        self.attachment_content_type = 'application/pdf'
-      when '.txt', ''
-        self.attachment_content_type = 'text/plain'
-      when '.csv.'
-        self.attachment_content_type = 'text/csv'
-      when '.jpg'
-        self.attachment_content_type = 'image/jpeg'
-      when '.png'
-        self.attachment_content_type = 'image/png'
-      when '.xml'
-        self.attachment_content_type = 'text/xml'
-      when '.bmp'
-        self.attachment_content_type = 'image/bmp'
+    when '.pdf'
+      self.attachment_content_type = 'application/pdf'
+    when '.txt', ''
+      self.attachment_content_type = 'text/plain'
+    when '.csv.'
+      self.attachment_content_type = 'text/csv'
+    when '.jpg'
+      self.attachment_content_type = 'image/jpeg'
+    when '.png'
+      self.attachment_content_type = 'image/png'
+    when '.xml'
+      self.attachment_content_type = 'text/xml'
+    when '.bmp'
+      self.attachment_content_type = 'image/bmp'
     end
-    self.attachment.options.merge!(s3_headers: {
-                                    'Content-Type' => self.attachment_content_type || 'text/plain'
-                                    })
+    self.attachment.options.merge!(
+      s3_headers: {
+        'Content-Type' => self.attachment_content_type || 'text/plain'
+      }
+    )
     self.attachment.send :initialize_storage
   end
 
   do_not_validate_attachment_file_type :attachment
-
-  # attr_accessible :attachment, :kind
 
   before_post_process :image?
 
@@ -48,6 +48,4 @@ class AttachedFile < ApplicationRecord
   def image?
     (attachment_content_type =~ SUPPORTED_IMAGES_REGEX).present?
   end
-
 end
-
