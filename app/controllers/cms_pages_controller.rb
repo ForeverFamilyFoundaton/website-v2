@@ -7,6 +7,8 @@ class CmsPagesController < ApplicationController
       @q = RecommendedBook.ransack params[:q]
     when /radio-archives/
       @q = RadioArchive.ransack params[:q]
+    when /events/
+      @q = Event.ransack params[:q]
     end
 
     if @q

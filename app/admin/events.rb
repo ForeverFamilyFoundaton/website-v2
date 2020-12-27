@@ -1,8 +1,5 @@
 ActiveAdmin.register Event do
   config.sort_order = "start_time_desc"
-
-  menu false
-
   index do
     column :id
     column :title do |q|
