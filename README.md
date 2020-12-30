@@ -4,7 +4,6 @@ Forever Family Foundation Website.
 
 # memberships
 
-- Events
 - Videos
 - Form email notification
 

@@ -20,6 +20,7 @@
     = csrf_meta_tags
 
   %body.main
+    = render 'layouts/announcement', announcement: @current_announcement
     %button#sticky-donate-button.btn.btn-warning
       %a{ href: '/pages/donations' } Donate Now!
 

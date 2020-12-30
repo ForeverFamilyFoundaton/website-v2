@@ -8,6 +8,7 @@ import "src/stripe";
 import "src/password-toggle";
 import "src/user-preference-selection-form";
 import "src/nav-fade";
+import "src/announcement";
 
 document.addEventListener("DOMContentLoaded", function () {
   $('[data-toggle="tooltip"]').tooltip();

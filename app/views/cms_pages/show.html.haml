@@ -17,14 +17,9 @@
     - if @cms_page.body.present?
       = blog(@cms_page.body)
     - if @collection && !@collection.empty?
-      = paginate @collection
-      %ul.cms-collection
+      %ul
         = render @collection
-      = paginate @collection
-    .clearfix
 
-    - if lookup_context.template_exists?(@cms_page.partial_name, 'cms_pages', true)
-      = render @cms_page.partial_name
-
-    .clearfix
+-# if lookup_context.template_exists?(@cms_page.partial_name, 'cms_pages', true)
+  =# render @cms_page.partial_name
 

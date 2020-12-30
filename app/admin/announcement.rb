@@ -1,7 +1,6 @@
 ActiveAdmin.register Announcement do
   permit_params :body, :link, :button, :start_date, :end_date
 
-
   index do
     column :body do |announcement|
       link_to announcement.body, admin_announcement_path(announcement)
@@ -10,6 +9,7 @@ ActiveAdmin.register Announcement do
     column 'Button text', :button, sortable: false
     column :start_date
     column :end_date
+    actions
   end
 
   show do
@@ -25,11 +25,19 @@ ActiveAdmin.register Announcement do
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs "Details" do
-      f.input :body, :as => :string
-      f.input :link, :as => :string
-      f.input :button, :as => :string
-      f.input :start_date
-      f.input :end_date
+      f.input :body, as: :string
+      f.input :link, as: :string
+      f.input :button, as: :string
+      f.input :start_date, as: :datepicker,
+      datepicker_options: {
+        min_date: 3.months.ago.to_date,
+        max_date: '+1y'
+      }
+      f.input :end_date, as: :datepicker,
+      datepicker_options: {
+        min_date: 3.months.ago.to_date,
+        max_date: '+1y'
+      }
     end
     f.actions
   end

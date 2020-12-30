@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :get_announcement
 
   private
 
@@ -18,5 +19,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     user_path resource
   end
-end
 
+  def get_announcement
+    @current_announcement = Announcement.current
+  end
+end
