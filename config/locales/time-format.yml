@@ -2,3 +2,4 @@ en:
   date:
     formats:
       radio_archive: "%b %e, %Y"
+      active_admin: "%Y-%m-%d"

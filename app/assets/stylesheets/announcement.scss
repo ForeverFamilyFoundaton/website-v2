@@ -1,4 +1,4 @@
-#banner {
+#announcement {
   padding: $margin / 2 $margin;
   font-size: 1rem;
   width: 100%;
@@ -6,7 +6,11 @@
   background-color: $light-purple;
   position: relative;
   top: 55px;
-  a {
+  a.link {
+    margin-left: $margin;
+  }
+  a.close {
     float: right;
+    cursor: pointer;
   }
 }

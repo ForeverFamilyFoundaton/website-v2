@@ -5,7 +5,7 @@ class CmsPagesController < ApplicationController
     querry_params = params[:q] || {}
     case @cms_page.slug
     when /recommended-books/
-      @q = RecommendedBook.ransack params[:q]
+      @q = RecommendedBookCategory.ransack params[:q]
     when /radio-archives/
       @q = RadioArchive.ransack params[:q]
     when /upcoming-events/

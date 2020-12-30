@@ -1,0 +1,6 @@
+- if announcement
+  #announcement{ data: { id: announcement.id } }
+    %a.close= fa_icon :times
+    = announcement.body
+    %a.btn.btn-sm.btn-outline-warning.link{ href: current_announcement.link, target: :_blank }
+      = current_announcement.button
