@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "friendly_id", "~> 5.4"
+
+gem "data_migrate", "~> 6.6"

@@ -45,13 +45,17 @@ body.splash {
     }
 
     .call-to-action {
-      margin-top: $margin * 4;
-      text-align: right;
-      padding-right: $margin * 6;
-      font-size: 1.5rem;
-      button {
-        font-size: 2rem;
-        margin-bottom: $margin / 2;
+      position: relative;
+      p {
+        font-size: 1.5rem;
+        position: absolute;
+        width: 70%;
+        right: $margin * 4;
+        top: $margin;
+        padding: $margin;
+        text-align: right;
+        // color: $text-primary;
+        background-color: rgba(0, 0, 0, 0.5);
       }
     }
 

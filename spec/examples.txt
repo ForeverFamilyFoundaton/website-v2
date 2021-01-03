@@ -1,5 +1,8 @@
 example_id                                            | status  | run_time        |
 ----------------------------------------------------- | ------- | --------------- |
+./spec/db/data/extract_recommended_book_links.rb[1:1] | passed  | 0.79548 seconds |
+./spec/db/data/extract_recommended_book_links.rb[1:2] | passed  | 0.80295 seconds |
+./spec/db/data/extract_recommended_book_links.rb[1:3] | passed  | 1.03 seconds    |
 ./spec/features/admin/announcements_spec.rb[1:1]      | passed  | 1.07 seconds    |
 ./spec/features/admin/announcements_spec.rb[1:2]      | passed  | 1.58 seconds    |
 ./spec/features/admin/cms_page_spec.rb[1:1]           | passed  | 1.14 seconds    |

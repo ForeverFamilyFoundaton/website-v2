@@ -17,7 +17,7 @@
     - if @cms_page.body.present?
       = blog(@cms_page.body)
     - if @collection && !@collection.empty?
-      %ul
+      %ul.cms-collection
         = render @collection
     .clearfix
 -# if lookup_context.template_exists?(@cms_page.partial_name, 'cms_pages', true)
