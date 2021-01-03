@@ -1,5 +1,10 @@
 ActiveAdmin.register Event do
+  include ActionView::Helpers::TextHelper
+
+  permit_params :title, :description, :start_time, :end_time, :url, :pic_link
+
   config.sort_order = "start_time_desc"
+
   index do
     column :id
     column :title do |q|
@@ -10,14 +15,13 @@ ActiveAdmin.register Event do
       end
     end
     column :description do |q|
-      truncate q.description, length: 200
+      truncate strip_tags(q.description), length: 200
     end
     column :start_time
     column :end_time
-    column 'Actions' do |q|
-      link_to 'Show', admin_event_path(q)
-    end
+    actions
   end
+
 
   form do |f|
     f.inputs 'Details' do

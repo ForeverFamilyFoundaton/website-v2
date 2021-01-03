@@ -9,9 +9,15 @@ ul.cms-collection {
     padding-bottom: $margin;
     list-style: none;
     border-bottom: 1px solid $text-muted;
-    .amazon-links {
-      a {
-        margin-right: $margin / 2;
+    ul.recommended-books {
+      padding: 0;
+      margin: 0;
+      li {
+        .amazon-links {
+          a {
+            margin-right: $margin / 2;
+          }
+        }
       }
     }
   }

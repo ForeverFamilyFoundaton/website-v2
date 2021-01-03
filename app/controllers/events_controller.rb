@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-
   def index
     @events = Event.all_upcoming
   end
@@ -11,5 +10,4 @@ class EventsController < ApplicationController
     @cms_page.sub_title = event.times
     @cms_page.body = event.description
   end
-
 end

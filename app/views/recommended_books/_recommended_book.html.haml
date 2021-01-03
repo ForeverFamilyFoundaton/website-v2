@@ -1,9 +1,10 @@
 %li
-  %h4
-    = raw recommended_book.amazon_link
-    %small
-      \-
-      = recommended_book.author
+  %h5
+    %a{ href: recommended_book.amazon_link, target: :_blank }
+      = recommended_book.title
+  %p.small
+    \-
+    = recommended_book.author
 
   %p.amazon-links
     %a{ href: recommended_book.amazon_link, target: :_blank } USD

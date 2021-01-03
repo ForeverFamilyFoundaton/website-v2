@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-
   validates_presence_of :start_time
   validates_presence_of :end_time
   validates_presence_of :title
@@ -13,5 +12,9 @@ class Event < ApplicationRecord
     else
       [start_time.to_s(:events), end_time.to_s(:events)].join(' to ')
     end
+  end
+
+  def teaser
+    truncate strip_tags(description)
   end
 end

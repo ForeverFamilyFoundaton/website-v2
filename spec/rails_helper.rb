@@ -23,6 +23,8 @@ Dir[Rails.root.join('spec/shared/context/*.rb')].each do |context|
   require context
 end
 
+Rails.root.join('db/data').glob('**/*.rb').each(&method(:require))
+
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
