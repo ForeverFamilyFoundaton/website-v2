@@ -11,3 +11,7 @@ medium_registration:
   reference_string: medium_registration
   title: Beer in great
   slug: medium-registration
+radio_archives:
+  reference_string: radio_archives
+  title: Radio Archives
+  slug: radio-archives

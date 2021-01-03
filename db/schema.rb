@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_031609) do
+ActiveRecord::Schema.define(version: 2021_01_03_223236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -404,7 +404,7 @@ ActiveRecord::Schema.define(version: 2020_12_04_031609) do
     t.string "preference_type", limit: 255
   end
 
-  create_table "radio_archives", id: :serial, force: :cascade do |t|
+  create_table "radio_shows", id: :serial, force: :cascade do |t|
     t.string "format", limit: 255
     t.date "date"
     t.string "title", limit: 255

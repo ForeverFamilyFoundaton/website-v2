@@ -1,9 +1,9 @@
-ActiveAdmin.register RadioArchive do
-  menu false
+ActiveAdmin.register RadioShow do
+  permit_params :title, :guest, :date, :format
 
   index do
     column :title do |q|
-      link_to q.title, admin_radio_archive_path(q)
+      link_to q.title, admin_radio_show_path(q)
     end
     column :guest
     column :date
@@ -11,6 +11,7 @@ ActiveAdmin.register RadioArchive do
     column :attached_file do |q|
       link_to 'Download', q.attached_file.attachment.url if q.attached_file
     end
+    actions
   end
 
   form :html => { :enctype => "multipart/form-data" } do |f|
@@ -26,7 +27,7 @@ ActiveAdmin.register RadioArchive do
     end
 
     f.inputs "Embedded Links" do
-      f.has_many :embeded_links do |embeded_link|    
+      f.has_many :embeded_links do |embeded_link|
         embeded_link.input :title
         embeded_link.input :body
       end
@@ -37,15 +38,15 @@ ActiveAdmin.register RadioArchive do
 
 
   show do
-    h2 radio_archive.title
+    h2 radio_show.title
     div do
-      h3 radio_archive.guest
-      h3 radio_archive.date.to_s
-      h3 radio_archive.format
-      link_to 'Download', radio_archive.attached_file.attachment.url if radio_archive.attached_file
+      h3 radio_show.guest
+      h3 radio_show.date.to_s
+      h3 radio_show.format
+      link_to 'Download', radio_show.attached_file.attachment.url if radio_show.attached_file
     end
 
-    table_for(radio_archive.embeded_links) do
+    table_for(radio_show.embeded_links) do
       column "Embeded Links" do |elink|
         elink.body.html_safe
       end

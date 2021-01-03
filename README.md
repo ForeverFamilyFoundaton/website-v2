@@ -14,5 +14,5 @@ Registrations - Discussion Group - NO MORE - Medium Reg - Volunteer
       - track sitters and mediums | see medium forms
 
 - Get pdf
-- Port raido shows
+- cleanup cms page controller to use reference-string, not slug
 - Fix amazon book lins
