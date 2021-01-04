@@ -1,0 +1,11 @@
+%li.radio-show
+  %h4
+    = radio_show.title
+    - if radio_show.attached_file
+      %small= link_to 'Download', radio_show.attached_file.attachment.url
+  %p
+    = succeed ',' do
+      = radio_show.guest
+    = l radio_show.date, format: :radio_show
+  - radio_show.embeded_links.each do |embeded_link|
+    %p.m-0= raw(embeded_link.body)

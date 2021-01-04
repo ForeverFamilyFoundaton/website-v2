@@ -1,4 +1,4 @@
-class RadioArchive < ApplicationRecord
+class RadioShow < ApplicationRecord
   paginates_per 10
 
   has_many :embeded_links, as: :em_linkable, dependent: :destroy

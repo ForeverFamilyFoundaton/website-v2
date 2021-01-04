@@ -1,8 +1,8 @@
 require 'sidekiq/web'
 
 ForeverFamilyFoundation::Application.routes.draw do
+  ActiveAdmin.routes(self)
   mount Sidekiq::Web, at: '/sidekiq'
-  mount StripeEvent::Engine, at: '/webhooks/stripe'
 
   root to: 'site#index'
 
@@ -17,21 +17,9 @@ ForeverFamilyFoundation::Application.routes.draw do
     end
   end
 
-  ActiveAdmin.routes(self)
-
   resources :users, only: :show
   resources :pages, only: [:show], controller: :cms_pages
   resources :user_preference_selections, only: [:edit, :update]
-  resources :businesses
-  resources :family_member_invitations, only: [:create, :new]
-  resources :family_members, only: [:destroy]
-  resource :pricing, controller: :pricing
-  resource :subscription do
-    patch :resume
-  end
-  resources :payments
-  resources :charges
-  resource :card
 
   match '/404', to: 'exceptions#not_found', via: :all
   match '/500', to: 'exceptions#internal_error', via: :all
@@ -41,38 +29,16 @@ ForeverFamilyFoundation::Application.routes.draw do
   resources :mediumforms
   resource :adg_registration
 
-  # begin old routes -------------------------------------------
-  resources :belief_types
-  resources :tests
-  resources :known_deads
-  resources :relationships
-
-  resources :events
-  resources :radio_archives
-  resources :recommended_books
-  resources :known_deads
-
-  get '/businesses/welcome/:id' => 'businesses#welcome', as: 'businesses_welcome'
-  get '/users/welcome/:id' => 'users#welcome', as: 'users_welcome'
-
-  # Redirects
-  # get '/sitemap' => 'redirects#sitemap' #'http://s3.amazonaws.com/fff_attached_files/attached_files/attachments/000/000/670/original/sitemap.xml?2016'
-  # get '/certifiedmediums' => 'redirects#certified_mediums'
-  # get '/Suicide' => 'redirects#suicide'
-  # get '/contributions' => 'redirects#contributions'
-  # get '/signsofliferadio' => 'redirects#signs_of_life_radio'
-  # get '/signsofliferadioLISTEN' => 'redirects#signs_of_life_radio'
-  # get '/radio' => 'redirects#signs_of_life_radio'
-  # get '/radio2007' => 'redirects#signs_of_life_radio'
-  # get '/SanFransiscoTravel' => 'redirects#home_page'
-  # get '/NewYork2008CC' => 'redirects#home_page'
-  # get '/images/Events/TG0726-2813CT-SponsorProgramOpp.pdf' => 'redirects#home_page'
-  # get '/images/Events/TG0520-2211CT-FLYER2v4TABS.pdf' => 'redirects#home_page'
-  # get '/mobile/events/94' => 'redirects#events'
-  # get '/FMC2010' => 'redirects#events'
-  # get '/images/SF2008IMAGES/SF2008ProgramPRG.pdf' => 'redirects#events'
-  # get '/bookreview' => 'redirects#recommended_books'
-  # get '/images/GuestHouse/TheGuestHouse-brochure' => 'redirects#guest_house_brochure'
-  # get '/site/:action' => 'site#page', as: 'page'
-  # get '/site/page/:id' => 'site#page', as: 'page_by_id'
+  # billing routes - not in use
+  # mount StripeEvent::Engine, at: '/webhooks/stripe'
+  # resources :businesses
+  # resources :family_member_invitations, only: [:create, :new]
+  # resources :family_members, only: [:destroy]
+  # resource :pricing, controller: :pricing
+  # resource :subscription do
+  #   patch :resume
+  # end
+  # resources :payments
+  # resources :charges
+  # resource :card
 end

@@ -7,7 +7,11 @@ class CmsPagesController < ApplicationController
     when /recommended-books/
       @q = RecommendedBookCategory.ransack params[:q]
     when /radio-archives/
-      @q = RadioArchive.ransack params[:q]
+      radio_show_params = (params[:q] || {}).merge date_lteq: Time.now
+      @q = RadioShow.ransack radio_show_params
+    when /broadcast-schedule/
+      radio_show_params = (params[:q] || {}).merge date_gteq: Time.now
+      @q = RadioShow.ransack radio_show_params
     when /upcoming-events/
       future_params = querry_params.merge start_time_gteq: Date.today
       past_params = querry_params.merge start_time_lt: Date.today

@@ -63,7 +63,7 @@ jobs:
           only-branch: master
       - run:
           command: |
-            heroku run rails db:migrate -a ${HEROKU_APP_NAME}
+            heroku run rails db:migrate:with_data -a ${HEROKU_APP_NAME}
             heroku restart -a ${HEROKU_APP_NAME}
           name: "Heroku post-deploy steps"
 orbs:
