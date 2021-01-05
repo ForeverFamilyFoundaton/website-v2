@@ -1,6 +1,7 @@
-ActiveAdmin.register RecommendedBook do 
+ActiveAdmin.register RecommendedBook do
   menu false
   config.filters = false
+  permit_params :title, :author, :amazon_link, :uk_amazon_link, :cad_amazon_link, recommended_book_category_ids: []
 
   index do |recc_book|
     column :id do |q|

@@ -6,6 +6,20 @@
   %span.navbar-toggler-icon
 #navbar.collapse.navbar-collapse
   %ul.navbar-nav.ml-auto
+    %li.nav-item
+      %a.nav-link{ href: '/pages/signs-of-life-radio' } Sign of Life Radio
+    %li.nav-item
+      %a.nav-link{ href: '/pages/mediumship' } Mediumship
+    %li.nav-item
+      %a.nav-link{ href: '/pages/afterlife-science' } Afterlife Science
+    %li.nav-item
+      %a.nav-link{ href: '/pages/afterlife-science' } Afterlife Science
+    %li.nav-item
+      %a.nav-link{ href: '/pages/grief-and-loss' } Grief & Loss
+    %li.nav-item
+      %a.nav-link{ href: '/pages/volunteers' } Volunteers
+    %li.nav-item
+      %a.nav-link{ href: '/pages/upcoming-events' } Events
     - if user_signed_in?
       %li.nav-item
         %a.nav-link{ href: user_path(current_user) }= fa_icon :user, class: :fas
