@@ -1,5 +1,5 @@
 ActiveAdmin.register RadioShow do
-  permit_params :title, :guest, :date, :format
+  permit_params :title, :guest, :date, :format, embeded_links_attributes: {}, attached_file_attributes: {}
 
   index do
     column :title do |q|
@@ -27,7 +27,7 @@ ActiveAdmin.register RadioShow do
     end
 
     f.inputs "Embedded Links" do
-      f.has_many :embeded_links do |embeded_link|
+      f.has_many :embeded_links, allow_destroy: true do |embeded_link|
         embeded_link.input :title
         embeded_link.input :body
       end
