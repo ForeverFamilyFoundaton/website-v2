@@ -4,14 +4,22 @@ body.splash nav {
 body.main nav {
   background-color: $purple;
 }
+
 nav.top-nav.navbar {
   transition: background 1s;
+
+  li a {
+    line-height: 25px;
+  }
+
   &.scrolled {
     background: rgba(255, 255, 255, 0.5);
   }
+
   span.logo {
     font-size: 1.5rem;
   }
+
   a.navbar-brand {
     text-align: left;
     line-height: 1.5rem;
@@ -19,5 +27,9 @@ nav.top-nav.navbar {
 
   .nav-link.login {
     padding: 5px;
+  }
+
+  .become-a-member {
+    margin: auto $margin / 2;
   }
 }

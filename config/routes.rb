@@ -5,6 +5,8 @@ ForeverFamilyFoundation::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'site#index'
+  # Need this for legacy links hard-coded into Love Knows No Death PDF
+  get 'site/page/:id', to: 'site#page'
 
   devise_for :users, controllers: {
     registrations: 'registrations',
