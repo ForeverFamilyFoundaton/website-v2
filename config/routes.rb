@@ -22,6 +22,7 @@ ForeverFamilyFoundation::Application.routes.draw do
   resources :users, only: :show
   resources :pages, only: [:show], controller: :cms_pages
   resources :user_preference_selections, only: [:edit, :update]
+  resources :events, only: [:index, :show]
 
   match '/404', to: 'exceptions#not_found', via: :all
   match '/500', to: 'exceptions#internal_error', via: :all

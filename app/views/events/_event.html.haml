@@ -1,8 +1,8 @@
 %li
-  %h4= event.title
+  %h4
+    %a{ href: event_path(event) }= event.title
   %p= blog truncate(strip_tags(event.description), length: 200)
-  - if event.times.present?
-    %p= event.times
+  %p= event_times(event)
   - if !event.pic_link.blank?
     = image_tag(event.pic_link, width: "90em", class: 'event-pic')
   %p= !event.url.blank? ? link_to(event.title, event.url, target: '_blank') : link_to(event.title, event)
