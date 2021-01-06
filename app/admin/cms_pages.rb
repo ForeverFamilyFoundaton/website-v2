@@ -26,7 +26,7 @@ ActiveAdmin.register CmsPage do
   form do |f|
     f.inputs 'Details' do
       f.input :reference_string, input_html: { disabled: !object.new_record? }
-      f.input :parent, collection: CmsPage.order(reference_string: :asc).pluck(:reference_string, :id), input_html: { class: 'js-select' }
+      f.input :parent, collection: CmsPage.order(reference_string: :asc).pluck(:reference_string, :id), input_html: { class: 'js-select' }, include_blank: true
       f.input :title
       f.input :sub_title
       f.input :body, label: false, input_html: { class: [:code, :markdown] }
