@@ -3,3 +3,7 @@ en:
     formats:
       radio_show: "%b %e, %Y"
       active_admin: "%Y-%m-%d"
+  time:
+    formats:
+      event_time: "%I:%M%P"
+      event_date: "%Y-%m-%d"

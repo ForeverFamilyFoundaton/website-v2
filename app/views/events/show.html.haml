@@ -1,0 +1,10 @@
+.cms-page
+  .header
+    %h2= @event.title
+    %h3= event_times(@event)
+
+  .content
+    - if !@event.pic_link.blank?
+      = image_tag(@event.pic_link, width: "90em", class: '@event-pic')
+    = blog @event.description
+    %p= !@event.url.blank? ? link_to(@event.title, @event.url, target: '_blank') : link_to(@event.title, @event)
