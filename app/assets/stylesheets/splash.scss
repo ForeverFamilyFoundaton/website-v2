@@ -70,6 +70,7 @@ body.splash {
     letter-spacing: 1px;
     font-weight: 200;
     line-height: 1.5rem;
+
     .splash-nav-item {
       color: #032b38;
       border: 1px solid #150b02;
@@ -79,6 +80,7 @@ body.splash {
       width: 80%;
       margin: $margin * 3 auto;
       padding: $margin * 1.5;
+      overflow: auto;
 
       img {
         width: 300px;
