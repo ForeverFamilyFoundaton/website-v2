@@ -314,7 +314,7 @@ GEM
     rb-readline (0.5.5)
     recaptcha (5.5.0)
       json
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redis (4.2.1)
     regexp_parser (1.7.1)
     responders (3.0.1)
