@@ -1,5 +1,5 @@
 ActiveAdmin.register RadioShow do
-  permit_params :title, :guest, :date, :format, embeded_links_attributes: {}, attached_file_attributes: {}
+  permit_params :title, :guest, :instructions, :date, :format, embeded_links_attributes: {}, attached_file_attributes: {}
 
   index do
     column :title do |q|
@@ -14,15 +14,20 @@ ActiveAdmin.register RadioShow do
     actions
   end
 
-  form :html => { :enctype => "multipart/form-data" } do |f|
+  form html: { enctype: "multipart/form-data" } do |f|
     f.inputs 'Details' do
       f.input :title
       f.input :guest
-      f.input :date, start_year: 2000, end_year: Date.today.year + 1
+      f.input :instructions, input_html: { class: 'autogrow', rows: 5 }
+      f.input :date, as: :datepicker,
+      datepicker_options: {
+        min_date: 21.years.ago,
+        max_date: '+1y'
+      }
       f.input :format, as: :select, collection: ['Signs of Life', 'Mediums & Messages', 'The Gathering', 'Medium Insights']
     end
 
-    f.inputs "Recording", :for => [:attached_file, f.object.attached_file || AttachedFile.new] do |recording_form|
+    f.inputs "Recording", for: [:attached_file, f.object.attached_file || AttachedFile.new] do |recording_form|
       recording_form.input :attachment, as: :file
     end
 
@@ -38,18 +43,8 @@ ActiveAdmin.register RadioShow do
 
 
   show do
-    h2 radio_show.title
-    div do
-      h3 radio_show.guest
-      h3 radio_show.date.to_s
-      h3 radio_show.format
-      link_to 'Download', radio_show.attached_file.attachment.url if radio_show.attached_file
-    end
-
-    table_for(radio_show.embeded_links) do
-      column "Embeded Links" do |elink|
-        elink.body.html_safe
-      end
+    ul class: 'cms-collection' do
+      render 'radio_shows/radio_show', { radio_show: radio_show }
     end
   end
 

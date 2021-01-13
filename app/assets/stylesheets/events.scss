@@ -1,8 +1,14 @@
-.events {
-  ul {
-    margin: 0;
-    padding: 0;
-    li {
+.cms-collection {
+  li.event {
+    .card {
+      .card-header {
+        font-size: 1rem;
+        padding-top: $margin / 2;
+        padding-bottom: $margin / 2;
+      }
+      .card-body p:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

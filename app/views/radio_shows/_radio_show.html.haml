@@ -1,11 +1,16 @@
 %li.radio-show
-  %h4
-    = radio_show.title
-    - if radio_show.attached_file
-      %small= link_to 'Download', radio_show.attached_file.attachment.url
-  %p
-    = succeed ',' do
-      = radio_show.guest
-    = l radio_show.date, format: :radio_show
-  - radio_show.embeded_links.each do |embeded_link|
-    %p.m-0= raw(embeded_link.body)
+  .card
+    .card-header= radio_show.date.to_s(:long_ordinal)
+    .card-body
+      - if radio_show.attached_file
+        %span.badge.badge-warning= link_to 'Download', radio_show.attached_file.attachment.url
+      %h4
+        = radio_show.title
+      %p
+        = succeed ',' do
+          = radio_show.guest
+        = l radio_show.date, format: :radio_show
+      - if radio_show.date >= Date.today
+        %p= radio_show.instructions
+      - radio_show.embeded_links.each do |embeded_link|
+        %p.m-0= raw(embeded_link.body)

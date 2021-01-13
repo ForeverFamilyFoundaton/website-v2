@@ -1,8 +1,11 @@
-%li
-  %h4
-    %a{ href: event_path(event) }= event.title
-  %p= blog truncate(strip_tags(event.description), length: 200)
-  %p= event_times(event)
-  - if !event.pic_link.blank?
-    = image_tag(event.pic_link, width: "90em", class: 'event-pic')
-  %p= !event.url.blank? ? link_to(event.title, event.url, target: '_blank') : link_to(event.title, event)
+%li.event
+  .card
+    .card-header= event_times(event)
+    .card-body
+      %h4= link_to event.title, (event.url.present? ? event.url : event), target: '_blank'
+      - if event.teaser.present?
+        %p= event.teaser
+      - else
+        %p= blog truncate(strip_tags(event.description), length: 200)
+      - if event.pic_link.present?
+        %p= image_tag(event.pic_link, width: "90em", class: 'event-pic')

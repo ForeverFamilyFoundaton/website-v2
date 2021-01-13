@@ -6,8 +6,10 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/announcements_spec.rb[1:1]      | passed  | 1.54 seconds    |
 ./spec/features/admin/announcements_spec.rb[1:2]      | passed  | 1.3 seconds     |
 ./spec/features/admin/cms_page_spec.rb[1:1]           | passed  | 11.26 seconds   |
+./spec/features/admin/events_spec.rb[1:1]             | passed  | 2.1 seconds     |
 ./spec/features/admin/external_link_spec.rb[1:1]      | passed  | 1.28 seconds    |
 ./spec/features/admin/preferences_spec.rb[1:1]        | passed  | 1.18 seconds    |
+./spec/features/admin/radio_shows_spec.rb[1:1]        | passed  | 1.84 seconds    |
 ./spec/features/admin/soft_delete_user_spec.rb[1:1]   | passed  | 3.8 seconds     |
 ./spec/features/admin/splash_nav_items_spec.rb[1:1]   | passed  | 3.8 seconds     |
 ./spec/features/admin/splash_nav_items_spec.rb[1:2]   | passed  | 2.46 seconds    |
