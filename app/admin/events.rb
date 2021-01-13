@@ -1,9 +1,11 @@
 ActiveAdmin.register Event do
   include ActionView::Helpers::TextHelper
 
-  permit_params :title, :description, :start_time, :end_time, :url, :pic_link
+  permit_params :title, :teaser, :description, :start_time, :end_time, :url, :pic_link
 
   config.sort_order = "start_time_desc"
+
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true)
 
   index do
     column :id
@@ -14,9 +16,7 @@ ActiveAdmin.register Event do
         q.title
       end
     end
-    column :description do |q|
-      truncate strip_tags(q.description), length: 200
-    end
+    column :teaser
     column :start_time
     column :end_time
     actions
@@ -28,7 +28,8 @@ ActiveAdmin.register Event do
       f.input :title
       f.input :url
       f.input :pic_link
-      f.input :description
+      f.input :teaser, input_html: { class: [:code, :markdown] }
+      f.input :description, input_html: { class: [:code, :markdown] }
       f.input :start_time
       f.input :end_time
       f.text_node "Your current time: " + Time.now.to_s + " " + Time.now.localtime.zone
@@ -40,9 +41,13 @@ ActiveAdmin.register Event do
     h1 do
       link_to event.title, event.url, target: '_blank'
     end
-    h2 event.times
+    h2 event_times(event)
+    h3 'Teaser'
     div do
-      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+      raw markdown.render(event.teaser)
+    end
+    h3 'Description'
+    div do
       raw markdown.render(event.description)
     end
   end
