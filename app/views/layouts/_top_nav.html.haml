@@ -18,6 +18,8 @@
       %a.nav-link{ href: '/pages/volunteers', class: active_class('/pages/volunteers') } Volunteers
     %li.nav-item
       %a.nav-link{ href: '/pages/upcoming-events', class: active_class('/pages/upcoming-events') } Events
+    %li.nav-item
+      %a.nav-link{ href: '/pages/about-us', class: active_class('/pages/about-us') } About Us
     - if user_signed_in?
       %li.nav-item
         %a.nav-link{ href: user_path(current_user), class: active_class(user_path(current_user)) }= fa_icon :user, class: :fas
