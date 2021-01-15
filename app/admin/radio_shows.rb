@@ -21,10 +21,10 @@ ActiveAdmin.register RadioShow do
       f.input :instructions, input_html: { class: 'autogrow', rows: 5 }
       f.input :date, as: :datepicker,
       datepicker_options: {
-        min_date: 21.years.ago,
+        min_date: 21.years.ago.to_date,
         max_date: '+1y'
       }
-      f.input :format, as: :select, collection: ['Signs of Life', 'Mediums & Messages', 'The Gathering', 'Medium Insights']
+      f.input :format, as: :select, collection: ['Signs of Life', 'Mediums & Messages', 'The Gathering', 'Medium Insights', 'Personal Experiences '].sort
     end
 
     f.inputs "Recording", for: [:attached_file, f.object.attached_file || AttachedFile.new] do |recording_form|

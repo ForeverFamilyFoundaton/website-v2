@@ -6,21 +6,19 @@ class CmsPagesController < ApplicationController
     case @cms_page.slug
     when /recommended-books/
       @q = RecommendedBookCategory.ransack params[:q]
+      @collection = @q.result(distinct: true).page(page)
     when /radio-archives/
       radio_show_params = (params[:q] || {}).merge date_lteq: Time.now
       @q = RadioShow.ransack radio_show_params
+      @collection = @q.result(distinct: true).includes(:embeded_links, :attached_file).order(date: :desc).page(page)
     when /broadcast-schedule/
       radio_show_params = (params[:q] || {}).merge date_gteq: Time.now
       @q = RadioShow.ransack radio_show_params
+      @collection = @q.result(distinct: true).includes(:embeded_links, :attached_file).order(date: :desc).page(page)
     when /upcoming-events/
-      future_params = querry_params.merge start_time_gteq: Date.today
-      past_params = querry_params.merge start_time_lt: Date.today
-      @q = Event.ransack future_params
-      @past_events = Event.ransack(past_params).result(distinct: true).page(page)
-    end
-
-    if @q
-      @collection = @q.result(distinct: true).page(page)
+      event_params = querry_params.merge start_time_gteq: Date.today
+      @q = Event.ransack event_params
+      @collection = @q.result(distinct: true).order(start_time: :desc).page(page)
     end
   end
 end
