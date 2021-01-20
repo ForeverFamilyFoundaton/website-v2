@@ -1,0 +1,18 @@
+.recommended-book-categories {
+  list-style: none;
+  padding: 0;
+  li {
+    font-size: 1.5rem;
+    display: inline;
+    border: 1px solid $purple;
+    border-width: 0 1px 0 0;
+    padding: 0 1rem;
+    &:last-child {
+      border-width: 0;
+    }
+    a {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
