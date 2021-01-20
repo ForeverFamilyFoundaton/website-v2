@@ -1,5 +1,5 @@
 RSpec.feature 'As a user' do
-  let(:radio_archive) { radio_shows(:archive) }
+  let(:radio_archive) { radio_shows(:archive_1) }
   let(:cms_page) { CmsPage.find_by reference_string: :radio_archives }
 
   before do
@@ -11,7 +11,6 @@ RSpec.feature 'As a user' do
   end
 
   scenario 'I can search for radio archives' do
-    pending 'Search'
     fill_in 'q[title_or_guest_cont]', with: radio_archive.title
     click_on 'Search'
     expect(page).to have_selector '.radio-show', count: 1
