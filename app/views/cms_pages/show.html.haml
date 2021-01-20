@@ -17,7 +17,17 @@
     - if @cms_page.body.present?
       = blog(@cms_page.body)
     - if @collection && !@collection.empty?
-      = paginate @collection
+      .row.search
+        - if @search_field
+          .col
+            = search_form_for @q, url: page_path(@cms_page) do |f|
+              .input-group
+                = f.input_field @search_field, class: 'form-control', placeholder: 'Search...'
+                .input-group-append
+                  = f.button :submit, class: 'btn btn-primary'
+                  = link_to 'Clear', page_path(@cms_page), class: 'btn btn-secondary'
+        .col
+          = paginate @collection
       %ul.cms-collection
         = render @collection
       = paginate @collection

@@ -6,6 +6,4 @@ class RadioShow < ApplicationRecord
   accepts_nested_attributes_for :attached_file, allow_destroy: true
 
   validates :title, presence: true
-
-  default_scope { order(date: :desc) }
 end

@@ -15,3 +15,7 @@ radio_archives:
   reference_string: radio_archives
   title: Radio Archives
   slug: radio-archives
+broadcast_schedule:
+  reference_string: broadcast_schedule
+  title: Broadcast Schedule
+  slug: broadcast-schedule
