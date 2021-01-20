@@ -6,7 +6,7 @@ class CmsPagesController < ApplicationController
 
     @collection = case @cms_page.slug
     when /recommended-books/
-      @search_field = :title_cont
+      @search_field = :recommended_books_title_cont
       @q = RecommendedBookCategory.ransack params[:q]
       @q.result(distinct: true).page(page)
     when /radio-archives/
