@@ -6,9 +6,7 @@
         %span.badge.badge-warning= link_to 'Download', radio_show.attached_file.attachment.url
       %h4
         = radio_show.title
-      %p
-        = succeed ',' do
-          = radio_show.guest
+      %p= radio_show.guest
       - if radio_show.date >= Date.today
         %p= radio_show.instructions
       - radio_show.embeded_links.each do |embeded_link|
