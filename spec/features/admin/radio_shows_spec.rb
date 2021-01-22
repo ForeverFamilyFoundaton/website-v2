@@ -18,6 +18,7 @@ RSpec.feature 'As an admin user' do
     fill_in 'Date', with: I18n.l(date, format: :active_admin)
     fill_in 'Instructions', with: instructions
     select format
+    attach_file 'Attachment', Rails.root.join('spec/fixtures/audio/test-audio.mp3')
     click_on 'Create Radio show'
     expect(page).to have_content 'Radio show was successfully created.'
     expect(page).to have_content title
@@ -28,6 +29,7 @@ RSpec.feature 'As an admin user' do
     within first('#index_table_radio_shows tbody tr') do
       click_on 'Edit'
     end
+    attach_file 'Attachment', Rails.root.join('spec/fixtures/audio/test-audio.mp3')
     click_on 'Update Radio show'
     expect(page).to have_content 'Radio show was successfully updated.'
   end
