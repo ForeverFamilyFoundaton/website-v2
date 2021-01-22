@@ -17,9 +17,9 @@ Rails.application.configure do
     storage: :s3,
     preserve_files: true,
     s3_credentials: {
-      access_key_id: Rails.application.credentials.AWS_ACCESS_KEY_ID,
-      secret_access_key: Rails.application.credentials.AWS_SECRET_ACCESS_KEY,
-      s3_region: Rails.application.credentials.AWS_REGION
+      access_key_id: Rails.application.credentials.aws[:access_key_id],
+      secret_access_key: Rails.application.credentials.aws[:secret_access_key],
+      s3_region: Rails.application.credentials.aws[:region]
     }
   }
 
