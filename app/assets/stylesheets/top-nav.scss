@@ -17,7 +17,9 @@ nav.top-nav.navbar {
   }
 
   span.logo {
-    font-size: 1.5rem;
+    img {
+      height: 30px;
+    }
   }
 
   a.navbar-brand {
