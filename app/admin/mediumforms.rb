@@ -6,13 +6,9 @@ ActiveAdmin.register Mediumform do
     column 'User' do  |mediumform|
       link_to mediumform.user.email, admin_user_path(mediumform.user)
     end
-    colPumn :mobile
-    column :created_at, sortable: :created_at do |mediumform|
-      mediumform.created_at.localtime.strftime("%B %d, %Y %H:%M")
-    end
-    column :updated_at, sortable: :updated_at do |mediumform|
-      mediumform.updated_at.localtime.strftime("%B %d, %Y %H:%M")
-    end
+    column :mobile
+    column :created_at
+    column :updated_at
     actions
   end
 
