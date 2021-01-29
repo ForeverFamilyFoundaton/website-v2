@@ -11,8 +11,8 @@ ActiveAdmin.register Sitterform do
     column :cell
     column :website
     column :related_contact_info
-
-
+    column :created_at
+    column :updated_at
     actions
   end
 
