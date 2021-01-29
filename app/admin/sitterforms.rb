@@ -1,15 +1,17 @@
-ActiveAdmin.register Sitterform do 
+ActiveAdmin.register Sitterform do
   menu false
   config.filters = false
 
-  index do |sitterform|
-    column :id
-    column :user_id
-    # column 'Book Categories' do |f|
-    #   f.try(:recommended_book_categories).map(&:name).to_sentence
-    # end
-    column :email
-    column :mobile
+  index do
+    column 'User' do |sitterform|
+      link_to sitterform.user.email, admin_user_path(sitterform.user)
+    end
+    column :alt_email
+    column :phone
+    column :cell
+    column :website
+    column :related_contact_info
+
 
     actions
   end
@@ -58,18 +60,18 @@ ActiveAdmin.register Sitterform do
         f.input :related_contact_info
         f.input :medium_contacts
       end
- 
+
 
       # below line creates radio button but does not save edits
-      # f.input :belief_types, label: "Regarding an Afterlife, which would you consider yourself to be?",  as: :check_boxes     
-      
+      # f.input :belief_types, label: "Regarding an Afterlife, which would you consider yourself to be?",  as: :check_boxes
+
       f.inputs "Regarding an Afterlife, which would you consider yourself to be?" do
         f.input :belief_type do |belief|
           belief.input :name
         end
       end
       # f.inputs :known_deads_name
- 
+
       f.inputs 'Lost Loved Ones' do
         f.has_many :known_deads do |known_dead|
           known_dead.input :name
