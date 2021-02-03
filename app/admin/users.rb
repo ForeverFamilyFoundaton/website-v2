@@ -21,7 +21,8 @@ ActiveAdmin.register User do
     :enrolled_at,
     :problems,
     category_ids: [],
-    preferences: [],
+    preference_ids: [],
+    role_ids: [],
     address_attributes: [
       :id,
       :address,
@@ -61,11 +62,12 @@ ActiveAdmin.register User do
     end
   end
 
-  filter :membership_number
+
   filter :email
   filter :first_name
   filter :middle_name
   filter :last_name
+  filter :roles
   filter :is_business
   filter :enrolled_from
   filter :snail_mail
@@ -81,6 +83,7 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :email, sortable: :email
+    column :roles
     # column :business_name, sortable: 'businesses.name' do |user|
     #   user.business && user.business.name
     # end
@@ -96,6 +99,7 @@ ActiveAdmin.register User do
       row :id
       row :membership_number
       row :email
+      row :roles
       row :cell_phone
       row :home_phone
       row :work_phone
@@ -171,6 +175,7 @@ ActiveAdmin.register User do
         f.input :password
         f.input :password_confirmation
       end
+      f.input :roles
       f.input :cell_phone
       f.input :home_phone
       f.input :work_phone
