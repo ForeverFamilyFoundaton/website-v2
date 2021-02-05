@@ -62,7 +62,7 @@ ActiveAdmin.register User do
     end
   end
 
-
+  filter :membership_number
   filter :email
   filter :first_name
   filter :middle_name
@@ -79,7 +79,7 @@ ActiveAdmin.register User do
   filter :preferences, as: :check_boxes
 
   index download_links: [:csv] do
-    # column 'Membership Number', :membership_number
+    column :membership_number
     column :first_name
     column :last_name
     column :email, sortable: :email
