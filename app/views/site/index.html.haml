@@ -7,24 +7,18 @@
       %h1 Forever Family Foundation
       %p.mission= t('splash.mission')
 
-    .call-to-action
-      %p We don't charge for membership or our core services - we are donor supported. Now, more than ever, YOU can help change worldview about what happens after we die. Your donations make a difference, and together we can do great things!
+    .row
+      .col-sm-3
+        %ul.links
+          %li.link
+            %p.small As an Amazon Affiliate, we earn from qualifying purchases
+            = link_to image_tag('amazon-affiliate.png'), 'http://www.amazon.com/?&tag=wwwforeverfam-20&camp=211041&creative=374001&linkCode=qs1&adid=0HB3V5GYRTKAGAEYQQE2&', target: '_blank', onclick: "amazon_click()"
+          %li.link
+            %p.small Support us by shopping
+            = link_to image_tag('igive.png'), 'http://www.igive.com/welcome/warmwelcome3.cfm?c=43517',target: '  _blank', onclick: "igive_click()"
+        %div.clearfix
+      .col-sm-9.call-to-action
+        %p We don't charge for membership or our core services - we are donor supported. Now, more than ever,   YOU can help change worldview about what happens after we die. Your donations make a difference, and together we can do great things!
 
   .splash-nav
     = render @splash_nav_items
-  / .splash-nav
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Signs of Life Radio', link: events_path, body: 'Come explore the afterlife during our one hour live interactive radio show that has been airing since 2005.  The show is brought to you weekly in four different formats featuring top credentialed experts in the various fields of afterlife studies, and specialty broadcasts with elite Mediums who hold the exclusive certification by Forever Family Foundation. The show is intended to help you learn about the evidence for life beyond death, grief transformation, and the nature of consciousness.  All shows are archived on this website for future listening.', icon: 'radio-alt', direction: :left
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Mediumship', link: '/site/signs_of_life_radio', body: 'All mediums are not the same!  It’s easy to become confused by all the so called “experts” around, as well as various unsubstantiated claims of those calling themselves mediums.  Forever Family Foundation has a process by which mediums seeking certification are vetted and undergo an evaluation of their mediumistic evidence. The process takes place under controlled conditions and only those mediums with exceptional ability gain certification. This valuable resource page will benefit both the bereaved on their journey as well as those seeking guidance on developing their own skills in the area.', icon: 'radio', direction: :right
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Afterlife Science', link: '/site/signs_of_life_newsletter', body: 'Life Does Not End With Physical Death! Learn about the information not readily available elsewhere! Discover reliable information about mediumship, near death experiences, deathbed visions, reincarnation, electronic voice phenomena, after death communication, apparitions, psi research, as well as experiments and surveys. Learning about such evidence can help change one’s view about physical death and can be helpful in transforming one’s grief.', icon: 'book-open', direction: :left
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Afterlife Discussion Groups', link: '/site/after_life_discussion_group', body: 'No, You ARE NOT CRAZY!  Have you ever received a sign or after death communication from a deceased loved one but were afraid to talk about it for fear of being judged or labeled? The fact is that people have been reporting such experiences for ages and they are real!   Join one of our signature Afterlife Discussion Groups either on line or in person and know that you have found a safe place to share your own stories and learn about afterlife evidence with a group of like-minded individuals on the same journey.', icon: 'users', direction: :right
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Volunteers', link: '/site/after_life_discussion_group', body: 'Helping Others Helps You Heal!  Forever Family Foundation runs on 100% volunteer power – nobody gets paid, or has ever been paid since our inception in 2004.. We are engaged in many different projects and dedicated volunteers, those who wish to work for the greater good, are always treasured. Join us in our mission to educate the public about evidence of life after death!', icon: 'users', direction: :left
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Donations', link: '/site/after_life_discussion_group', body: 'Because of the work that we do we do not receive the grants and large corporate donations that traditional not for profits enjoy. We rely solely on the good nature and generosity of our members. Please consider supporting our work financially to ensure that we can continue our many free services as we fulfill our mission to educate the public!', icon: 'users', direction: :right
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Signs of Life Magazine', link: '/site/after_life_discussion_group', body: 'Yes, a magazine about the afterlife! In publication since 2004, it is a comprehensive journey into afterlife exploration. Included are interesting articles, news, book reviews, editorials, features, and event information, all making it essential reading for anyone interested in life beyond the physical realm. Available both on- line and sent via regular mail and archived for future reading.', icon: 'users', direction: :left
-
-  /   = render 'splash_nav_item', img: image_path('splash-nav/adg.jpg'), title: 'Grief and Los', link: '/site/after_life_discussion_group', body: 'Grief is hard! Here is a resource for all those who have suffered the loss of a loved one that includes information regarding the nature of grief, resources that can help, grief retreats, coping and transformation mechanisms, workbooks, mediums, meditations, and music.', icon: 'users', direction: :right
