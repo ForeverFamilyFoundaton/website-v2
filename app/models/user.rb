@@ -134,18 +134,12 @@ class User < ApplicationRecord
   # accepts_nested_attributes_for :user_categories
   # accepts_nested_attributes_for :family_members
 
-  # # attr_accessible :email, :email_confirmation, :password, :password_confirmation
-  # # attr_accessible :first_name, :last_name, :middle_name
-  # # attr_accessible :cell_phone, :work_phone, :home_phone, :address_attributes
-  # # attr_accessible :family_members_attributes, :profile_preference_ids, :subscription_preference_ids, :terms_of_use, :is_business, :state, :fax, :enrolled_from, :id, :membership_number, :problems, :do_not_mail, :enrolled_at, :snail_mail
-  # # attr_accessible :sitter_registration, :medium_registration
-  # # attr_accessible :known_deads_attributes
   # validates_presence_of     :email
   # validates_confirmation_of :email, :if => :email_changed?
   # validates_uniqueness_of   :email, case_sensitive: false, allow_blank: true, if: :email_changed?
   # validates_format_of       :email, with: email_regexp, allow_blank: true, if: :email_changed?
-  # validates_uniqueness_of   :membership_number
-  # validates_presence_of   :membership_number
+  validates_uniqueness_of   :membership_number
+  validates_presence_of   :membership_number
   # validates_associated :address
   # validates_presence_of :address
   # validates_presence_of :first_name, :last_name
@@ -155,7 +149,7 @@ class User < ApplicationRecord
   validates :volunteer_policy, acceptance: true
   attr_accessor :refund_policy, :email_policy, :volunteer_policy
   #TODO: remove if we begin using confirmable
-  # before_validation :assign_membership_number
+  before_validation :assign_membership_number
   # before_create :build_address
   # after_create :welcome_message
 
