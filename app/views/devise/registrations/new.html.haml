@@ -1,5 +1,4 @@
 = render  'layouts/cms_page' if @cms_page
-
 = simple_form_for resource, as: resource_name, url: registration_path(resource_name), wrapper: :input_group do |f|
   .row
     .col
@@ -7,8 +6,18 @@
   .row
     .col-sm-6
       .form-inputs
+        = f.input :first_name
+        = f.input :last_name
         = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
         = f.input :password, append: fa_icon(:eye, class: 'toggle-password', data: { toggle: '#user_password'}), required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
+        %fieldset
+          %legend Address
+          = f.simple_fields_for :address do |af|
+            = af.input :address
+            = af.input :city
+            = af.input :state
+            = af.input :zip
+            = af.input :country, priority: ["US"]
         = f.input :terms_of_use, label: t('labels.terms_of_use_acceptance_html'), as: :boolean, require: true
       .form-actions
         = f.button :submit, "Sign up", class: 'btn btn-primary'

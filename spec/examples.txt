@@ -25,7 +25,7 @@ example_id                                            | status  | run_time      
 ./spec/features/profile_preferences_spec.rb[1:1]      | passed  | 2.88 seconds    |
 ./spec/features/radio_archives_spec.rb[1:1]           | passed  | 0.83777 seconds |
 ./spec/features/radio_archives_spec.rb[1:2]           | passed  | 0.93679 seconds |
-./spec/features/registration_spec.rb[1:1]             | passed  | 4.17 seconds    |
+./spec/features/registration_spec.rb[1:1]             | failed  | 5.15 seconds    |
 ./spec/features/sitter_registration_spec.rb[1:1:1]    | passed  | 0.87836 seconds |
 ./spec/features/sitter_registration_spec.rb[1:2:1]    | passed  | 1.61 seconds    |
 ./spec/features/unauthorized_spec.rb[1:1]             | passed  | 1.02 seconds    |

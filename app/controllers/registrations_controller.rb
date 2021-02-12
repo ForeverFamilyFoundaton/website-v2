@@ -1,12 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_cms_page, only: [:new, :create]
 
-  def create
-    super do |resource|
-      Family.create! family_memberships_attributes: [{ user: resource, role: 'Owner' }]
-    end
+  def new
+    resource.build_address if !resource.address
+    super
   end
 
   def edit
@@ -24,29 +23,54 @@ class RegistrationsController < Devise::RegistrationsController
     user_path current_user
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit :sign_up, keys: [
-      :terms_of_use, :volunteer_policy, :refund_policy, :email_policy
-    ]
-    devise_parameter_sanitizer.permit(
-      :account_update, keys: [
-        :first_name,
-        :middle_name,
-        :last_name,
-        :cell_phone,
-        :work_phone,
-        :home_phone,
-        address_attributes: [
-          :id,
-          :address,
-          :city,
-          :state,
-          :zip,
-          :country
-        ]
+  def sign_up_params
+    params.require(:user).permit(
+      :email,
+      :password,
+      :terms_of_use,
+      :refund_policy,
+      :email_policy,
+      :volunteer_policy,
+      :first_name,
+      :middle_name,
+      :last_name,
+      :cell_phone,
+      :work_phone,
+      :home_phone,
+      address_attributes: [
+        :id,
+        :address,
+        :city,
+        :state,
+        :zip,
+        :country
       ]
     )
   end
+
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit :sign_up, keys: [
+  #     :terms_of_use, :volunteer_policy, :refund_policy, :email_policy
+  #   ]
+  #   devise_parameter_sanitizer.permit(
+  #     :account_update, keys: [
+  #       :first_name,
+  #       :middle_name,
+  #       :last_name,
+  #       :cell_phone,
+  #       :work_phone,
+  #       :home_phone,
+  #       address_attributes: [
+  #         :id,
+  #         :address,
+  #         :city,
+  #         :state,
+  #         :zip,
+  #         :country
+  #       ]
+  #     ]
+  #   )
+  # end
 
   def get_cms_page
     @cms_page = CmsPage.find_by reference_string: :registrations
