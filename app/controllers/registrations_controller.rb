@@ -26,50 +26,18 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [
-      :email,
-      :password,
-      :terms_of_use,
-      :refund_policy,
-      :email_policy,
-      :volunteer_policy,
-      :first_name,
-      :middle_name,
-      :last_name,
-      :cell_phone,
-      :work_phone,
-      :home_phone,
+    devise_parameter_sanitizer.permit(:sign_up, keys: user_attrs)
+    devise_parameter_sanitizer.permit(:account_update, keys: user_attrs)
+  end
+
+  def user_attrs
+    [
+      :email, :password, :terms_of_use, :refund_policy, :email_policy, :volunteer_policy,
+      :first_name, :middle_name, :last_name, :cell_phone, :work_phone, :home_phone,
       address_attributes: [
-        :id,
-        :address,
-        :city,
-        :state,
-        :zip,
-        :country
+        :id, :address, :city, :state, :zip, :country
       ]
-    ])
-     devise_parameter_sanitizer.permit(:account_update, keys: [
-      :email,
-      :password,
-      :terms_of_use,
-      :refund_policy,
-      :email_policy,
-      :volunteer_policy,
-      :first_name,
-      :middle_name,
-      :last_name,
-      :cell_phone,
-      :work_phone,
-      :home_phone,
-      address_attributes: [
-        :id,
-        :address,
-        :city,
-        :state,
-        :zip,
-        :country
-      ]
-    ])
+    ]
   end
 
   def get_cms_page
