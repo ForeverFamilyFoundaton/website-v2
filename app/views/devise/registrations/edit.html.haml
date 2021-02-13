@@ -25,7 +25,7 @@
           .card-header
             Address
           .card-body
-            = f.fields_for :address do |address|
+            = f.simple_fields_for :address do |address|
               = address.input :address, label: 'Street'
               = address.input :city
               = address.input :state
