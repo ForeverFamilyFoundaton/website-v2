@@ -25,7 +25,7 @@ class CmsPagesController < ApplicationController
       @search_field = :title_cont
       event_params = querry_params.merge start_time_gteq: Date.today
       @q = Event.ransack event_params
-      @q.result(distinct: true).order(start_time: :desc).page(page)
+      @q.result(distinct: true).order(start_time: :asc).page(page)
     end
   end
 end

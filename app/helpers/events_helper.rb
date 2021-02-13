@@ -10,9 +10,13 @@ module EventsHelper
       ].join(' ')
     else
       [
-        I18n.l(event.start_time, format: :event_date),
-        I18n.l(event.end_time, format: :event_date)
-      ].join(' to ')
+        [
+          event.start_time.to_date.to_s(:long_ordinal), I18n.l(event.start_time, format: :event_time)
+        ].join(' '),
+        [
+          event.end_time.to_date.to_s(:long_ordinal), I18n.l(event.end_time, format: :event_time)
+        ].join(' ')
+      ].join(' - ')
     end
   end
 end

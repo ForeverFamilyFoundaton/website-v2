@@ -5,5 +5,5 @@ en:
       active_admin: "%Y-%m-%d"
   time:
     formats:
-      event_time: "%I:%M %P"
+      event_time: "%-I:%M %P"
       event_date: "%b %m-%d"
