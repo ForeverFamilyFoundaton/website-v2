@@ -34,6 +34,7 @@ RSpec.feature 'As a authenticated User' do
     fill_in 'City', with: address[:city]
     fill_in 'State', with: address[:state]
     fill_in 'Zip', with: address[:zip]
+
     click_on 'Update'
     expect(page).to have_content first_name
     expect(page).to have_content middle_name

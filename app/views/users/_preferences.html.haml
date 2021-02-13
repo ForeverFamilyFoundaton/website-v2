@@ -8,10 +8,11 @@
           %input.form-check-input{ name: 'preference_ids[]', type: :checkbox, value: user_preference_option.id, id: "user-preference-option-id-#{user_preference_option.id}", checked: current_user.has_preference?(user_preference_option) }
           %label.form-check-label{ for: "user-preference-option-id-#{user_preference_option.id}" }= user_preference_option.name
 
-    .card-header
-      Subscription Preferences
-    .card-body
-      - @subscription_preference_options.each do |user_preference_option|
-        .form-check
-          %input.form-check-input{ name: 'preference_ids[]', type: :checkbox, value: user_preference_option.id, id: "user-preference-option-id-#{user_preference_option.id}", checked: current_user.has_preference?(user_preference_option) }
-          %label.form-check-label{ for: "user-preference-option-id-#{user_preference_option.id}" }= user_preference_option.name
+    - unless @subscription_preference_options.empty?
+      .card-header
+        Subscription Preferences
+      .card-body
+        - @subscription_preference_options.each do |user_preference_option|
+          .form-check
+            %input.form-check-input{ name: 'preference_ids[]', type: :checkbox, value: user_preference_option.id, id: "user-preference-option-id-#{user_preference_option.id}", checked: current_user.has_preference?(user_preference_option) }
+            %label.form-check-label{ for: "user-preference-option-id-#{user_preference_option.id}" }= user_preference_option.name
