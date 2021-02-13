@@ -16,6 +16,7 @@ RSpec.feature 'As a authenticated User' do
   end
 
   before do
+    user.address.destroy!
     login_as user, scope: :user
     visit user_path(user)
   end

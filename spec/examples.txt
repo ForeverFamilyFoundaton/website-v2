@@ -29,7 +29,7 @@ example_id                                            | status  | run_time      
 ./spec/features/sitter_registration_spec.rb[1:1:1]    | passed  | 0.87836 seconds |
 ./spec/features/sitter_registration_spec.rb[1:2:1]    | passed  | 1.61 seconds    |
 ./spec/features/unauthorized_spec.rb[1:1]             | passed  | 1.02 seconds    |
-./spec/features/user_edit_spec.rb[1:1]                | passed  | 4.63 seconds    |
+./spec/features/user_edit_spec.rb[1:1]                | passed  | 6.17 seconds    |
 ./spec/mailers/user_mailer_spec.rb[1:1:1]             | passed  | 0.79946 seconds |
 ./spec/mailers/user_mailer_spec.rb[1:1:2]             | passed  | 1.05 seconds    |
 ./spec/mailers/user_mailer_spec.rb[1:2:1]             | passed  | 0.80774 seconds |
