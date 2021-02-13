@@ -10,22 +10,18 @@
         = f.input :last_name
         = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
         = f.input :password, append: fa_icon(:eye, class: 'toggle-password', data: { toggle: '#user_password'}), required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
-        %fieldset
-          %legend Address
-          = f.simple_fields_for :address do |af|
-            = af.input :address
-            = af.input :city
-            = af.input :state
-            = af.input :zip
-            = af.input :country, priority: ["US"]
+        = f.input :refund_policy, as: :boolean, label: t('.refund_policy')
+        = f.input :email_policy, as: :boolean, label: t('.email_policy')
+        = f.input :volunteer_policy, as: :boolean, label: t('.volunteer_policy')
         = f.input :terms_of_use, label: t('labels.terms_of_use_acceptance_html'), as: :boolean, require: true
-      .form-actions
-        = f.button :submit, "Sign up", class: 'btn btn-primary'
     .col-sm-6
-      = f.input :refund_policy, as: :boolean, label: t('.refund_policy')
-      = f.input :email_policy, as: :boolean, label: t('.email_policy')
-      = f.input :volunteer_policy, as: :boolean, label: t('.volunteer_policy')
+      = f.simple_fields_for :address do |af|
+        = af.input :address
+        = af.input :city
+        = af.input :state
+        = af.input :zip
+        = af.input :country, priority: ["US"]
+      .form-actions.mb-3
+        = f.button :submit, "Sign up", class: 'btn btn-primary'
 
-.row
-  .col-sm-6
-    = render "devise/shared/links"
+      = render "devise/shared/links"

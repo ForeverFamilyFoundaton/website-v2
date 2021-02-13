@@ -1,16 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :get_cms_page, only: [:new, :create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def new
-    resource.build_address if !resource.address
-    super
+    super do |resource|
+      resource.build_address unless resource.address
+    end
   end
 
   def edit
-    resource.build_address if !resource.address
-    super
+    super do |resource|
+      resource.build_address unless resource.address
+    end
   end
 
   protected
@@ -23,8 +25,8 @@ class RegistrationsController < Devise::RegistrationsController
     user_path current_user
   end
 
-  def sign_up_params
-    params.require(:user).permit(
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
       :email,
       :password,
       :terms_of_use,
@@ -45,35 +47,33 @@ class RegistrationsController < Devise::RegistrationsController
         :zip,
         :country
       ]
-    )
+    ])
+     devise_parameter_sanitizer.permit(:account_update, keys: [
+      :email,
+      :password,
+      :terms_of_use,
+      :refund_policy,
+      :email_policy,
+      :volunteer_policy,
+      :first_name,
+      :middle_name,
+      :last_name,
+      :cell_phone,
+      :work_phone,
+      :home_phone,
+      address_attributes: [
+        :id,
+        :address,
+        :city,
+        :state,
+        :zip,
+        :country
+      ]
+    ])
   end
 
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.permit :sign_up, keys: [
-  #     :terms_of_use, :volunteer_policy, :refund_policy, :email_policy
-  #   ]
-  #   devise_parameter_sanitizer.permit(
-  #     :account_update, keys: [
-  #       :first_name,
-  #       :middle_name,
-  #       :last_name,
-  #       :cell_phone,
-  #       :work_phone,
-  #       :home_phone,
-  #       address_attributes: [
-  #         :id,
-  #         :address,
-  #         :city,
-  #         :state,
-  #         :zip,
-  #         :country
-  #       ]
-  #     ]
-  #   )
-  # end
-
   def get_cms_page
-    @cms_page = CmsPage.find_by reference_string: :registrations
+    @cms_page = CmsPage.find_by reference_string: :registration
   end
 
   def update_resource(object, attributes)
@@ -85,14 +85,4 @@ class RegistrationsController < Devise::RegistrationsController
     end
     object.send(update_method, attributes)
   end
-end
-
-def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(
-    :sign_up, keys: [
-      :name, :phone, memberships_attributes: [
-        :role, account_attributes: [:name, :terms_accepted]
-      ]
-    ]
-  )
 end

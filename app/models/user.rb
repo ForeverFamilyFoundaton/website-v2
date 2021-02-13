@@ -31,7 +31,6 @@ class User < ApplicationRecord
   validates :work_phone, phony_plausible: true
   validates :address, presence: true
   validates_associated :address
-  validates_presence_of :address
 
   def admin?
     roles.map(&:name).include? 'Admin'
@@ -152,7 +151,6 @@ class User < ApplicationRecord
   attr_accessor :refund_policy, :email_policy, :volunteer_policy
   #TODO: remove if we begin using confirmable
   before_validation :assign_membership_number
-  before_create :build_address
   # after_create :welcome_message
 
   scope :registered_for_adg, -> { includes(:adg_answers).where.not(adg_answers: { id: nil }) }
