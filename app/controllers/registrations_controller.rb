@@ -10,9 +10,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-    super do |resource|
-      resource.build_address unless resource.address
-    end
+    resource.build_address unless resource.address
+    super
   end
 
   protected
