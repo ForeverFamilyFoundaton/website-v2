@@ -10,7 +10,8 @@ ForeverFamilyFoundation::Application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'registrations',
-    invitations: 'invitations'
+    invitations: 'invitations',
+    sessions: 'sessions'
   }
 
   devise_scope :user do
