@@ -10,9 +10,7 @@ RSpec.feature 'As an Admin' do
   end
 
   scenario 'I can manage ExternalLinks' do
-    within '.header' do
-      click_on 'External Links'
-    end
+    click_on 'External Links'
     click_on 'New External Link'
     fill_in 'Text', with: text
     fill_in 'Url', with: url

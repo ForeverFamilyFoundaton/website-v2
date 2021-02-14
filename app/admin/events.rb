@@ -1,4 +1,6 @@
 ActiveAdmin.register Event do
+  menu false
+
   include ActionView::Helpers::TextHelper
 
   permit_params :title, :teaser, :description, :start_time, :end_time, :url, :pic_link
@@ -8,7 +10,9 @@ ActiveAdmin.register Event do
   markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true)
 
   index do
-    column :id
+    column 'Link' do |event|
+      link_to event_path(event), event
+    end
     column :title do |q|
       if q.url.present?
         link_to q.title, q.url, target: '_blank'

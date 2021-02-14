@@ -1,11 +1,12 @@
 ActiveAdmin.register Announcement do
+  menu false
   permit_params :body, :link, :button, :start_date, :end_date
 
   index do
-    column :body do |announcement|
-      link_to announcement.body, admin_announcement_path(announcement)
+    column :body
+    column :link, sortable: false do |announcement|
+      link_to 'Link', admin_announcement_path(announcement)
     end
-    column :link, sortable: false
     column 'Button text', :button, sortable: false
     column :start_date
     column :end_date

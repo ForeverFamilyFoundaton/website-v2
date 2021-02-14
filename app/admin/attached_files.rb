@@ -1,9 +1,6 @@
 ActiveAdmin.register AttachedFile do
   menu false
   index do
-    column 'ID' do |q|
-      q.id.to_s
-    end
     column 'Thumbnail (if image)' do |q|
       image_tag q.attachment.url(:thumb) if q.image?
     end
@@ -14,7 +11,7 @@ ActiveAdmin.register AttachedFile do
       q.attachment_content_type
     end
     column :updated_at
-    
+
     column "Actions" do |q|
       link_to "Delete", admin_attached_file_path(q, method: :delete)
     end
