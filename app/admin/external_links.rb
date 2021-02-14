@@ -1,4 +1,6 @@
 ActiveAdmin.register ExternalLink do
+  menu false
+
   config.filters = false
 
   permit_params :text, :url
@@ -6,7 +8,7 @@ ActiveAdmin.register ExternalLink do
   index do
     column :text
     column :url do |link|
-      link.url
+      raw link.url
     end
     actions
   end

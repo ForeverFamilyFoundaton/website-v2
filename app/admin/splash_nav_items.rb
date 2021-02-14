@@ -1,4 +1,12 @@
 ActiveAdmin.register SplashNavItem do
+  menu false
+
+  filter :cms_page
+  filter :title
+  filter :body
+  filter :created_at
+  filter :updated_at
+
   config.sort_order = 'row_order_asc'
   permit_params :title, :body, :image, :cms_page_id
 
@@ -49,7 +57,6 @@ ActiveAdmin.register SplashNavItem do
     column :image_data do |splash_nav_item|
       image_tag(splash_nav_item.image(:thumbnail).url) if splash_nav_item.image.present?
     end
-    column :row_order
     actions
     column 'Move', class: 'drag-handle' do
       div do

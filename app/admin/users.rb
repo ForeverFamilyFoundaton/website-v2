@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu false
+
   permit_params(
     :id,
     :password,

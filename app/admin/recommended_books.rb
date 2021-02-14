@@ -3,17 +3,15 @@ ActiveAdmin.register RecommendedBook do
   config.filters = false
   permit_params :title, :author, :amazon_link, :uk_amazon_link, :cad_amazon_link, recommended_book_category_ids: []
 
-  index do |recc_book|
-    column :id do |q|
-      q.id.to_s
-    end
+  index do
     column :title
     column 'Book Categories' do |f|
       f.try(:recommended_book_categories).map(&:name).to_sentence
     end
     column :author
-    column :amazon_link
-
+    column :amazon_link do |book|
+      link_to 'Link', book.amazon_link
+    end
     actions
   end
 

@@ -1,4 +1,5 @@
 ActiveAdmin.register CmsPage do
+  menu false
   filter :title
   filter :reference_string
   filter :parent, input_html: { class: 'js-select' }

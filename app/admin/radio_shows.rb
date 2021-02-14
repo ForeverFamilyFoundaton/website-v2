@@ -1,4 +1,6 @@
 ActiveAdmin.register RadioShow do
+  menu false
+
   config.sort_order = 'date_desc'
 
   permit_params :title, :guest, :instructions, :date, :format, embeded_links_attributes: {}, attached_file_attributes: {}

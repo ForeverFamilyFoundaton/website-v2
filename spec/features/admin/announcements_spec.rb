@@ -11,9 +11,7 @@ RSpec.feature 'As an Admin' do
   end
 
   scenario 'I can manage announcements' do
-    within '.header' do
-      click_on 'Announcements'
-    end
+    click_on 'Announcements'
     click_on 'New Announcement'
     fill_in 'Body', with: 'Test Body 1'
     fill_in 'announcement_link', with: 'http://test_site.com'
@@ -26,9 +24,7 @@ RSpec.feature 'As an Admin' do
 
 
   scenario 'creating an Announcement with overlapping dates fails' do
-    within '.header' do
-      click_on 'Announcements'
-    end
+    click_on 'Announcements'
     click_on 'New Announcement'
     fill_in 'Body', with: 'Test Body 1'
     fill_in 'announcement_link', with: 'http://test_site.com'
