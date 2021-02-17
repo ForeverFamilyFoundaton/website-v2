@@ -7,7 +7,6 @@ class AttachedFile < ApplicationRecord
 
   before_save :set_content_type
 
-  paperclip_opts.merge!( { bucket: Rails.application.credentials.aws[:bucket] } )
   #
   # explicitly set some content_type using file extension
   # if not one of the explicits, then default to what paperclip thinks it is
