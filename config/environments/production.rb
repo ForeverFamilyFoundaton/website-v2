@@ -16,10 +16,12 @@ Rails.application.configure do
   config.paperclip_defaults = {
     storage: :s3,
     preserve_files: true,
+    s3_protocol: :https,
     s3_credentials: {
       access_key_id: Rails.application.credentials.aws[:access_key_id],
       secret_access_key: Rails.application.credentials.aws[:secret_access_key],
-      s3_region: Rails.application.credentials.aws[:region]
+      s3_region: Rails.application.credentials.aws[:region],
+      bucket: Rails.application.credentials.aws[:bucket]
     }
   }
 

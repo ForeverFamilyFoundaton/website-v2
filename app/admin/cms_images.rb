@@ -1,5 +1,8 @@
 ActiveAdmin.register CmsImage do
   menu false
+
+  permit_params :title, :image, :caption
+
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "CMS Image", :multipart => true do
       f.input :title
@@ -18,17 +21,15 @@ ActiveAdmin.register CmsImage do
     end
     column :title
     column :caption
-    column "Actions" do |q|
-      link_to 'Show', admin_cms_image_path(q)
-    end
+    actions
   end
 
   show do
     h2 cms_image.title
+    h4 cms_image.image.url
+    h4 cms_image.caption
     div do
       image_tag cms_image.image.url
     end
-    p cms_image.image.url
-    p cms_image.caption
   end
 end
