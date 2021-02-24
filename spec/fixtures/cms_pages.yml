@@ -19,3 +19,7 @@ broadcast_schedule:
   reference_string: broadcast_schedule
   title: Broadcast Schedule
   slug: broadcast-schedule
+upcoming_events:
+  reference_string: upcoming_events
+  title: Upcoming Events
+  slug: upcoming-events
