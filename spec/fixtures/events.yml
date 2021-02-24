@@ -1,0 +1,4 @@
+one:
+  start_time: <%= 1.day.from_now %>
+  end_time: <%= 1.day.from_now + 3.hours %>
+  title: Event One
