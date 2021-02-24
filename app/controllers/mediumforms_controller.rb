@@ -32,12 +32,9 @@ class MediumformsController < ApplicationController
       if @mediumform.save
         if @mediumform.signature_checkbox
           @user = current_user
-          @user.medium_registration = false
           @user.save
         end
-        format.html { redirect_to root_path, notice: 'Mediumform was successfully created.' }
-        #format.html { redirect_to @mediumform, notice: 'Mediumform was successfully created.' }
-        #format.json { render :show, status: :created, location: @mediumform }
+        format.html { redirect_to current_user, notice: I18n.t('medium_registration.success') }
       else
         format.html { render :new }
         format.json { render json: @mediumform.errors, status: :unprocessable_entity }

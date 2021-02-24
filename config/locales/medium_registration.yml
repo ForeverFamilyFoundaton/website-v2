@@ -1,6 +1,8 @@
 en:
   medium_registration:
+    success: Medium registration completed.
     labels:
+      terms: I understand that checking this box constitutes a legal signature confirming that I warrant the truthfulness of the information provided in this document.
       other_activities_1: In the following space give contact information for any other businesses in which you are the primary owner
       other_activities_2: Do you work in any other fields related to Health, Healing, or Spirituality?
       other_activities_3: Do you do work in any other fields that are NOT related to Health, Healing, or Spirituality? Please provide details.
