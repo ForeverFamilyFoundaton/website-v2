@@ -33,6 +33,8 @@ RSpec.feature 'As a user' do
 
   context 'when logged in' do
     before do
+      clear_emails
+      user.update! medium_registration: true
       login_as user
     end
 
@@ -49,7 +51,7 @@ RSpec.feature 'As a user' do
 
     let(:cms_page) { CmsPage.find_by(reference_string: :medium_registration) }
 
-    scenario 'I can register to be a Medium' do
+    scenario 'I can register to be a Medium', :chrome do
       visit new_mediumform_path
       expect(page).to have_content cms_page.title
       within '.profile-details' do
@@ -88,6 +90,16 @@ RSpec.feature 'As a user' do
         fill_in 'Twitter', with: twitter
         fill_in 'Youtube', with: youtube
         fill_in 'Blog', with: blog
+      end
+      fill_in 'Electronic Signature', with: user.full_name
+      check I18n.t('medium_registration.labels.terms')
+
+      click_on 'Save'
+
+      expect(page).to have_content I18n.t('medium_registration.success')
+
+      within '.medium-registration' do
+        expect(page).to have_content 'Continue Registration'
       end
     end
   end
