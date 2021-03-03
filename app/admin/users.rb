@@ -75,6 +75,7 @@ ActiveAdmin.register User do
 
   filter :id
   filter :membership_number
+  filter :confirmed_at_not_null, as: :boolean, label: 'Confirmed?'
   filter :email
   filter :first_name
   filter :middle_name
