@@ -22,9 +22,9 @@ example_id                                            | status  | run_time      
 ./spec/features/announcement_spec.rb[1:1]             | passed  | 1 minute 14.95 seconds |
 ./spec/features/broadcast_schedule_spec.rb[1:1]       | passed  | 1.02 seconds           |
 ./spec/features/events_spec.rb[1:1]                   | passed  | 4.63 seconds           |
-./spec/features/medium_registration_spec.rb[1:1:1]    | passed  | 0.91156 seconds        |
-./spec/features/medium_registration_spec.rb[1:2:1:1]  | passed  | 1 minute 36.31 seconds |
-./spec/features/medium_registration_spec.rb[1:2:2]    | passed  | 13.6 seconds           |
+./spec/features/medium_registration_spec.rb[1:1:1]    | passed  | 3.75 seconds           |
+./spec/features/medium_registration_spec.rb[1:2:1:1]  | passed  | 0.98201 seconds        |
+./spec/features/medium_registration_spec.rb[1:2:2]    | passed  | 7.69 seconds           |
 ./spec/features/profile_preferences_spec.rb[1:1]      | failed  | 1 minute 16.72 seconds |
 ./spec/features/radio_archives_spec.rb[1:1]           | passed  | 0.8551 seconds         |
 ./spec/features/radio_archives_spec.rb[1:2]           | passed  | 0.98034 seconds        |

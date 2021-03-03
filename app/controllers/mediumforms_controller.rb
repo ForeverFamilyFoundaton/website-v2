@@ -33,6 +33,7 @@ class MediumformsController < ApplicationController
         if @mediumform.signature_checkbox
           @user = current_user
           @user.save
+          UserMailer.new_medium_registration_notification(@user).deliver
         end
         format.html { redirect_to current_user, notice: I18n.t('medium_registration.success') }
       else
