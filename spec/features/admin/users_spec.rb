@@ -50,11 +50,12 @@ RSpec.feature 'As an admin user' do
     expect(page).to have_content 'Preferences'
   end
 
-  context 'with an unconfirmed User' do
+  context 'with an unconfirmed, invalid User' do
     let(:unconfirmed_user) { users(:homer) }
 
     before do
       unconfirmed_user.update! confirmed_at: nil
+      unconfirmed_user.update_column :first_name, nil
     end
 
     scenario "I can manually confirm a User" do

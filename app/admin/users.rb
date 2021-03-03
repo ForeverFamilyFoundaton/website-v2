@@ -63,7 +63,7 @@ ActiveAdmin.register User do
   end
 
   member_action :confirm, method: :put do
-    resource.update! confirmed_at: Time.now
+    resource.update_column :confirmed_at, Time.now
     redirect_to admin_user_path(resource), notice: "User #{resource.email} has been confirmed."
   end
 
