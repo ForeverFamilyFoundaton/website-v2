@@ -6,7 +6,7 @@
     .card-body
       %h4= link_to event.title, (event.url.present? ? event.url : event), target: '_blank'
       - if event.teaser.present?
-        %p= event.teaser
+        %p= blog event.teaser
       - else
         %p= blog truncate(strip_tags(event.description), length: 200)
       - if event.pic_link.present?

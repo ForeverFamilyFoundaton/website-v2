@@ -21,6 +21,8 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/users_spec.rb[1:5:1]            | passed  | 1.09 seconds           |
 ./spec/features/announcement_spec.rb[1:1]             | passed  | 1 minute 14.95 seconds |
 ./spec/features/broadcast_schedule_spec.rb[1:1]       | passed  | 1.02 seconds           |
+./spec/features/events_spec.rb[1:1]                   | passed  | 3.68 seconds           |
+./spec/features/events_spec.rb[1:2:1]                 | passed  | 0.98014 seconds        |
 ./spec/features/medium_registration_spec.rb[1:1:1]    | passed  | 0.92518 seconds        |
 ./spec/features/medium_registration_spec.rb[1:2:1:1]  | passed  | 0.85896 seconds        |
 ./spec/features/medium_registration_spec.rb[1:2:2]    | passed  | 1.06 seconds           |
