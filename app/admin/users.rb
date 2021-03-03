@@ -48,6 +48,10 @@ ActiveAdmin.register User do
     link_to 'Un-Soft-Delete', un_soft_delete_admin_user_path(user), method: :put, data: { confirm: "Are you sure you want to UN-soft-delete this user?" }
   end
 
+  action_item :confirm, only: :show, if: proc{ user.confirmed_at.nil? } do
+    link_to 'Confirm', confirm_admin_user_path(user), method: :put, data: { confirm: "Manually confirm User?" }
+  end
+
   member_action :soft_delete, method: :delete do
     resource.discard
     redirect_to admin_users_path, notice: "User #{resource.id} has been soft-deleted."
@@ -56,6 +60,11 @@ ActiveAdmin.register User do
   member_action :un_soft_delete, method: :put do
     resource.undiscard
     redirect_to admin_users_path, notice: "User #{resource.id} has been reinstated."
+  end
+
+  member_action :confirm, method: :put do
+    resource.update! confirmed_at: Time.now
+    redirect_to admin_user_path(resource), notice: "User #{resource.email} has been confirmed."
   end
 
   controller do
@@ -88,14 +97,18 @@ ActiveAdmin.register User do
     column :last_name
     column :email, sortable: :email
     column :roles
-    # column :business_name, sortable: 'businesses.name' do |user|
-    #   user.business && user.business.name
-    # end
+    column 'Confirmed?' do |user|
+      user.confirmed_at? ? user.confirmed_at.to_s(:short) : false
+    end
+
     actions
   end
 
   show do |user|
     attributes_table do
+      row :confirmed_at do |user|
+        user.confirmed_at.nil? ? 'N/A' : user.confirmed_at.to_s(:short)
+      end
       row :deleted_at
       row :name do
         [user.first_name, user.middle_name, user.last_name].join(' ')

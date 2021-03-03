@@ -33,7 +33,7 @@ RSpec.feature 'As an admin user' do
     expect(page).to have_content('User was successfully updated.')
   end
 
-  it "should show a preference column" do
+  scenario "I see a preference column" do
     expect(page).to have_content "#{user.preferences.map(&:name).to_sentence}"
   end
 
@@ -48,5 +48,28 @@ RSpec.feature 'As an admin user' do
     expect(page).to have_content 'Address: zip'
     expect(page).to have_content 'Address: country'
     expect(page).to have_content 'Preferences'
+  end
+
+  context 'with an unconfirmed User' do
+    let(:unconfirmed_user) { users(:homer) }
+
+    before do
+      unconfirmed_user.update! confirmed_at: nil
+    end
+
+    scenario "I can manually confirm a User" do
+      visit current_path
+      within first("#index_table_users tr#user_#{unconfirmed_user.id}") do
+        within '.col-confirmed' do
+          expect(page).to have_content 'No'
+        end
+        click_on 'View'
+      end
+      click_on 'Confirm'
+      expect(page).to have_content(
+        "Confirmed At #{unconfirmed_user.reload.confirmed_at.to_s(:short)}"
+      )
+      expect(page).not_to have_button 'Confirm'
+    end
   end
 end
