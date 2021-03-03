@@ -1,6 +1,7 @@
 RSpec.feature 'As a user' do
   include_context 'User Profile Data'
   include_context 'Social Media Data'
+  let(:admin_user) { users(:admin) }
 
   let(:user) { users(:homer) }
   let(:other_activities_1) { Faker::Lorem.paragraph }
@@ -51,7 +52,7 @@ RSpec.feature 'As a user' do
 
     let(:cms_page) { CmsPage.find_by(reference_string: :medium_registration) }
 
-    scenario 'I can register to be a Medium', :chrome do
+    scenario 'I can register to be a Medium', :js do
       visit new_mediumform_path
       expect(page).to have_content cms_page.title
       within '.profile-details' do
@@ -101,6 +102,12 @@ RSpec.feature 'As a user' do
       within '.medium-registration' do
         expect(page).to have_content 'Continue Registration'
       end
+
+      open_email Rails.application.credentials.new_registration_notification_email
+      expect(current_email.subject).to eq 'New Medium Registration'
+      login_as admin_user
+      current_email.click_link user.full_name
+      expect(page).to have_content user.full_name
     end
   end
 end
