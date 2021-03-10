@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeLink = announcement.querySelector("a.close");
     const key = ["announcement", announcement.dataset.id].join("-");
 
-    console.log(key);
     if (Cookies.get(key) != undefined) {
       announcement.style.display = "none";
     } else {
