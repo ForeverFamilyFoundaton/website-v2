@@ -20,46 +20,24 @@ class MediumformsController < ApplicationController
     @mediumform = current_user.mediumform
 
     @user = User.find(@mediumform.user_id)
-    #   n = @mediumform.known_deads.count
-    #   (5-n).times {@mediumform.known_deads.build}
   end
 
   def create
-    @mediumform = Mediumform.new(mediumform_params)
-    @mediumform.user_id = current_user.id
+    @mediumform = current_user.build_mediumform(mediumform_params)
 
-    respond_to do |format|
-      if @mediumform.save
-        if @mediumform.signature_checkbox
-          @user = current_user
-          @user.save
-          UserMailer.new_medium_registration_notification(@user).deliver
-        end
-        format.html { redirect_to current_user, notice: I18n.t('medium_registration.success') }
-      else
-        format.html { render :new }
-        format.json { render json: @mediumform.errors, status: :unprocessable_entity }
-      end
+    if @mediumform.save
+      UserMailer.new_medium_registration_notification(current_user).deliver
+      redirect_to current_user, notice: I18n.t('medium_registration.success')
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      #if @mediumform.update(mediumform_params)
-      if @mediumform.update_attributes mediumform_params
-        if @mediumform.signature_checkbox
-          @user = current_user
-          @user.medium_registration = false
-          @user.save
-        end
-        if @mediumform.signature_checkbox
-          format.html { redirect_to current_user, notice: 'Mediumform was successfully completed.' }
-        else
-          format.html { redirect_to current_user, notice: 'Mediumform was successfully updated.' }
-        end
-      else
-        format.html { render :edit }
-      end
+    if @mediumform.update mediumform_params
+      redirect_to current_user, notice: I18n.t('medium_registration.success')
+    else
+      render :edit
     end
   end
 
