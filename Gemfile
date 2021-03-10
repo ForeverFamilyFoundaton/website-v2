@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.7.2'
 gem 'rails', '~> 6.0.3'
 
 gem 'activeadmin', '~> 2.8.1'
@@ -12,9 +12,11 @@ gem 'bootsnap', require: false
 gem 'bootstrap'
 gem 'cancancan'
 gem 'country_select'
+gem "data_migrate", "~> 6.6"
 gem 'devise'
 gem 'devise_invitable'
 gem 'discard'
+gem "friendly_id", "~> 5.4"
 gem 'haml-rails'
 gem 'image_processing'
 gem 'jbuilder'
@@ -67,7 +69,3 @@ group :test do
   gem 'webdrivers'
   gem 'webmock'
 end
-
-gem "friendly_id", "~> 5.4"
-
-gem "data_migrate", "~> 6.6"
