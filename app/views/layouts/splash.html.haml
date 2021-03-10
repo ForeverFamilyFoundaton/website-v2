@@ -8,7 +8,7 @@
     %meta{content: '', name: 'description'}
     %meta{content: '', name: 'author'}
     %meta{ content: Rails.application.credentials.stripe[:public_key], name: 'stripe-public-key' }
-
+    = render 'layouts/google_analytics'
     = render 'layouts/icons'
 
     %title Forever Family Foundation
