@@ -6,20 +6,18 @@
   %span.navbar-toggler-icon
 #navbar.collapse.navbar-collapse
   %ul.navbar-nav.ml-auto
-    %li.nav-item
-      %a.nav-link{ href: '/pages/signs-of-life-radio', class: active_class('/pages/signs-of-life-radio')} Signs of Life Radio
-    %li.nav-item
-      %a.nav-link{ href: '/pages/mediumship', class: active_class('/pages/mediumship') } Mediumship
-    %li.nav-item
-      %a.nav-link{ href: '/pages/afterlife-science', class: active_class('/pages/afterlife-science') } Afterlife Science
-    %li.nav-item
-      %a.nav-link{ href: '/pages/grief-and-loss', class: active_class('/pages/grief-and-loss') } Grief & Loss
-    %li.nav-item
-      %a.nav-link{ href: '/pages/volunteers', class: active_class('/pages/volunteers') } Volunteers
-    %li.nav-item
-      %a.nav-link{ href: '/pages/upcoming-events', class: active_class('/pages/upcoming-events') } Events
-    %li.nav-item
-      %a.nav-link{ href: '/pages/about-us', class: active_class('/pages/about-us') } About Us
+    - @nav_items.each do |nav_item|
+      - if !nav_item.children.empty?
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button", class: active_class(nav_item.title)}= nav_item.title
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            %a.dropdown-item{ href: page_path(nav_item) }= nav_item.title
+            - nav_item.children.each do |child|
+              %a.dropdown-item{ href: page_path(child) }= child.title
+      - else
+        %li.nav-item
+          %a.nav-link{ href: page_path(nav_item), class: page_path(nav_item) }= nav_item.title
+
     - if user_signed_in?
       %li.nav-item
         %a.nav-link{ href: user_path(current_user), class: active_class(user_path(current_user)) }= fa_icon :user, class: :fas
