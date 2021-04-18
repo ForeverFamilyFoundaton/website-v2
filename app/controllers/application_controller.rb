@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :get_announcement
+  before_action :set_main_nav
 
   private
+
+  def set_main_nav
+    @nav_items = CmsPage.nav_items
+  end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
