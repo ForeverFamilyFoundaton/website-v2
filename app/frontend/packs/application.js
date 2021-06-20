@@ -3,7 +3,8 @@ require("@rails/activestorage").start();
 require("channels");
 
 import "@fortawesome/fontawesome-pro/js/all.js";
-import "bootstrap";
+// import "bootstrap";
+import 'js/bootstrap.js'
 import "src/stripe";
 import "src/password-toggle";
 import "src/user-preference-selection-form";
