@@ -8,17 +8,17 @@ Rails.application.configure do
     host: Rails.application.credentials.base_domain
   }
 
-  config.paperclip_defaults = {
-    storage: :s3,
-    preserve_files: true,
-    s3_protocol: :https,
-    s3_credentials: {
-      access_key_id: Rails.application.credentials.aws[:access_key_id],
-      secret_access_key: Rails.application.credentials.aws[:secret_access_key],
-      s3_region: Rails.application.credentials.aws[:region],
-      bucket: Rails.application.credentials.aws[:bucket]
-    }
-  }
+  # config.paperclip_defaults = {
+    # storage: :file,
+    # preserve_files: true
+    # s3_protocol: :https,
+    # s3_credentials: {
+    #   access_key_id: Rails.application.credentials.aws[:access_key_id],
+    #   secret_access_key: Rails.application.credentials.aws[:secret_access_key],
+    #   s3_region: Rails.application.credentials.aws[:region],
+    #   bucket: Rails.application.credentials.aws[:bucket]
+    # }
+  # }
 
   # Settings specified here will take precedence over those in config/application.rb.
 
