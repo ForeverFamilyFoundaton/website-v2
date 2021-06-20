@@ -2,6 +2,6 @@ import "../stylesheets/active_admin";
 
 import "@activeadmin/activeadmin";
 
-import "src/syntax-highlighter";
-import "src/admin-sort";
-import "src/select-lists";
+import "js/syntax-highlighter";
+import "js/admin-sort";
+import "js/select-lists";
