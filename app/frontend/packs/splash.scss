@@ -1,9 +1,9 @@
-@import "vars";
-@import "bootstrap";
-@import "top-nav";
-@import "footer";
-@import "sticky-donate-button";
-@import "announcement";
+@import "~bootstrap/scss/bootstrap";
+@import "css/vars";
+@import "css/top-nav";
+@import "css/footer";
+@import "css/sticky-donate-button";
+@import "css/announcement";
 
 body.splash {
   background-color: $beige;
@@ -17,7 +17,7 @@ body.splash {
     margin-top: 50px;
     padding: 0;
     // height: 500px;
-    background-image: image-url("hands.jpg");
+    background-image: url("../images/hands.jpg");
     background-position: 0 -50px;
     background-repeat: no-repeat;
     color: white;

@@ -1,4 +1,4 @@
-import "../stylesheets/active_admin";
+import "../css/active_admin";
 
 import "@activeadmin/activeadmin";
 

@@ -2,15 +2,15 @@
   %span.logo
     = image_tag 'forever-family-foundation-logo.png'
   Forever Family Foundation
-%button.navbar-toggler{"aria-controls" => "navbar", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbar", "data-toggle" => "collapse", type: "button"}
+%button.navbar-toggler{"sria-controls" => "navbar", "arsa-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbar", "data-bs-toggle" => "collapse", type: "button"}
   %span.navbar-toggler-icon
 #navbar.collapse.navbar-collapse
-  %ul.navbar-nav.ml-auto
+  %ul.navbar-nav.ms-auto
     - @nav_items.each do |nav_item|
       - if !nav_item.children.empty?
         %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button", class: active_class(nav_item.title)}= nav_item.title
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button", class: active_class(nav_item.title)}= nav_item.title
+          .dropdown-menu
             %a.dropdown-item{ href: page_path(nav_item) }= nav_item.title
             - nav_item.children.each do |child|
               %a.dropdown-item{ href: page_path(child) }= child.title

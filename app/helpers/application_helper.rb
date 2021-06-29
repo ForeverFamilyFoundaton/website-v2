@@ -8,7 +8,8 @@ module ApplicationHelper
       :i,
       nil,
       class: ([:far, "fa-#{icon}"] << opts[:class]),
-      data: opts[:data]
+      data: opts[:data],
+      id: opts[:id]
     )
   end
 

@@ -14,8 +14,8 @@
     %title Forever Family Foundation
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&display=swap', media: 'all'
-    = stylesheet_link_tag 'splash'
-    = javascript_pack_tag 'splash'
+    = stylesheet_pack_tag 'splash', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'splash', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
 
   %body.splash.text-center

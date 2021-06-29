@@ -2,14 +2,13 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.3'
 
-gem 'activeadmin', '~> 2.8.1'
+gem 'activeadmin'
 gem 'acts_as_tree'
 gem 'aws-sdk-s3'
 gem 'bcrypt'
 gem 'bootsnap', require: false
-gem 'bootstrap'
 gem 'cancancan'
 gem 'country_select'
 gem "data_migrate", "~> 6.6"
