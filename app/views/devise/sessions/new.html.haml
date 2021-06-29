@@ -1,10 +1,14 @@
 = render  'layouts/cms_page' if @cms_page
 .row
-  .col-sm-6
+  .col-sm-5
     = simple_form_for resource, as: resource_name, url: session_path(resource_name), wrapper: :input_group do |f|
       .form-inputs
-        = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }
-        = f.input :password, append: fa_icon(:eye, class: 'toggle-password', data: { toggle: '#user_password'}), required: false, input_html: { autocomplete: "current-password" }
+        = f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }, label: false, placeholder: "Email..."
+        .form-group.mt-2
+          .input-group
+            = f.password_field :password, class: 'form-control', placeholder: "Password...", input_html: { autocomplete: "password", id: "session-password" }
+            %span.input-group-text.toggle-password
+              = fa_icon :eye, data: { toggle: '#user_password'}, id: "password-visibility-toggle"
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
       .form-actions
         = f.button :submit, "Log in", class: 'btn btn-primary'

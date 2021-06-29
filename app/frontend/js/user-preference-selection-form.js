@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  $("form#user-preference-selection-form")
-    .find('input[type="checkbox"]')
-    .change(function () {
-      if (confirm("Update your preferences?")) {
-        $(this).closest("form").submit();
-      }
-    });
+  form = document.getElementById("user-preference-selection-form");
+
+  form.querySelector('input[type="checkbox"]').addEventListener('change', function() {
+    if (confirm("Update your preferences?")) {
+      form.submit();
+    }
+  });
 });

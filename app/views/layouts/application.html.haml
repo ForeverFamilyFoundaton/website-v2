@@ -5,19 +5,17 @@
     %meta{content: 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}
     %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
     / The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
-    %meta{content: '', name: 'description'}
-    %meta{content: '', name: 'author'}
-    %meta{ content: Rails.application.credentials.stripe[:public_key], name: 'stripe-public-key' }
+    %meta{content: 'Forever Family Foundation', name: 'description'}
+    %meta{content: 'Forever Family Foundation', name: 'author'}
 
     = render 'layouts/icons'
 
     %title Forever Family Foundation
 
     = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;700&display=swap', media: 'all'
-    = javascript_include_tag 'https://js.stripe.com/v3'
+    = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
-    =# stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
     = csrf_meta_tags
     %meta{ :name => "google-site-verification", :content => "_-Z13VKqTU87EsG5DN6DXNWEqfnzw9JP8Tvfcqf8cpU" }
     = render 'layouts/google_analytics'

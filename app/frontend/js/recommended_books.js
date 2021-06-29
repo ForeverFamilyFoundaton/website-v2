@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  $(".usamazonbutton a").text("Amazon USA");
-  $(".ukamazonbutton a").text("Amazon UK");
-  $(".cadamazonbutton a").text("Amazon Canada");
+  document.querySelector(".usamazonbutton a").innerText = "Amazon USA";
+  document.querySelector(".ukamazonbutton a").innerText = "Amazon UK";
+  document.querySelector(".cadamazonbutton a").innerText = "Amazon Canada";
 });
