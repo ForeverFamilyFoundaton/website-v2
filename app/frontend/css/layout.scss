@@ -17,3 +17,14 @@ body {
 .row {
   margin-bottom: $margin;
 }
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+small {
+  font-size: 1rem;
+}
