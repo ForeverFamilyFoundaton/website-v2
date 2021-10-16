@@ -5,13 +5,15 @@
   width: 100%;
   color: white;
   background-color: $light-purple;
-  position: relative;
-  top: 55px;
+
   a.link {
     margin-left: $margin;
   }
+
   a.close {
     float: right;
     cursor: pointer;
+    color: lightgray;
+    margin: auto;
   }
 }

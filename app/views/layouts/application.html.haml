@@ -23,9 +23,8 @@
   %body.main
     = render 'layouts/announcement', announcement: @current_announcement
     = render 'layouts/donate_button'
-    %nav.top-nav.fixed-top.navbar.navbar-expand-lg.navbar-dark
-      = render 'layouts/top_nav'
-    .container-fluid
+    = render 'layouts/top_nav', nav_placement: :main
+    .container-fluid.main
       = render 'layouts/messages'
       = yield
     = render 'layouts/footer'

@@ -4,6 +4,7 @@
 @import "css/footer";
 @import "css/sticky-donate-button";
 @import "css/announcement";
+@import "css/layout";
 
 body.splash {
   background-color: $beige;
@@ -14,9 +15,7 @@ body.splash {
   padding: 0;
 
   .masthead {
-    margin-top: 50px;
     padding: 0;
-    // height: 500px;
     background-image: url("../images/hands.jpg");
     background-position: 0 -50px;
     background-repeat: no-repeat;
