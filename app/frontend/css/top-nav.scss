@@ -1,19 +1,24 @@
-body.splash nav {
-  background-color: white;
+body.splash {
+  nav#top-nav{
+    background-color: white;
+    &.scrolled {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
 }
-body.main nav {
-  background-color: $purple;
+body.main {
+  nav#top-nav {
+    background-color: $purple;
+  }
 }
 
-nav.top-nav.navbar {
+nav#top-nav {
   transition: background 1s;
+
+  font-size: 0.9rem;
 
   li a {
     line-height: 25px;
-  }
-
-  &.scrolled {
-    background: rgba(255, 255, 255, 0.5);
   }
 
   span.logo {
@@ -22,16 +27,13 @@ nav.top-nav.navbar {
     }
   }
 
-  a.navbar-brand {
-    text-align: left;
-    line-height: 1.5rem;
-  }
-
-  .nav-link.login {
-    padding: 5px;
-  }
-
   .become-a-member {
     margin: auto $margin / 2;
+    line-height: 25px;
+  }
+
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.5);
+    // position: sticky;
   }
 }

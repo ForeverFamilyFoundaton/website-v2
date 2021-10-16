@@ -1,15 +1,18 @@
-@import "css/vars";
 @import "~bootstrap/scss/bootstrap";
+@import "css/vars";
 @import "css/top-nav";
-@import "css/layout";
-@import "css/cms-page";
 @import "css/footer";
 @import "css/sticky-donate-button";
+@import "css/announcement";
+@import "css/layout";
+
+@import "css/cms-page";
 @import "css/user-show";
 @import "css/user-edit";
 @import "css/cards";
 @import "css/cms-collection";
 @import "css/events";
 @import "css/radio-shows";
-@import "css/announcement";
 @import "css/recommended_books";
+
+

@@ -19,8 +19,8 @@
     = csrf_meta_tags
 
   %body.splash.text-center
-    %nav#splash-nav.top-nav.fixed-top.navbar.navbar-expand-lg.navbar-light
-      = render 'layouts/top_nav'
     = render 'layouts/announcement', announcement: @current_announcement
+    = render 'layouts/donate_button'
+    = render 'layouts/top_nav', nav_placement: :splash
     = yield
     = render 'layouts/footer'
