@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "codemirror": "^5.56.0",
-    "elliptic": "^6.5.3",
+    "elliptic": "^6.5.4",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",
     "minimist": "^1.2.3",
