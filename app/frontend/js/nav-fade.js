@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (topNav) {
     window.onscroll = function () {
       if (window.pageYOffset > 450) {
-        console.log('sh')
         topNav.classList.add("scrolled");
       } else {
         topNav.classList.remove("scrolled");
