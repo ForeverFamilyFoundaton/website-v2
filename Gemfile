@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '2.7.3'
 gem 'rails', '~> 6.1.3'
+gem 'puma', '~> 4.3.5'
 
 gem 'activeadmin'
 gem 'acts_as_tree'
@@ -23,7 +24,6 @@ gem 'kaminari'
 gem 'paperclip'
 gem 'pg'
 gem 'phony_rails'
-gem 'puma'
 gem 'pundit'
 gem 'ranked-model'
 gem 'ransack'
