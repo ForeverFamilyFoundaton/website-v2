@@ -22,8 +22,9 @@
             %li.nav-item
               %a.nav-link{ href: page_path(nav_item), class: page_path(nav_item) }= nav_item.title
 
+      %ul.navbar-nav.float-end
         - if user_signed_in?
-          %li.nav-item
+          %li.nav-item.float-end
             %a.nav-link{ href: user_path(current_user), class: active_class(user_path(current_user)) }= fa_icon :user, class: :fas
           %li.nav-item
             = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
