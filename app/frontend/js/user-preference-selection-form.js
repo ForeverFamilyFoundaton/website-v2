@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
   form = document.getElementById("user-preference-selection-form");
 
   if (form) {
-    form.querySelector('input[type="checkbox"]').addEventListener('change', function() {
-      if (confirm("Update your preferences?")) {
-        form.submit();
-      }
-    });
+    const checkBoxes = form.querySelectorAll('input[type="checkbox"]')
+
+    checkBoxes.forEach(el => el.addEventListener('click', event => {
+      confirm("Update your preferences?") && form.submit()
+    }));
   }
 });
