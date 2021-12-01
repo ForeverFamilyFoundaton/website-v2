@@ -39,6 +39,7 @@ class SitterformsController < ApplicationController
         @user.sitter_registration = false
         @user.save
       end
+      UserMailer.new_sitter_registration_notification(current_user).deliver
       redirect_to current_user, notice: 'Sitterform was successfully created.'
     else
       render :new

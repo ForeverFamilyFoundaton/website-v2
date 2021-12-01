@@ -20,6 +20,9 @@ ActiveAdmin.register Sitterform do
     attributes_table do
       row :id
       row :user_id
+      row :name do |sitterform|
+        sitterform.user.full_name
+      end
       row :phone
       row :cell
       row :alt_email

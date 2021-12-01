@@ -3,8 +3,10 @@ RSpec.feature 'As a User' do
   include_context 'Social Media Data'
 
   let(:user) { users(:homer) }
+  let(:admin_user) { users(:admin) }
 
   before do
+    clear_emails
     login_as user
     visit user_path(user)
   end
@@ -66,6 +68,11 @@ RSpec.feature 'As a User' do
       expect(page).to have_field 'Youtube', with: youtube
       expect(page).to have_field 'Blog', with: blog
 
+      open_email Rails.application.credentials.new_registration_notification_email
+      expect(current_email.subject).to eq 'New Sitter Registration'
+      login_as admin_user
+      current_email.click_link user.full_name
+      expect(page).to have_content user.full_name
     end
   end
 end
