@@ -30,7 +30,7 @@ RSpec.feature 'As an Admin' do
     expect(page).to have_content new_title
   end
 
-  scenario 'I can sort SplashNavitems', :js do
+  scenario 'I can sort SplashNavitems', :chrome do
     visit admin_splash_nav_items_path
     within 'tr.splash-nav-item:nth-child(1)' do
       expect(page).to have_content item_1.title
@@ -45,7 +45,7 @@ RSpec.feature 'As an Admin' do
     target = page.find("#splash_nav_item_#{item_1.id}")
     source.drag_to target
     visit admin_splash_nav_items_path
-    within 'tr.splash-nav-item:nth-child(1)' do
+    within 'tr.splash-nav-item:nth-child(2)' do
       expect(page).to have_content item_3.title
     end
   end
