@@ -10,7 +10,7 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: /master/
+              only: /main/
           requires:
             - build_and_test
 jobs:
@@ -96,7 +96,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          only-branch: master
+          only-branch: main
       - run:
           name: Heroku post-deploy steps
           command: |
