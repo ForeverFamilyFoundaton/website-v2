@@ -1,52 +1,54 @@
+%p Please answer all questions to the best of you ability and do not leave any blank spaces.      If you do not have a specific answer to the question, please type "none" into the field.
+
+%p
+  %strong
+    Your responses will determine your eligibility to participate in this program.
+%p
+  You do not need to fill out the form in one sitting and may return to this form as often as necessary until you sign and check the signature box for final submission.
+
+%h2 Forever Family Foundation Information
+.row
+  .col-sm
+    %ul.profile-details
+      %li
+        %strong First Name:
+        = @sitterform.user.first_name
+      %li
+        %strong Middle Name:
+        = @sitterform.user.middle_name
+      %li
+        %strong Last Name:
+        = @sitterform.user.last_name
+      %li
+        %strong Cell Phone:
+        = @sitterform.user.cell_phone
+      %li
+        %strong Work Phone:
+        = @sitterform.user.work_phone
+      %li
+        %strong Home Phone:
+        = @sitterform.user.home_phone
+
+    - if @sitterform.user.address.present?
+      .col-sm
+        %ul.address
+          %li
+            %strong Address:
+            = @sitterform.user.address.address
+          %li
+            %strong City:
+            = @sitterform.user.address.city
+          %li
+            %strong State:
+            = @sitterform.user.address.state
+          %li
+            %strong Zip:
+            = @sitterform.user.address.zip
+          %li
+            %strong Country:
+            = @sitterform.user.address.country
+
 = simple_form_for @sitterform do |f|
-  %p Please answer all questions to the best of you ability and do not leave any blank spaces.      If you do not have a specific answer to the question, please type "none" into the field.
-
-  %p
-    %strong
-      Your responses will determine your eligibility to participate in this program.
-  %p
-    You do not need to fill out the form in one sitting and may return to this form as often as necessary until you sign and check the signature box for final submission.
-
-  %h2 Forever Family Foundation Information
-  .row
-    .col-sm
-      %ul.profile-details
-        %li
-          %strong First Name:
-          = @sitterform.user.first_name
-        %li
-          %strong Middle Name:
-          = @sitterform.user.middle_name
-        %li
-          %strong Last Name:
-          = @sitterform.user.last_name
-        %li
-          %strong Cell Phone:
-          = @sitterform.user.cell_phone
-        %li
-          %strong Work Phone:
-          = @sitterform.user.work_phone
-        %li
-          %strong Home Phone:
-          = @sitterform.user.home_phone
-    .col-sm
-      %ul.address
-        %li
-          %strong Address:
-          = @sitterform.user.address.address
-        %li
-          %strong City:
-          = @sitterform.user.address.city
-        %li
-          %strong State:
-          = @sitterform.user.address.state
-        %li
-          %strong Zip:
-          = @sitterform.user.address.zip
-        %li
-          %strong Country:
-          = @sitterform.user.address.country
-
   .social-media
     %h2 Social Networking
     %p

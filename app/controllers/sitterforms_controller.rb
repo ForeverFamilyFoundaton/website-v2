@@ -35,7 +35,6 @@ class SitterformsController < ApplicationController
     if @sitterform.save
       if @sitterform.signature_checkbox
         @user = current_user
-        @user.sitter_registration = false
         @user.save
       end
       UserMailer.new_sitter_registration_notification(current_user).deliver
