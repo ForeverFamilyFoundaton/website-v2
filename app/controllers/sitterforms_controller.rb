@@ -6,13 +6,12 @@ class SitterformsController < ApplicationController
   end
 
   def new
-    @user = User.find(current_user.id)
-    if Sitterform.exists?(user_id: current_user.id)
-      @sitterform = Sitterform.find_by(user_id: current_user.id)
+    @sitterform = Sitterform.find_by(user_id: current_user.id)
+    if @sitterform
       build_known_deads
       redirect_to action: 'edit', id: @sitterform.id
     else
-      @sitterform = Sitterform.new()
+      @sitterform = Sitterform.new(user: current_user)
       build_known_deads
     end
     @relationships = Relationship.all
