@@ -1,6 +1,6 @@
 # README
 
-Forever Family Foundation Website.
+Forever Family Foundation V2 Website.
 
 - cleanup cms page controller to use reference-string, not slug
 - Email on registration
