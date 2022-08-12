@@ -12,10 +12,11 @@ jobs:
       - image: "cimg/ruby:3.1.2-node"
     steps:
       - checkout
-      - run: node --version
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
+      - node/install:
+          install-yarn: true
+          node-version: "14.20"
+      - run: node --version
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
