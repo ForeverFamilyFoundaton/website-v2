@@ -12,8 +12,8 @@ example_id                                            | status  | run_time      
 ./spec/features/admin/preferences_spec.rb[1:1]        | passed  | 0.88581 seconds |
 ./spec/features/admin/radio_shows_spec.rb[1:1]        | passed  | 1.06 seconds    |
 ./spec/features/admin/soft_delete_user_spec.rb[1:1]   | passed  | 2.76 seconds    |
-./spec/features/admin/splash_nav_items_spec.rb[1:1]   | passed  | 2.01 seconds    |
-./spec/features/admin/splash_nav_items_spec.rb[1:2]   | passed  | 3.55 seconds    |
+./spec/features/admin/splash_nav_items_spec.rb[1:1]   | passed  | 1.89 seconds    |
+./spec/features/admin/splash_nav_items_spec.rb[1:2]   | passed  | 2.97 seconds    |
 ./spec/features/admin/users_spec.rb[1:1]              | passed  | 0.93237 seconds |
 ./spec/features/admin/users_spec.rb[1:2]              | passed  | 0.94069 seconds |
 ./spec/features/admin/users_spec.rb[1:3]              | passed  | 0.79981 seconds |
