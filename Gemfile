@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.3"
+ruby "3.1.2"
 gem "rails", "~> 6.1"
 gem "puma", "~> 5.5"
 
@@ -39,6 +39,10 @@ gem "stripe", "~> 5.41"
 gem "stripe_event", "~> 2.3"
 gem "turbolinks", "~> 5.2"
 gem "webpacker", "~> 5.4"
+gem "net-smtp", "~> 0.3.1"
+gem "net-pop", "~> 0.1.1"
+gem "net-imap", "~> 0.2.3"
+
 
 group :development, :test do
   gem "byebug", "~> 11.1"
@@ -46,7 +50,7 @@ end
 
 group :development do
   gem "web-console", "~> 4.2"
-  gem "listen", "~> 3.1", "< 3.2"
+  gem "listen", "~> 3.7"
   gem "spring", "~> 2.1"
   gem "spring-watcher-listen", "~> 2.0"
 end
