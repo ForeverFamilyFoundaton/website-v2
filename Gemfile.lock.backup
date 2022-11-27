@@ -424,63 +424,63 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  activeadmin (~> 2.9)
-  acts_as_tree (~> 2.9)
-  aws-sdk-s3 (~> 1.117)
-  bcrypt (~> 3.1)
-  bootsnap (~> 1.15)
-  byebug (~> 11.1)
-  cancancan (~> 3.4)
-  capybara (~> 3.38)
-  capybara-email (~> 3.0)
-  country_select (~> 8.0)
-  data_migrate (~> 6.8)
-  database_cleaner (~> 2.0)
-  devise (~> 4.8)
-  devise_invitable (~> 2.0)
-  discard (~> 1.2)
-  email_spec (~> 2.2)
-  factory_bot_rails (~> 6.2)
-  faker (~> 3.0)
-  friendly_id (~> 5.5)
-  fuubar (~> 2.5)
-  haml-rails (~> 2.1)
-  image_processing (~> 1.12)
-  jbuilder (~> 2.11)
-  kaminari (~> 1.2)
-  kt-paperclip (~> 7.1)
-  listen (~> 3.0, < 3.2)
-  net-smtp (~> 0.3)
-  pg (~> 1.4)
-  phony_rails (~> 0.15)
-  puma (~> 5.5)
-  pundit (~> 2.2)
-  rails (~> 6.1)
-  ranked-model (~> 0.4)
-  ransack (~> 2.6)
-  rb-readline (~> 0.5)
-  recaptcha (~> 5.12)
-  redcarpet (~> 3.5)
-  rollbar (~> 3.3)
-  rspec-rails (~> 6.0)
-  rspec_junit_formatter (~> 0.2)
-  sassc-rails (~> 2.1)
-  selenium-webdriver (~> 4.6)
-  shoulda-matchers (~> 5.2)
-  shrine (~> 3.4)
-  sidekiq (~> 7.0)
-  simple_form (~> 5.1)
-  spring (~> 4.1)
-  spring-watcher-listen (~> 2.1)
-  stripe (~> 7.1)
-  stripe_event (~> 2.6)
-  timecop (~> 0.9)
-  turbolinks (~> 5.2)
-  vcr (~> 6.1)
-  web-console (~> 4.2)
-  webdrivers (~> 5.2)
-  webmock (~> 3.18)
-  webpacker (~> 5.4)
+  activeadmin (~> 2.9.0)
+  acts_as_tree
+  aws-sdk-s3
+  bcrypt
+  bootsnap
+  byebug
+  cancancan
+  capybara
+  capybara-email
+  country_select
+  data_migrate (~> 6.6)
+  database_cleaner
+  devise
+  devise_invitable
+  discard
+  email_spec
+  factory_bot_rails
+  faker
+  friendly_id (~> 5.4)
+  fuubar
+  haml-rails
+  image_processing
+  jbuilder
+  kaminari
+  kt-paperclip
+  listen (>= 3.0.5, < 3.2)
+  net-smtp (~> 0.3.3)
+  pg
+  phony_rails
+  puma (~> 5.5.1)
+  pundit
+  rails (~> 6.1.3)
+  ranked-model
+  ransack
+  rb-readline
+  recaptcha
+  redcarpet
+  rollbar
+  rspec-rails
+  rspec_junit_formatter (= 0.2.3)
+  sassc-rails
+  selenium-webdriver
+  shoulda-matchers
+  shrine
+  sidekiq
+  simple_form
+  spring
+  spring-watcher-listen
+  stripe
+  stripe_event
+  timecop
+  turbolinks
+  vcr
+  web-console
+  webdrivers
+  webmock
+  webpacker
 
 RUBY VERSION
    ruby 3.1.2p20
