@@ -28,7 +28,7 @@
             %a.nav-link{ href: user_path(current_user), class: active_class(user_path(current_user)) }= fa_icon :user, class: :fas
           %li.nav-item
             = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
-              = fa_icon 'sign-out-alt', class: :fas
+              Logout
           - if current_user.admin?
             %li.nav-item
               %a.nav-link{ href: admin_dashboard_path }
@@ -38,4 +38,4 @@
             %a.become-a-member.btn.btn-warning{ href: new_user_registration_path } Become a member!
           %li.nav-item
             %a.nav-link.login{href: new_user_session_path, class: active_class(new_user_session_path)}
-              = fa_icon('sign-in-alt', class: :fas)
+              Login
