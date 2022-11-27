@@ -21,6 +21,8 @@
     = render 'layouts/google_analytics'
 
   %body.main
+    %noscript
+      %iframe{:height => "0", :src => "https://www.googletagmanager.com/ns.html?id=GTM-K55ZRN3", :style => "display:none;visibility:hidden", :width => "0"}
     = render 'layouts/announcement', announcement: @current_announcement
     = render 'layouts/donate_button'
     = render 'layouts/top_nav', nav_placement: :main
