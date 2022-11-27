@@ -182,7 +182,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.semantic_errors *f.object.errors.keys
+    f.semantic_errors *f.object.errors.attribute_names
     f.inputs "Details" do
       f.input :first_name
       f.input :middle_name
