@@ -1,5 +1,5 @@
 body.splash {
-  nav#top-nav{
+  nav#top-nav {
     background-color: white;
     &.scrolled {
       background: rgba(255, 255, 255, 0.5);
@@ -29,8 +29,9 @@ nav#top-nav {
   }
 
   .become-a-member {
-    margin: auto $margin / 2;
-    line-height: 25px;
+    margin: auto;
+    font-size: 0.75rem;
+    // line-height: 25px;
   }
 
   &.scrolled {
