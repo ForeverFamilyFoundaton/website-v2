@@ -17,7 +17,7 @@ jobs:
   build_and_test:
     working_directory: ~/forever-family-foundation
     docker:
-      - image: circleci/ruby:2.7.3-node-browsers
+      - image: circleci/ruby:2.7.6-node-browsers
         environment:
           PGHOST: localhost
           PGUSER: circleci
