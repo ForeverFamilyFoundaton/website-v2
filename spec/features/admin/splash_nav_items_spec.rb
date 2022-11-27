@@ -30,7 +30,7 @@ RSpec.feature 'As an Admin' do
     expect(page).to have_content new_title
   end
 
-  scenario 'I can sort SplashNavitems', :chrome do
+  scenario 'I can sort SplashNavitems', :js do
     visit admin_splash_nav_items_path
     within 'tr.splash-nav-item:nth-child(1)' do
       expect(page).to have_content item_1.title
