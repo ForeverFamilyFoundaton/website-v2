@@ -4,8 +4,8 @@
     .card {
       .card-header {
         font-size: 1rem;
-        padding-top: $margin / 2;
-        padding-bottom: $margin / 2;
+        padding-top: calc($margin / 2);
+        padding-bottom: calc($margin / 2);
       }
       .card-body {
         p:last-child {
