@@ -1,6 +1,6 @@
 #announcement {
   text-align: center;
-  padding: $margin / 2 $margin;
+  padding: calc($margin / 2) $margin;
   font-size: 1rem;
   width: 100%;
   color: white;

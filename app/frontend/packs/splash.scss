@@ -9,6 +9,7 @@
 body.splash {
   background-color: $beige;
   color: #2f1904;
+  text-decoration: none;
 }
 
 .splash-page {
@@ -53,7 +54,7 @@ body.splash {
           width: 80%;
           padding: 0;
           margin: auto;
-          margin-bottom: $margin / 2;
+          margin-bottom: calc($margin / 2);
           text-align: center;
         }
         a {

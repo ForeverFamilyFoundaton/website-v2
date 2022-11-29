@@ -7,24 +7,24 @@
       border: 1px solid $purple;
       border-width: 0 0 1px 0;
       width: 80%;
-      margin: 0 auto $margin / 4 auto;
+      margin: 0 auto calc($margin / 4) auto;
     }
 
     h3 {
       color: $purple;
       font-size: 1rem;
       width: 80%;
-      margin: $margin / 2 auto;
+      margin: calc($margin / 2) auto;
     }
   }
   .child-nav {
     a {
-      margin: $margin / 4;
+      margin: calc($margin / 4);
     }
   }
 
   .content {
-    margin-top: $margin / 4;
+    margin-top: calc($margin / 4);
     border: 1px solid $purple;
     border-radius: $border-radius;
     background-color: white;

@@ -1,7 +1,7 @@
 ul.pagination {
   font-size: 0.6rem;
   float: right;
-  margin-left: $margin / 2;
+  margin-left: calc($margin / 2);
 }
 ul.cms-collection {
   padding: 0;
@@ -16,7 +16,7 @@ ul.cms-collection {
       li {
         .amazon-links {
           a {
-            margin-right: $margin / 2;
+            margin-right: calc($margin / 2);
           }
         }
       }
