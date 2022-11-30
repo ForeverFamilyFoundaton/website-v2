@@ -239,6 +239,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    net-imap (0.3.1)
+      net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.1.3)
@@ -455,6 +457,7 @@ DEPENDENCIES
   kaminari (~> 1.2)
   kt-paperclip (~> 7.1)
   listen (~> 3.0, < 3.2)
+  net-imap (~> 0.3.1)
   net-pop (~> 0.1.2)
   net-smtp (~> 0.3)
   pg (~> 1.4)
