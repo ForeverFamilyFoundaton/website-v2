@@ -70,3 +70,5 @@ group :test do
 end
 
 gem "net-smtp", "~> 0.3"
+
+gem "net-pop", "~> 0.1.2"
