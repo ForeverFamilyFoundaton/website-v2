@@ -1,6 +1,6 @@
 import CodeMirror from "codemirror/lib/codemirror.js";
 import "codemirror/lib/codemirror.css";
-import "css/codemirror-overrides";
+import "css/codemirror-overrides.scss";
 import "codemirror/mode/gfm/gfm.js";
 import "codemirror/addon/selection/active-line.js";
 

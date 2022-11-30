@@ -1,7 +1,7 @@
-// import "../css/active_admin.scss";
+import "../css/active_admin.scss";
 
-// import "@activeadmin/activeadmin";
+import "@activeadmin/activeadmin";
 
-// import "js/syntax-highlighter";
-// import "js/admin-sort";
-// import "js/select-lists";
+import "js/syntax-highlighter";
+import "js/admin-sort";
+import "js/select-lists";
