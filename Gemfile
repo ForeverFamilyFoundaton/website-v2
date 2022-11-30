@@ -22,6 +22,9 @@ gem "image_processing", "~> 1.12"
 gem "jbuilder", "~> 2.11"
 gem "kaminari", "~> 1.2"
 gem "kt-paperclip", "~> 7.1"
+gem "net-smtp", "~> 0.3"
+gem "net-pop", "~> 0.1.2"
+gem "net-imap", "~> 0.3.1"
 gem "pg", "~> 1.4"
 gem "phony_rails", "~> 0.15"
 gem "pundit", "~> 2.2"
@@ -68,7 +71,3 @@ group :test do
   gem "webdrivers", "~> 5.2"
   gem "webmock", "~> 3.18"
 end
-
-gem "net-smtp", "~> 0.3"
-
-gem "net-pop", "~> 0.1.2"
