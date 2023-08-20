@@ -8,6 +8,8 @@ ForeverFamilyFoundation::Application.routes.draw do
   # Need this for legacy links hard-coded into Love Knows No Death PDF
   get 'site/page/:id', to: 'site#page'
 
+  get '/pages/signs-of-life-magazine', to redirect('/', status: 301)
+
   devise_for :users, controllers: {
     registrations: 'registrations',
     invitations: 'invitations',
