@@ -3,9 +3,11 @@ ActiveAdmin.register Event do
 
   include ActionView::Helpers::TextHelper
 
-  permit_params :title, :teaser, :description, :start_time, :end_time, :url, :pic_link
+  permit_params :title, :teaser, :description, :start_time, :end_time, :url, :pic_link, :time_zone
 
   config.sort_order = "start_time_desc"
+
+  options = [['Eastern Time', 'Eastern Time'], ['Central Time', 'Central Time'],['Mountain Time', 'Mountain Time'], ['Pacific Time', 'Pacific Time']]
 
   markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, space_after_headers: true)
 
@@ -23,6 +25,7 @@ ActiveAdmin.register Event do
     column :teaser
     column :start_time
     column :end_time
+    column :time_zone
     actions
   end
 
@@ -36,6 +39,7 @@ ActiveAdmin.register Event do
       f.input :description, input_html: { class: [:code, :markdown] }
       f.input :start_time
       f.input :end_time
+      f.input :time_zone, as: :select, collection: options, include_blank: false
       f.text_node "Your current time: " + Time.now.to_s + " " + Time.now.localtime.zone
     end
     f.actions

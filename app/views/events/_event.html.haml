@@ -2,7 +2,10 @@
   .card
     .card-header
       = event_times(event)
-      Eastern Time
+      - if event.time_zone.present?
+        = event.time_zone
+      - else
+        Eastern Time
     .card-body
       %h4= link_to event.title, (event.url.present? ? event.url : event), target: '_blank'
       - if event.teaser.present?
