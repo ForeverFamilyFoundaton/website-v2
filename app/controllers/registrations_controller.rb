@@ -9,6 +9,18 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def create
+    build_resource(sign_up_params)
+    if NewGoogleRecaptcha.human?( params[:new_google_recaptcha_token], "registrations", NewGoogleRecaptcha.minimum_score, resource)
+      resource.build_address unless resource.address
+      resource.save
+    else
+      flash[:alert] = "Sorry, we think you're a robot. Please try again."
+      redirect_to new_user_registration_path
+      return
+    end
+  end
+
   def edit
     resource.build_address unless resource.address
     super
