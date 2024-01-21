@@ -3,6 +3,8 @@
 = content_for :recaptcha_js do
   = include_recaptcha_js
 
+= recaptcha_action('registrations')
+
 = simple_form_for resource, as: resource_name, url: registration_path(resource_name), wrapper: :input_group do |f|
   .row
     .col
@@ -26,7 +28,8 @@
         = af.input :zip
         = af.input :country, priority_countries: ["US"]
       .form-actions.mb-3
-        = recaptcha_action('registrations')
+        -# = recaptcha_v3(site_key: 'RECAPTCHA_PUBLIC_KEY', action: 'registrations', minimum_score: 0.5)
         = f.button :submit, "Sign up", class: 'btn btn-primary'
+
 
       = render "devise/shared/links"
