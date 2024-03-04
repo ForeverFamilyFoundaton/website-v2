@@ -254,8 +254,6 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    new_google_recaptcha (1.4.0)
-      rails (>= 4.2.0)
     nio4r (2.5.9)
     nokogiri (1.15.2-arm64-darwin)
       racc (~> 1.4)
@@ -467,7 +465,6 @@ DEPENDENCIES
   net-imap (~> 0.3.1)
   net-pop (~> 0.1.2)
   net-smtp (~> 0.3)
-  new_google_recaptcha
   pg (~> 1.4)
   phony_rails (~> 0.15)
   puma (~> 5.5)

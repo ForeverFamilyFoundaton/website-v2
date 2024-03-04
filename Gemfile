@@ -41,7 +41,7 @@ gem "shrine", "~> 3.4"
 gem "stripe", "~> 7.1"
 gem "stripe_event", "~> 2.6"
 gem "turbolinks", "~> 5.2"
-gem 'new_google_recaptcha'
+# gem 'new_google_recaptcha'
 
 group :development, :test do
   gem "byebug", "~> 11.1"
